@@ -1,0 +1,2316 @@
+<!doctype html>
+<html lang="ru" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>AI Ultra — Modular Carousel Core</title>
+<style>
+/* LOCKED base shell from v1.5.9.6 */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#050607;color:#fff;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#canvas-container{position:fixed;inset:0;width:100vw;height:100vh}
+canvas{display:block;width:100%!important;height:100%!important;touch-action:none}
+#status{display:none;position:fixed;left:16px;top:16px;z-index:60000;max-width:min(560px,calc(100vw - 32px));padding:10px 12px;border:1px solid #ffffff22;border-radius:10px;background:#111e;color:#fff;font:12px/1.4 system-ui}
+#status.show{display:block}
+
+/* Card content / CTA skin. Safe visual-edit surface. */
+.card-number{position:fixed;left:0;top:0;z-index:8100;pointer-events:none;min-width:20px;padding:3px 5px 4px;border-radius:7px;background:linear-gradient(180deg,rgba(30,21,8,.78),rgba(5,5,6,.76));border:1px solid rgba(255,220,145,.38);color:#ffe8b3;font:850 clamp(11px,1vw,14px)/1 system-ui;text-align:center;text-shadow:0 1px 8px rgba(0,0,0,.72);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);transform-origin:0 0;box-shadow:inset 0 0 8px rgba(255,222,150,.08),0 0 10px rgba(213,166,74,.08)}
+.card-number.is-hero{min-width:23px;font-size:clamp(13px,1.12vw,16px);border-color:rgba(255,226,158,.58);background:linear-gradient(180deg,rgba(63,44,14,.84),rgba(7,6,5,.79));box-shadow:inset 0 0 10px rgba(255,225,159,.10),0 0 14px rgba(230,182,85,.16)}
+.core-card-layer{position:fixed;inset:0;z-index:8400;pointer-events:none}.core-card-content{position:fixed;display:flex;flex-direction:column;justify-content:space-between;gap:10px;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .22s ease,transform .28s cubic-bezier(.2,.8,.2,1),filter .22s ease;overflow:hidden;color:#fffaf0;text-shadow:0 2px 16px rgba(0,0,0,.70);border-radius:var(--card-radius,28px);background:linear-gradient(145deg,rgba(30,25,17,.88),rgba(8,8,9,.90) 48%,rgba(96,58,8,.62));box-shadow:inset 0 0 34px rgba(255,220,138,.055);backdrop-filter:blur(12px) saturate(.88);-webkit-backdrop-filter:blur(12px) saturate(.88)}
+.core-card-content.is-visible{opacity:1;transform:translateY(0)}
+.core-card-content.is-loading{opacity:.28;filter:blur(3px);transform:translateY(-5px) scale(.985)}
+.core-card-copy{display:grid;gap:var(--copy-gap,8px);max-width:100%;min-height:0}
+.core-card-eyebrow{font:800 var(--eyebrow-size,10px)/1 system-ui;letter-spacing:.17em;color:#f0d69b;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.core-card-title{max-width:100%;font:850 var(--title-size,30px)/.98 system-ui;letter-spacing:-.04em;display:-webkit-box;-webkit-line-clamp:var(--title-lines,2);-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.core-card-body{max-width:100%;color:rgba(255,249,235,.76);font:580 var(--body-size,12px)/1.38 system-ui;display:-webkit-box;-webkit-line-clamp:var(--body-lines,4);-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.core-card-actions{display:grid;gap:8px;width:100%;pointer-events:auto;min-width:0;margin-top:auto}
+.core-card-button{width:100%;height:42px;min-height:42px;max-height:42px;padding:0 10px;border-radius:14px;cursor:pointer;font:760 12px/1 system-ui;letter-spacing:.01em;transition:transform .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease;touch-action:manipulation;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center;min-width:0}
+.core-card-button:hover{transform:translateY(-1px)}
+.core-card-button:active{transform:translateY(0) scale(.985)}
+.core-card-button-primary{border:1px solid rgba(255,255,255,.88);background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(239,235,225,.92));box-shadow:inset 0 1px 0 rgba(255,255,255,1),0 7px 20px rgba(0,0,0,.26),0 0 16px rgba(255,242,211,.12);color:#17120b;text-shadow:none}
+.core-card-button-secondary{border:1px solid rgba(255,255,255,.50);background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.075));box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 6px 18px rgba(0,0,0,.22);color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.55)}
+body.core-route-loading .core-card-layer,body.core-route-loading .card-number{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+body.core-route-loading .core-card-content{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+.core-card-content[data-mode="micro"]{gap:7px}
+.core-card-content[data-mode="micro"] .core-card-actions{gap:6px}
+.core-card-content[data-mode="small"]{gap:8px}
+.core-card-content[data-mode="small"] .core-card-actions{gap:7px}
+
+/* HUD / menu / search / route-loading UI. */
+.core-route-loader{position:fixed;left:50%;top:24px;z-index:57000;display:none;gap:8px;width:min(300px,calc(100vw - 48px));opacity:0;pointer-events:none;transform:translate(-50%,-10px);transition:opacity .2s ease,transform .25s ease}
+body.core-route-loading .core-route-loader{opacity:0;transform:translate(-50%,-10px)}
+.core-route-loader-label{text-align:center;color:rgba(249,231,188,.72);font:800 10px/1 system-ui;letter-spacing:.16em}
+.core-route-loader-track{height:2px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.1)}
+.core-route-loader-track i{display:block;width:42%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#f0cf8b,#fff3d1);box-shadow:0 0 18px rgba(222,184,98,.7);animation:core-route-progress 1.15s ease-in-out infinite}
+@keyframes core-route-progress{0%{transform:translateX(-120%)}55%{transform:translateX(135%)}100%{transform:translateX(300%)}}
+.core-overlay{position:fixed;inset:0;z-index:56000;opacity:0;pointer-events:none;background:rgba(0,0,0,.18);backdrop-filter:blur(0);transition:opacity .2s ease,backdrop-filter .25s ease}
+body.core-search-open .core-search,body.core-menu-open .core-menu{opacity:1;pointer-events:auto;backdrop-filter:blur(5px)}
+.core-search-panel{position:absolute;left:50%;top:7vh;width:min(760px,calc(100vw - 64px));border:1px solid rgba(235,205,141,.18);border-radius:26px;background:rgba(8,8,10,.94);box-shadow:0 28px 90px rgba(0,0,0,.55),0 0 40px rgba(202,164,86,.08);transform:translate(-50%,-24px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+body.core-search-open .core-search-panel{transform:translate(-50%,0) scale(1)}
+.core-search-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;min-height:72px;padding:0 18px 0 22px;border-bottom:1px solid rgba(255,255,255,.1)}
+.core-search-icon{font:400 30px/1 system-ui;color:#e5c67f}
+.core-search-input{width:100%;border:0;outline:0;background:transparent;color:#fff;font:600 clamp(16px,2vw,24px)/1.2 system-ui}
+.core-search-input::placeholder{color:rgba(255,255,255,.4)}
+.core-empty{padding:18px 22px 22px;color:rgba(255,255,255,.55);font:500 13px/1.45 system-ui}
+.core-close{width:40px;height:40px;border-radius:999px;border:1px solid rgba(238,206,135,.16);background:rgba(255,255,255,.05);color:#fff7e4;cursor:pointer;font:300 26px/1 system-ui}
+.core-menu-panel{position:absolute;right:24px;top:24px;bottom:24px;width:min(360px,calc(100vw - 48px));border:1px solid rgba(235,205,141,.16);border-radius:26px;background:rgba(8,8,10,.95);box-shadow:0 28px 90px rgba(0,0,0,.55);transform:translateX(calc(100% + 48px));transition:transform .3s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+body.core-menu-open .core-menu-panel{transform:translateX(0)}
+.core-menu-head{height:68px;padding:0 16px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.1)}
+.core-menu-head strong{font:800 13px/1 system-ui;letter-spacing:.15em}
+.core-menu-body{display:grid;gap:8px;padding:12px}
+.core-menu-body button{border:1px solid rgba(243,215,153,.12);border-radius:14px;background:rgba(255,255,255,.035);color:#fff7e4;padding:13px 14px;text-align:left;cursor:pointer;font:600 13px/1 system-ui}
+.core-menu-body button:hover{background:rgba(224,185,99,.10)}
+.core-toast{position:fixed;left:50%;bottom:28px;z-index:60000;padding:9px 13px;border-radius:999px;background:rgba(7,7,9,.92);border:1px solid rgba(235,204,136,.16);color:#fff7e4;font:600 12px/1 system-ui;opacity:0;transform:translate(-50%,10px);pointer-events:none;transition:opacity .16s ease,transform .16s ease;backdrop-filter:blur(10px)}
+.core-toast.show{opacity:1;transform:translate(-50%,0)}
+.core-hud{position:fixed;left:18px;top:50%;z-index:12000;display:flex;flex-direction:column;gap:12px;transform:translateY(-50%);pointer-events:auto;transition:opacity .18s ease}
+.core-hud-button{width:58px;height:58px;border-radius:18px;border:1px solid rgba(255,214,119,.54);background:linear-gradient(145deg,rgba(30,25,17,.88),rgba(8,8,9,.90) 48%,rgba(96,58,8,.62));box-shadow:inset 0 0 22px rgba(255,220,138,.10),0 0 22px rgba(213,157,49,.20),0 10px 26px rgba(0,0,0,.30);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer;display:grid;place-items:center;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease,background .16s ease}
+.core-hud-button:hover{transform:scale(1.08);border-color:rgba(255,228,160,.82);box-shadow:inset 0 0 24px rgba(255,225,153,.14),0 0 30px rgba(226,173,62,.32),0 12px 30px rgba(0,0,0,.34)}
+.core-hud-button:active{transform:scale(.97)}
+.core-hud-button svg{width:30px;height:30px;fill:none;stroke:#fff1ca;stroke-width:4.2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(239,190,80,.35))}
+.core-hud-button svg path:first-child,.core-hud-button svg circle{stroke:#fff1ca}
+.core-hud-button.is-active{background:linear-gradient(145deg,rgba(75,48,10,.94),rgba(17,13,8,.94) 48%,rgba(150,91,13,.68));border-color:rgba(255,226,153,.82)}
+body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+
+@media(max-width:700px){
+  .core-hud{left:10px;gap:9px}
+  .core-hud-button{width:48px;height:48px;border-radius:15px}
+  .core-hud-button svg{width:25px;height:25px;stroke-width:4.4}
+}
+
+
+
+</style>
+</head>
+<body data-carousel-core="pure">
+<div id="canvas-container" aria-hidden="true"></div>
+<div id="status" role="status" aria-live="polite"></div>
+<script>
+window.__AIULTRA_SHOW_FATAL__=function(message){
+  const el=document.getElementById('status');
+  if(!el)return;
+  el.textContent=message;
+  el.classList.add('show');
+};
+window.addEventListener('error',event=>{
+  if(event?.message) window.__AIULTRA_SHOW_FATAL__('Runtime error: '+event.message);
+},true);
+window.addEventListener('unhandledrejection',event=>{
+  const reason=event?.reason;
+  window.__AIULTRA_SHOW_FATAL__('Runtime error: '+((reason&&reason.message)||String(reason||'unknown error')));
+});
+</script>
+<script>
+// Edit only content/labels/URLs here. No carousel physics live in this file.
+window.AIULTRA_CONTENT = Object.freeze([
+    {eyebrow:'AI ULTRA',title:'AI-сотрудники',body:'Тестовый контент для проверки композиции в чёрно-бело-золотой версии.',primary:'Открыть блок',secondary:'Подробнее'},
+    {eyebrow:'SYSTEM',title:'Продажи и CRM',body:'Проверяем как контент живёт внутри стекла и не выходит за строгую разметку.',primary:'Перейти',secondary:'Описание'},
+    {eyebrow:'AUTOMATION',title:'Автоматизация',body:'Переход остаётся внутри той же 3D-сцены. Карусель мягко продолжает движение.',primary:'Загрузить',secondary:'Детали'},
+    {eyebrow:'DIGITAL',title:'Маркетинг',body:'Во время условной загрузки сцена остаётся живой и плавно докручивается вперёд.',primary:'Следующий',secondary:'Открыть'},
+    {eyebrow:'WEBGL',title:'Интерактивный сайт',body:'Соседние карточки тоже показывают свой контент, но в строгих безопасных рамках.',primary:'Продолжить',secondary:'Обзор'}
+]);
+
+</script>
+<script>
+(() => {
+  const toast = document.createElement('div');
+  toast.className = 'core-toast';
+  document.body.appendChild(toast);
+  let toastTimer = 0;
+
+  const demoContent = Array.isArray(window.AIULTRA_CONTENT) && window.AIULTRA_CONTENT.length
+    ? window.AIULTRA_CONTENT
+    : [
+    {eyebrow:'AI ULTRA',title:'AI-сотрудники',body:'Тестовый контент для проверки композиции в чёрно-бело-золотой версии.',primary:'Открыть блок',secondary:'Подробнее'},
+    {eyebrow:'SYSTEM',title:'Продажи и CRM',body:'Проверяем как контент живёт внутри стекла и не выходит за строгую разметку.',primary:'Перейти',secondary:'Описание'},
+    {eyebrow:'AUTOMATION',title:'Автоматизация',body:'Переход остаётся внутри той же 3D-сцены. Карусель мягко продолжает движение.',primary:'Загрузить',secondary:'Детали'},
+    {eyebrow:'DIGITAL',title:'Маркетинг',body:'Во время условной загрузки сцена остаётся живой и плавно докручивается вперёд.',primary:'Следующий',secondary:'Открыть'},
+    {eyebrow:'WEBGL',title:'Интерактивный сайт',body:'Соседние карточки тоже показывают свой контент, но в строгих безопасных рамках.',primary:'Продолжить',secondary:'Обзор'}
+      ];
+
+  const layer = document.createElement('div');
+  layer.className = 'core-card-layer';
+  document.body.appendChild(layer);
+
+  function createCardOverlay(index) {
+    const card = document.createElement('section');
+    card.className = 'core-card-content';
+    card.dataset.overlayIndex = String(index);
+    card.innerHTML = `
+      <div class="core-card-copy">
+        <span class="core-card-eyebrow"></span>
+        <h2 class="core-card-title"></h2>
+        <p class="core-card-body"></p>
+      </div>
+      <div class="core-card-actions">
+        <button class="core-card-button core-card-button-primary" type="button"></button>
+        <button class="core-card-button core-card-button-secondary" type="button"></button>
+      </div>`;
+    const primary = card.querySelector('.core-card-button-primary');
+    const secondary = card.querySelector('.core-card-button-secondary');
+    primary.addEventListener('pointerdown', e => e.stopPropagation());
+    secondary.addEventListener('pointerdown', e => e.stopPropagation());
+    primary.addEventListener('click', event => {
+      event.stopPropagation();
+      const target = Number(card.dataset.primaryTarget || 0);
+      if (target) beginSceneRoute(target, contentForSequence(target).title);
+    });
+    secondary.addEventListener('click', event => {
+      event.stopPropagation();
+      const target = Number(card.dataset.secondaryTarget || 0);
+      if (target) beginSceneRoute(target, contentForSequence(target).title);
+    });
+    layer.appendChild(card);
+    return card;
+  }
+
+  const overlayPool = Array.from({ length: 7 }, (_, i) => createCardOverlay(i));
+
+
+  // Fixed screen-space HUD. These three controls never inherit carousel depth/position,
+  // so they cannot disappear behind glass or keep drifting after the 3D motion stops.
+  const hud = document.createElement('nav');
+  hud.className = 'core-hud';
+  hud.setAttribute('aria-label', 'Основные кнопки');
+  hud.innerHTML = `
+    <button class="core-hud-button" type="button" data-hud="menu" aria-label="Меню">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 14h28M10 24h28M10 34h28"/></svg>
+    </button>
+    <button class="core-hud-button" type="button" data-hud="music" aria-label="Музыка">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 20h7l10-8v24l-10-8h-7z"/><path class="music-slash" d="M12 10l25 28"/></svg>
+    </button>
+    <button class="core-hud-button" type="button" data-hud="search" aria-label="Поиск">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="21" cy="21" r="10"/><path d="M29 29l9 9"/></svg>
+    </button>`;
+  document.body.appendChild(hud);
+  let musicMuted = true;
+  hud.querySelector('[data-hud="menu"]').addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('aiultra:menu-request'));
+  });
+  hud.querySelector('[data-hud="search"]').addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('aiultra:search-request'));
+  });
+  hud.querySelector('[data-hud="music"]').addEventListener('click', buttonEvent => {
+    musicMuted = !musicMuted;
+    buttonEvent.currentTarget.classList.toggle('is-active', !musicMuted);
+    window.dispatchEvent(new CustomEvent('aiultra:music-toggle', { detail:{ muted:musicMuted } }));
+  });
+
+  const routeLoader = document.createElement('div');
+  routeLoader.className = 'core-route-loader';
+  routeLoader.innerHTML = `
+    <span class="core-route-loader-label">ЗАГРУЗКА РАЗДЕЛА</span>
+    <span class="core-route-loader-track"><i></i></span>`;
+  document.body.appendChild(routeLoader);
+
+  const search = document.createElement('div');
+  search.className = 'core-overlay core-search';
+  search.innerHTML = `
+    <section class="core-search-panel" role="dialog" aria-modal="true" aria-label="Поиск">
+      <div class="core-search-row">
+        <span class="core-search-icon" aria-hidden="true">⌕</span>
+        <input class="core-search-input" autocomplete="off" spellcheck="false"
+          placeholder="Поиск подключим после финальной склейки">
+        <button class="core-close" type="button" aria-label="Закрыть">×</button>
+      </div>
+      <div class="core-empty">Сейчас это чистый Carousel Core. Поисковый индекс и SEO здесь отсутствуют.</div>
+    </section>`;
+  document.body.appendChild(search);
+
+  const menu = document.createElement('div');
+  menu.className = 'core-overlay core-menu';
+  menu.innerHTML = `
+    <section class="core-menu-panel" role="dialog" aria-modal="true" aria-label="Меню">
+      <div class="core-menu-head"><strong>CAROUSEL CORE</strong><button class="core-close" type="button" aria-label="Закрыть">×</button></div>
+      <div class="core-menu-body">
+        <button type="button" data-go="1">Карточка 1</button>
+        <button type="button" data-go="2">Карточка 2</button>
+        <button type="button" data-go="3">Карточка 3</button>
+        <button type="button" data-go="4">Карточка 4</button>
+        <button type="button" data-go="5">Карточка 5</button>
+      </div>
+    </section>`;
+  document.body.appendChild(menu);
+
+  const showToast = message => {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1200);
+  };
+  const closeSearch = () => document.body.classList.remove('core-search-open');
+  const closeMenu = () => document.body.classList.remove('core-menu-open');
+
+  let activeSequence = 1;
+  let routeLoading = false;
+  let routeTarget = null;
+  let routeExternalUrl = null;
+
+  function contentForSequence(sequence) {
+    return demoContent[(Math.max(1, Number(sequence) || 1) - 1) % demoContent.length];
+  }
+
+  function targetAfter(sequence, amount = 1) {
+    const n = Math.max(1, Math.round(Number(sequence) || 1));
+    return ((n - 1 + amount) % 500) + 1;
+  }
+
+
+  function intersection(a, b) {
+    const left=Math.max(a.left,b.left), right=Math.min(a.right,b.right);
+    const top=Math.max(a.top,b.top), bottom=Math.min(a.bottom,b.bottom);
+    if (right <= left || bottom <= top) return null;
+    return {left,right,top,bottom,width:right-left,height:bottom-top};
+  }
+
+  function exposedContentBounds(entry, allVisible) {
+    const b={...entry.bounds};
+    let intervals=[[b.left,b.right]];
+    const blockers=allVisible.filter(other => {
+      if (other === entry || !other.bounds) return false;
+      if (entry.isHero) return false;
+      return other.isHero || Number(other.renderOrder || 0) > Number(entry.renderOrder || 0);
+    });
+
+    for (const blocker of blockers) {
+      const overlap=intersection(b, blocker.bounds);
+      if (!overlap || overlap.height < b.height*.24 || overlap.width < 8) continue;
+      const cutL=overlap.left, cutR=overlap.right;
+      const next=[];
+      for (const [l,r] of intervals) {
+        if (cutR <= l || cutL >= r) { next.push([l,r]); continue; }
+        if (cutL > l) next.push([l,Math.min(cutL,r)]);
+        if (cutR < r) next.push([Math.max(cutR,l),r]);
+      }
+      intervals=next;
+      if (!intervals.length) break;
+    }
+
+    if (!intervals.length) return null;
+    intervals.sort((a,b2)=>(b2[1]-b2[0])-(a[1]-a[0]));
+    const [left,right]=intervals[0];
+    const width=right-left;
+    if (width < 54) return null;
+    return {left,right,top:b.top,bottom:b.bottom,width,height:b.height};
+  }
+
+  function contentModeForBounds(bounds, isHero) {
+    const w=Math.max(1,bounds.width), h=Math.max(1,bounds.height);
+    const area=w*h;
+    if(isHero || (w>=260 && h>=430) || area>=125000) return 'hero';
+    if(w>=185 && h>=320) return 'medium';
+    if(w>=135 && h>=235) return 'small';
+    return 'micro';
+  }
+
+  function adaptiveMetrics(bounds, mode) {
+    const w=Math.max(1,bounds.width), h=Math.max(1,bounds.height);
+    const shortSide=Math.min(w,h);
+    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+    const presets={
+      hero:{padX:.078,padTop:.12,padBottom:.064,title:[25,36],body:[11.5,13],eyebrow:[9,11],copyGap:[7,11],titleLines:2,bodyLines:4},
+      medium:{padX:.082,padTop:.115,padBottom:.060,title:[21,31],body:[10.5,12.2],eyebrow:[8.5,10],copyGap:[6,9],titleLines:2,bodyLines:4},
+      small:{padX:.088,padTop:.090,padBottom:.045,title:[15,23],body:[8.8,10.5],eyebrow:[7.4,8.9],copyGap:[4,7],titleLines:2,bodyLines:3},
+      micro:{padX:.095,padTop:.075,padBottom:.035,title:[12,18],body:[7.8,9.3],eyebrow:[6.8,8.0],copyGap:[3,5],titleLines:2,bodyLines:2}
+    };
+    const p=presets[mode];
+    const density=clamp((shortSide-90)/230,0,1);
+    const lerp=(a,b,t)=>a+(b-a)*t;
+
+    return {
+      padX:clamp(w*p.padX,10,34),
+      padTop:clamp(h*p.padTop,12,78),
+      padBottom:clamp(h*p.padBottom,8,36),
+      title:lerp(p.title[0],p.title[1],density),
+      body:lerp(p.body[0],p.body[1],density),
+      eyebrow:lerp(p.eyebrow[0],p.eyebrow[1],density),
+      copyGap:lerp(p.copyGap[0],p.copyGap[1],density),
+      titleLines:p.titleLines,
+      bodyLines:p.bodyLines,
+      radius:clamp(w*.19,18,42)
+    };
+  }
+
+  function applyOverlayContent(node, item, bounds, { isHero, sequence, renderOrder = 0 }) {
+    node.querySelector('.core-card-eyebrow').textContent = item.eyebrow;
+    node.querySelector('.core-card-title').textContent = item.title;
+    node.querySelector('.core-card-body').textContent = item.body;
+    node.querySelector('.core-card-button-primary').textContent = item.primary;
+    node.querySelector('.core-card-button-secondary').textContent = item.secondary;
+
+    const mode=contentModeForBounds(bounds,isHero);
+    const m=adaptiveMetrics(bounds,mode);
+
+    node.style.left = `${Math.round(bounds.left)}px`;
+    node.style.top = `${Math.round(bounds.top)}px`;
+    node.style.width = `${Math.max(72, Math.round(bounds.width))}px`;
+    node.style.height = `${Math.max(104, Math.round(bounds.height))}px`;
+    node.style.padding = `${Math.round(m.padTop)}px ${Math.round(m.padX)}px ${Math.round(m.padBottom)}px`;
+    node.style.setProperty('--card-radius', `${m.radius.toFixed(1)}px`);
+    node.style.setProperty('--eyebrow-size', `${m.eyebrow.toFixed(2)}px`);
+    node.style.setProperty('--title-size', `${m.title.toFixed(2)}px`);
+    node.style.setProperty('--body-size', `${m.body.toFixed(2)}px`);
+    node.style.setProperty('--copy-gap', `${m.copyGap.toFixed(2)}px`);
+    node.style.setProperty('--title-lines', String(m.titleLines));
+    node.style.setProperty('--body-lines', String(m.bodyLines));
+    node.style.zIndex = String(8400 + Math.max(0, Math.round(renderOrder)));
+    node.dataset.mode=mode;
+
+    node.classList.toggle('is-hero', isHero);
+    node.classList.toggle('is-support', !isHero);
+    node.classList.toggle('is-loading', routeLoading && routeTarget === sequence);
+
+    // Full content remains present on every card. Typography and spacing, not visibility,
+    // adapt to the actual projected card bounds.
+    node.querySelector('.core-card-body').style.display = '';
+    node.querySelector('.core-card-button-primary').style.display = '';
+    node.querySelector('.core-card-button-secondary').style.display = '';
+
+    node.dataset.primaryTarget = String(isHero ? targetAfter(sequence, 4) : sequence);
+    node.dataset.secondaryTarget = String(targetAfter(sequence, 1));
+    node.classList.add('is-visible');
+  }
+
+  function hideUnusedOverlays(startIndex = 0) {
+    for (let i = startIndex; i < overlayPool.length; i++) {
+      overlayPool[i].classList.remove('is-visible', 'is-loading', 'is-hero', 'is-support', 'is-compact');
+      delete overlayPool[i].dataset.mode;
+    }
+  }
+
+  function renderSceneCards(state) {
+    if (routeLoading) {
+      hideUnusedOverlays(0);
+      return;
+    }
+
+    const visible = (state?.visible || [])
+      .filter(item => item?.bounds && item.bounds.width >= 54 && item.bounds.height >= 90)
+      .sort((a, b) => Number(a.renderOrder || 0) - Number(b.renderOrder || 0))
+      .slice(0, overlayPool.length);
+
+    if (!visible.length) {
+      hideUnusedOverlays(0);
+      return;
+    }
+
+    visible.forEach((entry, index) => {
+      const item = contentForSequence(entry.sequenceNumber);
+      applyOverlayContent(overlayPool[index], item, entry.bounds, {
+        isHero: entry.isHero,
+        sequence: entry.sequenceNumber,
+        renderOrder: entry.renderOrder || 0
+      });
+    });
+    hideUnusedOverlays(visible.length);
+  }
+
+  function beginSceneRoute(targetSequence, label = 'Раздел', targetUrl = null) {
+    if (routeLoading || !window.AIUltraScene?.goToSequence) return;
+    closeMenu(); closeSearch();
+    routeLoading = true;
+    routeTarget = targetSequence;
+    routeExternalUrl = null;
+    document.body.classList.add('core-route-loading');
+    hideUnusedOverlays(0);
+    routeLoader.querySelector('.core-route-loader-label').textContent = `ЗАГРУЗКА · ${String(label).toUpperCase()}`;
+
+    // Internal links keep the current WebGL scene mounted. External destinations (Telegram etc.)
+    // are opened only after the 1.5 s camera ride.
+    try {
+      const nextUrl = targetUrl || `${location.pathname}?section=${encodeURIComponent(targetSequence)}`;
+      const parsed = new URL(nextUrl, location.href);
+      if (parsed.origin === location.origin) history.pushState({sequence:targetSequence,label}, '', parsed.href);
+      else routeExternalUrl = parsed.href;
+    } catch (_) {
+      routeExternalUrl = targetUrl || null;
+    }
+
+    window.AIUltraScene.goToSequence(targetSequence, {
+      source:'core-route',
+      forceForward:true,
+      duration:1.5
+    });
+  }
+
+  window.addEventListener('aiultra:scene-state', event => {
+    const state = event.detail || null;
+    activeSequence = state?.activeSequence || 1;
+    renderSceneCards(state);
+  });
+
+  window.addEventListener('aiultra:navigation-start', event => {
+    if (event.detail?.source === 'core-route') {
+      routeLoading = true;
+      routeTarget = event.detail?.sequenceNumber || routeTarget;
+      document.body.classList.add('core-route-loading');
+      hideUnusedOverlays(0);
+    }
+  });
+
+  window.addEventListener('aiultra:navigation-end', event => {
+    if (event.detail?.source !== 'core-route') return;
+    const externalUrl = routeExternalUrl;
+    routeExternalUrl = null;
+    routeLoading = false;
+    routeTarget = null;
+    document.body.classList.remove('core-route-loading');
+    const state = window.AIUltraScene?.getState?.();
+    if (state) renderSceneCards(state);
+    if (externalUrl) window.location.assign(externalUrl);
+  });
+
+  document.addEventListener('click', event => {
+    const trigger = event.target.closest?.('[data-ai-sequence]');
+    if (!trigger) return;
+    event.preventDefault();
+    beginSceneRoute(Number(trigger.dataset.aiSequence), trigger.dataset.aiLabel || 'Раздел', trigger.dataset.aiUrl || null);
+  });
+
+
+  window.addEventListener('popstate', event => {
+    const sequence=Number(event.state?.sequence || 0);
+    if (!sequence || routeLoading) return;
+    routeLoading = true;
+    routeTarget = sequence;
+    document.body.classList.add('core-route-loading');
+    hideUnusedOverlays(0);
+    window.AIUltraScene?.goToSequence?.(sequence,{
+      source:'core-route',forceForward:true,duration:1.5
+    });
+  });
+
+  window.addEventListener('aiultra:search-request', () => {
+    closeMenu();
+    document.body.classList.add('core-search-open');
+    requestAnimationFrame(() => search.querySelector('input')?.focus());
+  });
+  window.addEventListener('aiultra:menu-request', () => {
+    closeSearch();
+    document.body.classList.toggle('core-menu-open');
+  });
+  window.addEventListener('aiultra:music-toggle', event => {
+    showToast(event.detail?.muted ? 'Музыка выключена' : 'Музыка включена');
+  });
+
+  search.querySelector('.core-close')?.addEventListener('click', closeSearch);
+  menu.querySelector('.core-close')?.addEventListener('click', closeMenu);
+  search.addEventListener('pointerdown', e => { if (e.target === search) closeSearch(); });
+  menu.addEventListener('pointerdown', e => { if (e.target === menu) closeMenu(); });
+  menu.querySelectorAll('[data-go]').forEach(button => {
+    button.addEventListener('click', () => {
+      beginSceneRoute(Number(button.dataset.go), `Карточка ${button.dataset.go}`);
+      closeMenu();
+    });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeSearch(); closeMenu(); }
+  });
+
+  const initialState = window.AIUltraScene?.getState?.();
+  if (initialState) {
+    activeSequence = initialState.activeSequence || 1;
+    renderSceneCards(initialState);
+  }
+})();
+
+</script>
+<script type="module">
+import * as THREE from 'https://esm.sh/three@0.184.0';
+    import { EffectComposer } from 'https://esm.sh/three@0.184.0/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/UnrealBloomPass.js';
+    import { OutputPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/OutputPass.js';
+    import { gsap } from 'https://esm.sh/gsap@3.15.0';
+    import { Observer } from 'https://esm.sh/gsap@3.15.0/Observer';
+// ROUTE TRAVEL LAB — edit this file to tune only the click-to-travel animation.
+// The actual camera still uses the exact Pass 4 wheel rule inside carousel-core.mjs.
+const ROUTE_TRAVEL = Object.freeze({
+  minLoops: 1.04,
+  maxLoops: 1.20,
+  maxDurationMs: 1500,
+  baseDurationMs: 1380,
+  extraArcDurationMs: 550,
+  initialDriveMs: 1080,
+  minDriveMs: 1040,
+  maxDriveMs: 1130,
+  settleReserveMs: 330,
+  cameraSettleEpsilon: 0.012,
+  endpointSoftness: 1.00
+});
+
+function routeTravelProgress(p) {
+  const t = Math.max(0, Math.min(1, Number(p) || 0));
+  // 2× softer Route Travel endpoints. A 7th-order smoothstep keeps
+  // acceleration/deceleration much gentler while preserving the same route distance
+  // and the same 1.5 s maximum window. Core/wheel mechanics are untouched.
+  const t2 = t * t;
+  const t3 = t2 * t;
+  const t4 = t3 * t;
+  return t4 * (35 - 84 * t + 70 * t2 - 20 * t3);
+}
+
+    gsap.registerPlugin(Observer);
+
+    // V35.10.6 changes the ambient motion model: the background carousel no longer rotates around a shared center.
+    // Instead, every background card advances clockwise along the original Pass 4 path like wagons on rails,
+    // staying inside the carousel silhouette while remaining face-on to the viewer.
+    // Foreground funnel cards remain readable and all V35.10.4 scroll / ring-wrap / grab / bloom mechanics are preserved.
+    // V35.10 FUNNEL-STEP-ON-STOP: built from clean V35. Visual Pass 4 scroll is untouched; only logical funnel numbering changes on full stop.
+    // CRITICAL CONTRACT: the original Pass 4 visual scroll stays byte-for-byte in behavior at the Observer target update:
+    // targetT -= deltaY * SENSITIVITY; setCamT(targetT). Logical numbering is a separate state machine.
+    // Initial logical group is 1..5 with hero 1. During active scrolling the logical hero is frozen.
+    // After the original visual motion fully stops, one completed gesture advances exactly ONE funnel step (+1 / -1),
+    // regardless of how far/fast the visual camera travelled or how many physical cards crossed the viewport.
+    // Desktop wheel response is the original continuous Pass 4 motion: every wheel impulse only retargets the visual camera.
+    // Logical content order does not advance per wheel event; it advances once, only after the whole visual motion has settled.
+    // Repeated impulses retarget the same power3.out camera tween, matching the original Pass 4 1.0s motion feel.
+    // Pure Carousel Core: only visual mechanics and UI-control hooks remain.
+    // Only visual mechanics remain: Pass 4 flow, card geometry, numbering, hover/drag/scroll and fixed HUD control hooks.
+    // Production flow, 1..7 active-card model, ring seam 500 <-> 1 and glass mechanics remain intact.
+
+    const PATH_URL='https://raw.githubusercontent.com/gaspoorf/curve-gallery/main/public/paths/path4.json';
+
+    const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    renderer.setSize(innerWidth,innerHeight);
+    renderer.outputColorSpace=THREE.SRGBColorSpace;
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+    const scene=new THREE.Scene();
+    scene.background=new THREE.Color(0x050607);
+    scene.fog=new THREE.Fog(0x050607,11,49);
+    const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,200);
+    const glassAmbient=new THREE.HemisphereLight(0xfff0c9,0x050505,1.18);
+    scene.add(glassAmbient);
+    const glassLightTarget=new THREE.Object3D();
+    scene.add(glassLightTarget);
+    const glassKey=new THREE.DirectionalLight(0xffd98b,2.55);
+    glassKey.target=glassLightTarget;
+    glassKey.position.set(3.5,5.5,9);
+    scene.add(glassKey);
+    const glassFill=new THREE.PointLight(0xfff2d6,.82,42,2);
+    glassFill.position.set(-8,-5,4.2);
+    scene.add(glassFill);
+
+    // V35.10.3: edge-light technique adapted from the referenced CodePen.
+    // The source demo uses bright emissive edges + UnrealBloomPass; here bloom is shared globally,
+    // while only 7 active foreground cards receive the hot LED edge layer.
+    const renderPass=new RenderPass(scene,camera);
+    const bloomPass=new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),.54,.30,.96);
+    bloomPass.threshold=1.00;
+    bloomPass.strength=.76;
+    bloomPass.radius=.34;
+    const outputPass=new OutputPass();
+    const composer=new EffectComposer(renderer);
+    composer.addPass(renderPass);
+    composer.addPass(bloomPass);
+    composer.addPass(outputPass);
+
+    const SCALE=16;
+    const TOTAL=2160; // production dense flow
+    const FLOW_LOOP_SECONDS=14; // one full clockwise pass of the background flow along the original curve
+    const FLOW_CLOCKWISE_SPEED=1/FLOW_LOOP_SECONDS;
+    const CAM_Z=7.4;
+    const CARD_HEIGHT=1;
+    const CARD_WIDTH=9/16;
+    const CARD_RADIUS=CARD_WIDTH*.205;
+    const SENSITIVITY=0.8/(window.innerHeight*4);
+    const ORIGINAL_SEQUENCE_TOTAL=500;
+    const FOCUS_DIST=5.5;
+    const FLOW_MAX_SCALE=2.25;
+    const Z_GATE=11;
+    const ACTIVE_CARD_COUNT=7;
+    const MIN_VISIBLE_ACTIVE=4;
+    const MAX_VISIBLE_ACTIVE=7;
+    const INITIAL_GROUP_SIZE=5;
+    const ORBITAL_SQUARE_COUNT=0; // controls are fixed DOM HUD: independent from the 3D glass
+    const ORBITAL_SQUARE_RADIUS_X_NDC=.66;
+    const ORBITAL_SQUARE_RADIUS_Y_NDC=.52;
+    const ORBITAL_SQUARE_SCREEN_SIZE=.132; // 3 main controls only: slightly smaller, cleaner placement
+    const ORBITAL_SQUARE_ROTATION_SPEED=2.65;
+    const ORBITAL_SQUARE_CARD_CLEARANCE_NDC=.115;
+    const ORBITAL_SQUARE_BUTTON_CLEARANCE_NDC=.085; // buttons never overlap each other or visible glass
+    const ORBITAL_SQUARE_EDGE_MARGIN_NDC=.07;
+    const ORBITAL_SQUARE_SEARCH_STEP=Math.PI/24;
+    const ORBITAL_SQUARE_SEARCH_STEPS=72;
+    const ORBITAL_SQUARE_RADIAL_LEVELS=[1,1.14,1.30,1.48,1.68,1.90,2.15,2.40,2.70,3.00];
+    const ORBITAL_FLOW_SQUARE_COUNT=180;
+    const TINY_ORBITAL_FLOW_ENABLED=false; // V114.2: remove tiny blue square particles
+    const ORBITAL_FLOW_SQUARE_SIZE_MIN=.105;
+    const ORBITAL_FLOW_SQUARE_SIZE_MAX=.235;
+    const GROUP_GESTURE_GAP_MS=230;
+    const GROUP_SETTLE_TIMEOUT_MS=1350;
+    const GROUP_VISUAL_STOP_EPSILON=.00005;
+    const GROUP_SIZE_THRESHOLDS=[8,18,30,50,85,130];
+    const ORIGINAL_PASS4_QUICKTO_DURATION=1;
+    // Manual wheel movement uses the exact original Pass 4 tween timing/ease.
+    // One accepted wheel impulse = one adjacent logical card; repeated impulses retarget continuously.
+    const MANUAL_STEP_DURATION=ORIGINAL_PASS4_QUICKTO_DURATION;
+    const PROGRAMMATIC_MIN_DURATION=ORIGINAL_PASS4_QUICKTO_DURATION;
+    const PROGRAMMATIC_MAX_DURATION=2.40;
+    const PROGRAMMATIC_SECONDS_PER_CARD=.11;
+    const MANUAL_WHEEL_REFRACTORY_MS=28;
+    const MANUAL_TOUCH_STEP_ENERGY=18;
+    const MANUAL_TOUCH_IDLE_MS=150;
+    const MANUAL_IMPULSE_EVENT_CAP=120;
+    const ACTIVE_VISIBILITY_DAMP=13;
+    const GESTURE_GAP_MS=230;
+    // Accumulated absolute Observer delta needed to reveal card #2, #3, #4 and #5.
+    // Deliberately conservative: one ordinary wheel notch should not summon all five.
+    const ACTIVE_REVEAL_THRESHOLDS=[8,18,30,50];
+    const ACTIVE_REVEAL_EVENT_CAP=180;
+    const HERO_SCREEN_HEIGHT=.80;
+    const MIN_ACTIVE_SCREEN_HEIGHT=.38;
+    const ACTIVE_FOCUS_RADIUS_CARDS=2.15;
+    // Hard lower bound for every actively displayed card: exactly the current resting size
+    // of logical card #3 when card #1 is hero (two sequence steps away).
+    const THIRD_CARD_REFERENCE_SCREEN_HEIGHT=MIN_ACTIVE_SCREEN_HEIGHT+
+      (HERO_SCREEN_HEIGHT-MIN_ACTIVE_SCREEN_HEIGHT)*Math.pow(
+        THREE.MathUtils.clamp(1-2/ACTIVE_FOCUS_RADIUS_CARDS,0,1),1.35
+      );
+    const ACTIVE_RECYCLE_FADE_START=3.18;
+    const ACTIVE_RECYCLE_FADE_END=3.48;
+    const ACTIVE_LATERAL_MAX=1.08;
+    const ACTIVE_DEPTH_MAX=.42;
+    const SIDE_LANE_X_NDC=.37;
+    const SIDE_LANE_X_FAR_NDC=.54;
+    const SIDE_LANE_Y_NDC=.105;
+    const SIDE_LANE_Y_FAR_NDC=.245;
+    const SIDE_LANE_DEPTH=.22;
+    const SUPPORT_LANE_DAMP_MOVING=10.5;
+    const SUPPORT_LANE_DAMP_SETTLE=4.6;
+    const SETTLE_DELAY_MS=165;
+    const HERO_RENDER_ORDER=3200;
+    const SUPPORT_SECOND_RENDER_ORDER=1750;
+    const SUPPORT_THIRD_RENDER_ORDER=900;
+    const HOVER_RENDER_ORDER=2450;
+    const HOVER_VIEWPORT_MARGIN_NDC=.035;
+    const HOVER_DAMP=12;
+    const HERO_FLIP_DAMP=14;
+    const GRAB_DAMP=18;
+    const GRAB_RELEASE_DAMP=12;
+    const GRAB_RENDER_ORDER=3900;
+    const GRAB_MOVE_THRESHOLD_PX=7;
+    const GRAB_VIEWPORT_MARGIN_NDC=.035;
+    const CARD_NUMBER_PAD_X=.055;
+    const CARD_NUMBER_PAD_Y=.060;
+    const NAVIGATION_ARRIVAL_EPSILON=.0025;
+    const MANUAL_GESTURE_ARRIVAL_EPSILON=.0025;
+
+    function randomBetween(a,b){return a+Math.random()*(b-a)}
+    function wrap01(v){return ((v%1)+1)%1}
+    function mod(v,m){return ((v%m)+m)%m}
+    function hash01(seed){const x=Math.sin(seed*12.9898+78.233)*43758.5453123;return x-Math.floor(x)}
+    function buildCurve(raw){return new THREE.CatmullRomCurve3(raw.map(([x,y,z])=>new THREE.Vector3(x*SCALE,y*SCALE,z*SCALE)),true,'catmullrom',.5)}
+    function curveFrame(curve,t){const pos=curve.getPoint(t),tan=curve.getTangent(t);return {pos,nx:-tan.y,ny:tan.x}}
+    function roundedRectShape(w,h,r){
+      const x=-w/2,y=-h/2; r=Math.min(r,w/2,h/2); const s=new THREE.Shape();
+      s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);
+      s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+      s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);
+      s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);s.closePath();return s;
+    }
+    function showError(message){if(window.__AIULTRA_SHOW_FATAL__) return window.__AIULTRA_SHOW_FATAL__(message);const el=document.getElementById('status');el.textContent=message;el.classList.add('show')}
+
+    const baseGeometry=new THREE.ShapeGeometry(roundedRectShape(CARD_WIDTH,CARD_HEIGHT,CARD_RADIUS),8);
+    baseGeometry.computeVertexNormals();
+    {
+      const pos=baseGeometry.getAttribute('position');
+      const uv=new Float32Array(pos.count*2);
+      for(let i=0;i<pos.count;i++){
+        uv[i*2]=(pos.getX(i)+CARD_WIDTH*.5)/CARD_WIDTH;
+        uv[i*2+1]=(pos.getY(i)+CARD_HEIGHT*.5)/CARD_HEIGHT;
+      }
+      baseGeometry.setAttribute('uv',new THREE.BufferAttribute(uv,2));
+    }
+    const edgeGeometry=new THREE.EdgesGeometry(baseGeometry,24);
+
+    // CodePen-inspired LED edge layer: HDR-bright line color is fed into UnrealBloomPass.
+    // The fragment mask keeps the long left/right sides luminous and concentrates extra energy at corners;
+    // top/bottom remain deliberately restrained so the result reads as glass, not a CSS outline.
+    function makeBloomEdgeMaterial(intensity=1){
+      return new THREE.ShaderMaterial({
+        transparent:true,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending,
+        toneMapped:false,
+        uniforms:{uIntensity:{value:intensity}},
+        vertexShader:`
+          varying vec2 vEdgeLocal;
+          void main(){
+            vEdgeLocal=position.xy;
+            vec4 mv=modelViewMatrix*vec4(position,1.);
+            gl_Position=projectionMatrix*mv;
+          }`,
+        fragmentShader:`
+          varying vec2 vEdgeLocal;
+          uniform float uIntensity;
+          void main(){
+            float nx=clamp(abs(vEdgeLocal.x)/${(9/16/2).toFixed(8)},0.,1.);
+            float ny=clamp(abs(vEdgeLocal.y)/${(1/2).toFixed(8)},0.,1.);
+            float vertical=smoothstep(.76,.985,nx);
+            float corner=vertical*smoothstep(.66,.985,ny);
+            float horizontal=smoothstep(.88,.996,ny)*(1.-smoothstep(.48,.92,nx));
+            float perimeter=max(vertical*.92,horizontal*.78);
+            float energy=perimeter*(1.34+corner*1.10)+vertical*.46+horizontal*.36;
+            vec3 warm=vec3(1.40,1.10,.55);
+            vec3 hot=vec3(2.10,1.58,.72);
+            vec3 color=mix(warm,hot,clamp(.30+corner*.70+horizontal*.18,0.,1.))*energy*uIntensity;
+            float alpha=clamp((perimeter*.82+corner*.54+horizontal*.22)*uIntensity,0.,1.);
+            gl_FragColor=vec4(color,alpha);
+          }`
+      });
+    }
+    const bloomEdgeHeroMaterial=makeBloomEdgeMaterial(1.62);
+    const bloomEdgeSupportMaterial=makeBloomEdgeMaterial(1.62);
+
+    function makeGlassMaterial(depthTest=true,dynamicFlow=false){
+      const flowUniforms={uDenseGlass:{value:dynamicFlow?0:1}};
+      if(dynamicFlow){
+        Object.assign(flowUniforms,{
+          uCurveT:{value:0},uCameraPos:{value:new THREE.Vector3()},uFocusTGate:{value:.02},
+          uFocusDist:{value:FOCUS_DIST},uZGate:{value:Z_GATE},uMaxScale:{value:FLOW_MAX_SCALE},
+          uOrbitAngle:{value:0},uOrbitPivot:{value:new THREE.Vector2()}
+        });
+      }
+      return new THREE.ShaderMaterial({
+        transparent:true,depthWrite:false,depthTest,side:THREE.DoubleSide,blending:THREE.NormalBlending,
+        uniforms:flowUniforms,
+        vertexShader:`
+          varying vec2 vLocal; varying float vDepth;
+          ${dynamicFlow?`
+          attribute float instanceT;
+          uniform float uCurveT; uniform vec3 uCameraPos; uniform float uFocusTGate;
+          uniform float uFocusDist; uniform float uZGate; uniform float uMaxScale;
+          uniform float uOrbitAngle; uniform vec2 uOrbitPivot;
+          `:''}
+          void main(){
+            vec3 p=position;
+            ${dynamicFlow?`
+            #ifdef USE_INSTANCING
+              float wrappedDt=abs(instanceT-uCurveT); if(wrappedDt>.5) wrappedDt=1.-wrappedDt;
+              vec3 instanceCenter=vec3(instanceMatrix[3].xyz);
+              float c=cos(uOrbitAngle), sn=sin(uOrbitAngle);
+              vec2 rel=instanceCenter.xy-uOrbitPivot;
+              vec2 orbitCenter=uOrbitPivot+vec2(c*rel.x-sn*rel.y,sn*rel.x+c*rel.y);
+              float distXY=length(uCameraPos.xy-orbitCenter);
+              float dz=abs(uCameraPos.z-instanceCenter.z);
+              float focusScale=1.;
+              if(wrappedDt<uFocusTGate && dz<uZGate && distXY<uFocusDist){
+                float f=clamp(1.-distXY/uFocusDist,0.,1.);
+                focusScale=1.+f*f*f*(uMaxScale-1.);
+              }
+              p.xy*=focusScale;
+            #endif
+            `:''}
+            vLocal=position.xy;
+            vec4 localPosition=vec4(p,1.);
+            #ifdef USE_INSTANCING
+              // Orbit only the instance center around the carousel pivot.
+              // Keep the local quad axes unchanged so every card remains face-on instead of spinning with the orbit.
+              vec3 originalCenter=vec3(instanceMatrix[3].xyz);
+              vec3 worldP=(instanceMatrix*localPosition).xyz;
+              vec3 localFromCenter=worldP-originalCenter;
+              float c2=cos(uOrbitAngle), sn2=sin(uOrbitAngle);
+              vec2 rel2=originalCenter.xy-uOrbitPivot;
+              vec2 rotatedCenter=uOrbitPivot+vec2(c2*rel2.x-sn2*rel2.y,sn2*rel2.x+c2*rel2.y);
+              localPosition=vec4(vec3(rotatedCenter,originalCenter.z)+localFromCenter,1.);
+            #endif
+            vec4 mv=modelViewMatrix*localPosition;
+            vDepth=-mv.z;
+            gl_Position=projectionMatrix*mv;
+          }`,
+        fragmentShader:`
+          varying vec2 vLocal; varying float vDepth;
+          uniform float uDenseGlass;
+          void main(){
+            vec2 uv=vec2(vLocal.x/${CARD_WIDTH.toFixed(8)}+.5,vLocal.y/${CARD_HEIGHT.toFixed(8)}+.5);
+            float edge=min(min(uv.x,1.-uv.x),min(uv.y,1.-uv.y));
+            float rim=1.-smoothstep(.014,.122,edge);
+            float top=smoothstep(.10,1.,uv.y);
+            float sideShape=pow(abs(uv.x-.5)*2.,2.12);
+            float fade=clamp(1.-max(vDepth-8.,0.)/38.,.32,1.);
+            vec3 cold=vec3(.17,.15,.12), frostWhite=vec3(1.00,.94,.78);
+            vec3 base=mix(cold,frostWhite,.34+.34*top);
+            base=mix(base,frostWhite,(1.-rim)*(.055+.030*top));
+            base+=rim*.070+sideShape*.030;
+            float sideLed=smoothstep(.74,.985,abs(uv.x-.5)*2.);
+            float sideCore=smoothstep(.86,.995,abs(uv.x-.5)*2.);
+            float sideFalloff=.86-.18*smoothstep(.0,.10,uv.y)-.18*smoothstep(.0,.10,1.-uv.y);
+            float tl=1.-smoothstep(.02,.30,length(uv-vec2(0.,1.)));
+            float tr=1.-smoothstep(.02,.30,length(uv-vec2(1.,1.)));
+            float bl=1.-smoothstep(.02,.30,length(uv-vec2(0.,0.)));
+            float br=1.-smoothstep(.02,.30,length(uv-vec2(1.,0.)));
+            float corner=max(max(tl,tr),max(bl,br));
+            vec3 ledWarm=vec3(1.16,.95,.60);
+            vec3 ledWhite=vec3(1.00,.96,.82);
+            vec3 sideColor=mix(ledWarm,ledWhite,.55+.18*top);
+            vec3 color=base
+              + sideColor*(sideLed*.22*sideFalloff + sideCore*.16)
+              + ledWarm*corner*.12;
+            float lightAlpha=(.094+.046*top+.050*rim+.018*sideShape + sideLed*.070 + sideCore*.045 + corner*.018)*1.18*fade;
+            vec3 smoked=vec3(.040,.036,.032);
+            color=mix(color,smoked,uDenseGlass*.70);
+            float denseAlpha=(.78+.08*rim+.045*sideLed+.025*corner)*fade;
+            float alpha=mix(lightAlpha,denseAlpha,uDenseGlass);
+            gl_FragColor=vec4(color,alpha);
+          }`
+      });
+    }
+
+    function makeFlowSideGlowMaterial(){
+      return new THREE.ShaderMaterial({
+        transparent:true,depthWrite:false,depthTest:true,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,toneMapped:false,
+        vertexShader:`
+          varying vec2 vLocal;
+          void main(){
+            vLocal=position.xy;
+            vec4 mv=modelViewMatrix*vec4(position,1.);
+            gl_Position=projectionMatrix*mv;
+          }`,
+        fragmentShader:`
+          varying vec2 vLocal;
+          void main(){
+            vec2 uv=vec2(vLocal.x/${CARD_WIDTH.toFixed(8)}+.5,vLocal.y/${CARD_HEIGHT.toFixed(8)}+.5);
+            float side=smoothstep(.74,.992,abs(uv.x-.5)*2.);
+            float core=smoothstep(.88,.998,abs(uv.x-.5)*2.);
+            float corner=(1.-smoothstep(.04,.34,min(min(length(uv-vec2(0.,0.)),length(uv-vec2(1.,0.))),min(length(uv-vec2(0.,1.)),length(uv-vec2(1.,1.))))));
+            float fadeY=.82-.12*smoothstep(.0,.16,uv.y)-.12*smoothstep(.0,.16,1.-uv.y);
+            float alpha=(side*.22+core*.28+corner*.16)*fadeY;
+            vec3 warm=vec3(1.16,.96,.62);
+            vec3 pearl=vec3(1.00,.95,.80);
+            vec3 color=mix(warm,pearl,.58)*(side*.92+core*1.06+corner*.60);
+            gl_FragColor=vec4(color,alpha);
+          }`
+      });
+    }
+
+    const flowMaterial=makeGlassMaterial(true,true);
+    const flowSideGlowMaterial=makeFlowSideGlowMaterial();
+    const overlayGlass=new THREE.MeshPhysicalMaterial({
+      color:0x050505,
+      metalness:.03,
+      roughness:.22,
+      transmission:.34,
+      thickness:.72,
+      ior:1.48,
+      specularIntensity:1.08,
+      specularColor:new THREE.Color(0xffe0a2),
+      attenuationColor:new THREE.Color(0x120d07),
+      attenuationDistance:1.35,
+      clearcoat:1,
+      clearcoatRoughness:.16,
+      transparent:true,
+      opacity:.96,
+      depthWrite:false,
+      depthTest:false,
+      side:THREE.DoubleSide,
+      toneMapped:true
+    });
+    const overlayEdge=new THREE.LineBasicMaterial({color:0xffdf91,transparent:true,opacity:.44,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending});
+    const backGlass=new THREE.MeshBasicMaterial({color:0x020202,transparent:true,opacity:.74,depthWrite:false,depthTest:false,side:THREE.BackSide,blending:THREE.NormalBlending});
+
+    const orbitalSquareGeometry=new THREE.ShapeGeometry(roundedRectShape(1,1,.22),6);
+    const orbitalSquareEdgeGeometry=new THREE.EdgesGeometry(orbitalSquareGeometry,18);
+    function makeOrbitalSquareMaterial(depthTest=false,dynamicFlow=false){
+      const uniforms=dynamicFlow?{
+        uCurveT:{value:0},uCameraPos:{value:new THREE.Vector3()},uFocusTGate:{value:.02},
+        uFocusDist:{value:FOCUS_DIST},uZGate:{value:Z_GATE},uMaxScale:{value:FLOW_MAX_SCALE}
+      }:{};
+      return new THREE.ShaderMaterial({
+        transparent:true,depthWrite:false,depthTest,side:THREE.DoubleSide,blending:THREE.NormalBlending,toneMapped:false,
+        uniforms,
+        vertexShader:`
+          varying vec2 vUv2; varying float vDepth;
+          ${dynamicFlow?`
+          attribute float instanceT;
+          uniform float uCurveT; uniform vec3 uCameraPos; uniform float uFocusTGate;
+          uniform float uFocusDist; uniform float uZGate; uniform float uMaxScale;
+          `:''}
+          void main(){
+            vec3 p=position;
+            ${dynamicFlow?`
+            #ifdef USE_INSTANCING
+              float wrappedDt=abs(instanceT-uCurveT); if(wrappedDt>.5) wrappedDt=1.-wrappedDt;
+              vec3 instanceCenter=vec3(instanceMatrix[3].xyz);
+              float distXY=length(uCameraPos.xy-instanceCenter.xy);
+              float dz=abs(uCameraPos.z-instanceCenter.z);
+              float focusScale=1.;
+              if(wrappedDt<uFocusTGate && dz<uZGate && distXY<uFocusDist){
+                float f=clamp(1.-distXY/uFocusDist,0.,1.);
+                focusScale=1.+f*f*f*(uMaxScale-1.);
+              }
+              p.xy*=focusScale;
+            #endif
+            `:''}
+            vUv2=position.xy+.5;
+            vec4 localPosition=vec4(p,1.);
+            #ifdef USE_INSTANCING
+              localPosition=instanceMatrix*localPosition;
+            #endif
+            vec4 mv=modelViewMatrix*localPosition;
+            vDepth=-mv.z;
+            gl_Position=projectionMatrix*mv;
+          }`,
+        fragmentShader:`
+          varying vec2 vUv2; varying float vDepth;
+          void main(){
+            float edge=min(min(vUv2.x,1.-vUv2.x),min(vUv2.y,1.-vUv2.y));
+            float rim=1.-smoothstep(.045,.18,edge);
+            float core=1.-smoothstep(.18,.46,edge);
+            float diag=smoothstep(-.42,.62,(vUv2.x*.78+vUv2.y)-.35);
+            float depthFade=clamp(1.-max(vDepth-8.,0.)/42.,.34,1.);
+            vec3 noir=vec3(.035,.032,.030);
+            vec3 pearl=vec3(.95,.93,.88);
+            vec3 gold=vec3(.98,.80,.46);
+            vec3 color=mix(noir,pearl,.14+.18*diag)+rim*gold*.26+core*pearl*.05;
+            float alpha=(.22+.09*diag+.17*rim+.035*core)*depthFade;
+            gl_FragColor=vec4(color,alpha);
+          }`
+      });
+    }
+    const orbitalSquareGlassMaterial=makeOrbitalSquareMaterial(false,false);
+    const orbitalFlowSquareMaterial=makeOrbitalSquareMaterial(true,true);
+    const orbitalSquareEdgeMaterial=new THREE.ShaderMaterial({
+      transparent:true,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending,toneMapped:false,
+      vertexShader:`void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+      fragmentShader:`
+        void main(){
+          vec3 c=vec3(1.55,1.34,.86);
+          gl_FragColor=vec4(c,.86);
+        }`
+    });
+    // V114.1: foreground cards are deliberately raster-free.
+    // New artwork can be plugged in later without changing the carousel motion core.
+
+    window.addEventListener('error',e=>{console.error(e.error||e.message);showError('Runtime error: '+(e.message||'unknown error'))});
+    window.addEventListener('unhandledrejection',e=>{console.error(e.reason);showError('Runtime error: '+(e.reason?.message||String(e.reason||'unknown error')))});
+
+    async function init(){
+      let raw;
+      try{
+        const r=await fetch(PATH_URL,{mode:'cors',cache:'no-store'});
+        if(!r.ok) throw new Error(`HTTP ${r.status}`);
+        raw=await r.json();
+      }catch(error){
+        console.error(error);
+        showError('Pass 4 path data could not be loaded. Open the root index.html through VS Code Live Server with internet access.');
+        return;
+      }
+
+      document.body.classList.add('scene-ready');
+      const curve=buildCurve(raw);
+      const orbitBounds=new THREE.Box2();
+      for(const [x,y] of raw) orbitBounds.expandByPoint(new THREE.Vector2(x*SCALE,y*SCALE));
+      const orbitPivot=orbitBounds.getCenter(new THREE.Vector2());
+      flowMaterial.uniforms.uOrbitPivot.value.copy(orbitPivot);
+
+      // Background flow now advances along the original Pass 4 path instead of orbiting around a shared center.
+      // Cards therefore stay inside the carousel silhouette while still moving clockwise as one continuous ribbon.
+      const flowGeometry=baseGeometry.clone();
+      const instanceTs=new Float32Array(TOTAL);
+      flowGeometry.setAttribute('instanceT',new THREE.InstancedBufferAttribute(instanceTs,1));
+      const flow=new THREE.InstancedMesh(flowGeometry,flowMaterial,TOTAL);
+      const flowSideGlow=new THREE.InstancedMesh(flowGeometry,flowSideGlowMaterial,TOTAL);
+      flow.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      flowSideGlow.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      flow.frustumCulled=false; flow.renderOrder=1;
+      flowSideGlow.frustumCulled=false; flowSideGlow.renderOrder=2;
+      const dummy=new THREE.Object3D();
+      const flowMeta=new Array(TOTAL);
+      for(let i=0;i<TOTAL;i++){
+        const t=i/TOTAL;
+        const lateral=randomBetween(-1.42,1.42),depth=randomBetween(-1.20,1.20),size=randomBetween(.082,.205);
+        flowMeta[i]={baseT:t,lateral,depth,size};
+        instanceTs[i]=t;
+      }
+      function updateFlowInstances(offsetT){
+        for(let i=0;i<TOTAL;i++){
+          const meta=flowMeta[i];
+          const t=wrap01(meta.baseT+offsetT);
+          instanceTs[i]=t;
+          const {pos,nx,ny}=curveFrame(curve,t);
+          dummy.position.set(pos.x+nx*meta.lateral,pos.y+ny*meta.lateral,pos.z+meta.depth);
+          dummy.scale.setScalar(meta.size);
+          dummy.rotation.set(0,0,0);
+          dummy.updateMatrix();
+          flow.setMatrixAt(i,dummy.matrix);
+          flowSideGlow.setMatrixAt(i,dummy.matrix);
+        }
+        flowGeometry.getAttribute('instanceT').needsUpdate=true;
+        flow.instanceMatrix.needsUpdate=true;
+        flowSideGlow.instanceMatrix.needsUpdate=true;
+      }
+      updateFlowInstances(0);
+      flowMaterial.uniforms.uFocusTGate.value=(FOCUS_DIST*1.5)/curve.getLength();
+      scene.add(flow);
+      scene.add(flowSideGlow);
+
+      // V35.10.8: blue square satellites are now part of the moving ribbon itself.
+      // They use the same curve offset, clockwise timing, face-on orientation and focus scaling as the flow cards.
+      const orbitalFlowGeometry=orbitalSquareGeometry.clone();
+      const orbitalFlowInstanceTs=new Float32Array(ORBITAL_FLOW_SQUARE_COUNT);
+      orbitalFlowGeometry.setAttribute('instanceT',new THREE.InstancedBufferAttribute(orbitalFlowInstanceTs,1));
+      const orbitalFlowSquares=new THREE.InstancedMesh(orbitalFlowGeometry,orbitalFlowSquareMaterial,ORBITAL_FLOW_SQUARE_COUNT);
+      orbitalFlowSquares.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      orbitalFlowSquares.frustumCulled=false;
+      orbitalFlowSquares.renderOrder=1;
+      const orbitalFlowMeta=new Array(ORBITAL_FLOW_SQUARE_COUNT);
+      for(let i=0;i<ORBITAL_FLOW_SQUARE_COUNT;i++){
+        const baseT=wrap01((i+.38)/ORBITAL_FLOW_SQUARE_COUNT + (hash01(i*7.13+2.7)-.5)/ORBITAL_FLOW_SQUARE_COUNT*.55);
+        const lateral=(hash01(i*13.71+1.9)*2-1)*1.58;
+        const depth=(hash01(i*23.11+5.1)*2-1)*1.16;
+        const size=THREE.MathUtils.lerp(ORBITAL_FLOW_SQUARE_SIZE_MIN,ORBITAL_FLOW_SQUARE_SIZE_MAX,hash01(i*31.17+7.4));
+        orbitalFlowMeta[i]={baseT,lateral,depth,size};
+        orbitalFlowInstanceTs[i]=baseT;
+      }
+      function updateOrbitalFlowSquares(offsetT){
+        for(let i=0;i<ORBITAL_FLOW_SQUARE_COUNT;i++){
+          const meta=orbitalFlowMeta[i];
+          const t=wrap01(meta.baseT+offsetT);
+          orbitalFlowInstanceTs[i]=t;
+          const {pos,nx,ny}=curveFrame(curve,t);
+          dummy.position.set(pos.x+nx*meta.lateral,pos.y+ny*meta.lateral,pos.z+meta.depth);
+          dummy.scale.setScalar(meta.size);
+          dummy.rotation.set(0,0,0);
+          dummy.updateMatrix();
+          orbitalFlowSquares.setMatrixAt(i,dummy.matrix);
+        }
+        orbitalFlowGeometry.getAttribute('instanceT').needsUpdate=true;
+        orbitalFlowSquares.instanceMatrix.needsUpdate=true;
+      }
+      updateOrbitalFlowSquares(0);
+      orbitalFlowSquareMaterial.uniforms.uFocusTGate.value=(FOCUS_DIST*1.5)/curve.getLength();
+      if(TINY_ORBITAL_FLOW_ENABLED) scene.add(orbitalFlowSquares);
+
+      // Five interactive cards. Their identity is a real unbounded sequence step;
+      // wrapping only changes the displayed number / curve sample, never the direction logic.
+      const activeCards=[];
+      for(let i=0;i<ACTIVE_CARD_COUNT;i++){
+        const card=new THREE.Mesh(baseGeometry,overlayGlass);
+        const border=new THREE.LineSegments(edgeGeometry,overlayEdge); border.position.z=.0015; card.add(border);
+        const edgeGlow=new THREE.LineSegments(edgeGeometry,bloomEdgeSupportMaterial); edgeGlow.position.z=.0032; card.add(edgeGlow);
+        const backFace=new THREE.Mesh(baseGeometry,backGlass); backFace.position.z=-.002; card.add(backFace);
+        const label=document.createElement('div'); label.className='card-number'; document.body.appendChild(label);
+        card.userData={
+          sequenceStep:null,sequenceNumber:0,hoverMix:0,grabMix:0,label,backFace,edgeGlow,
+          basePosition:new THREE.Vector3(),baseScale:1,presence:1,visibilityMix:0,
+          laneX:0,laneY:0,laneZ:0,laneInitialized:false
+        };
+        card.visible=true; activeCards.push(card); scene.add(card);
+      }
+
+      // Exactly 3 large UI satellites. They are pure carousel controls, not site content.
+      const orbitalSquares=[];
+      const orbitalSquareSizeFactors=[1.02,1.04,1.00];
+      const orbitalButtonActions=['menu','music-off','search'];
+      // Thick mesh icons instead of WebGL lines (lineWidth is ignored on many browsers).
+      // These stay crisp and visibly bolder on desktop and iPhone.
+      const orbitalVectorIconMaterial=new THREE.MeshBasicMaterial({
+        color:0xffffff,transparent:true,opacity:.98,depthTest:false,depthWrite:false,toneMapped:false
+      });
+      function orbitalIconBar(width,height,x=0,y=0,angle=0){
+        const mesh=new THREE.Mesh(new THREE.BoxGeometry(width,height,.018),orbitalVectorIconMaterial);
+        mesh.position.set(x,y,.025); mesh.rotation.z=angle; mesh.renderOrder=50003;
+        return mesh;
+      }
+      function buildOrbitalVectorIcon(type){
+        const icon=new THREE.Group(); icon.position.z=.018;
+        if(type==='search'){
+          const ring=new THREE.Mesh(new THREE.TorusGeometry(.18,.035,10,36),orbitalVectorIconMaterial);
+          ring.position.set(-.045,.050,.025); ring.renderOrder=50003; icon.add(ring);
+          icon.add(orbitalIconBar(.31,.075,.175,-.175,-Math.PI/4));
+        }else if(type==='menu'){
+          icon.add(orbitalIconBar(.56,.078,0,.21));
+          icon.add(orbitalIconBar(.56,.078,0,0));
+          icon.add(orbitalIconBar(.56,.078,0,-.21));
+        }else if(type==='music-off'){
+          const shape=new THREE.Shape();
+          shape.moveTo(-.29,-.12); shape.lineTo(-.12,-.12); shape.lineTo(.04,-.27);
+          shape.lineTo(.04,.27); shape.lineTo(-.12,.12); shape.lineTo(-.29,.12); shape.closePath();
+          const speaker=new THREE.Mesh(new THREE.ShapeGeometry(shape),orbitalVectorIconMaterial);
+          speaker.position.z=.025; speaker.renderOrder=50003; icon.add(speaker);
+          icon.add(orbitalIconBar(.078,.84,.02,0,-Math.PI/4));
+        }
+        return icon;
+      }
+      for(let i=0;i<ORBITAL_SQUARE_COUNT;i++){
+        const group=new THREE.Group();
+        const fill=new THREE.Mesh(orbitalSquareGeometry,orbitalSquareGlassMaterial);
+        const edge=new THREE.LineSegments(orbitalSquareEdgeGeometry,orbitalSquareEdgeMaterial);
+        edge.position.z=.002;
+        fill.renderOrder=50000; edge.renderOrder=50001;
+        const action=orbitalButtonActions[i]||null;
+        const icon=action?buildOrbitalVectorIcon(action):null;
+        const hitMaterial=new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthTest:false,depthWrite:false});
+        const hit=new THREE.Mesh(orbitalSquareGeometry,hitMaterial);
+        hit.scale.setScalar(1.34); hit.position.z=.03; hit.renderOrder=50002;
+        group.renderOrder=49999;
+        group.add(fill,edge,hit); if(icon) group.add(icon);
+        fill.userData.orbitalSquareOwner=group;
+        edge.userData.orbitalSquareOwner=group;
+        hit.userData.orbitalSquareOwner=group;
+        group.userData.hitTarget=hit;
+        group.userData.orbitIndex=i;
+        group.userData.action=action;
+        group.userData.buttonId=action||`future-button-${i+1}`;
+        group.userData.hoverMix=0;
+        group.userData.pressUntil=0;
+        group.userData.baseScale=1;
+        group.userData.sizeFactor=orbitalSquareSizeFactors[i];
+        group.userData.baseAngle=(-Math.PI*.96)+(Math.PI*2)*(i/ORBITAL_SQUARE_COUNT);
+        group.userData.angleOffset=0;
+        group.userData.radialScale=1;
+        group.visible=false;
+        orbitalSquares.push(group);
+        scene.add(group);
+      }
+      let orbitalPhase=0;
+      let orbitalWasMoving=false;
+      let orbitalLayoutInitialized=false;
+
+      const raycaster=new THREE.Raycaster();
+      const pointerNdc=new THREE.Vector2(2,2);
+      let pointerActive=false,hoveredCard=null,hoveredSquare=null,heroCard=null;
+      let grabbedCard=null,grabPointerId=null,grabMoved=false,suppressNextClick=false;
+      const grabStartClient=new THREE.Vector2();
+      const grabPlane=new THREE.Plane(new THREE.Vector3(0,0,1),0);
+      const grabPointerWorld=new THREE.Vector3();
+      const grabTargetWorld=new THREE.Vector3();
+      const grabOffsetWorld=new THREE.Vector3();
+      let heroFlipTarget=0,heroFlipCurrent=0;
+      let sequenceDirection=1;
+      let supportBiasDirection=1;
+      let lastInputAt=-Infinity;
+      let lastGestureEventAt=-Infinity;
+      let settleSnapDone=true;
+      let retainedVisibleCount=INITIAL_GROUP_SIZE;
+      let gestureVisibleCount=INITIAL_GROUP_SIZE;
+      let gestureEnergy=0;
+      // Logical group state is deliberately independent of camera/path distance.
+      let logicalGroupStart=1;
+      let logicalGroupSize=INITIAL_GROUP_SIZE;
+      let logicalGroupDirection=1;
+      let groupGestureActive=false;
+      let groupGestureEnergy=0;
+      let groupGestureSignedDelta=0;
+      let groupGestureLastAt=-Infinity;
+      let groupGestureNextSize=INITIAL_GROUP_SIZE;
+      let flipOwnerSequenceStep=null;
+      let lastPublishedStateSignature='';
+      let navigationActive=false;
+      let navigationTargetStep=null;
+      let navigationTargetSequence=null;
+      let navigationTargetAnchor=null;
+      let navigationSource=null;
+      let navigationStartedAt=-Infinity;
+      let navigationUpdateHistory=true;
+      let navigationExpectedDuration=PROGRAMMATIC_MIN_DURATION;
+
+      // Internal site-link travel is a visual state only. It must NOT use navigationActive,
+      // because navigationActive blocks the real wheel Observer. Route travel therefore feeds
+      // synthetic positive deltaY through the exact same camera function as a real wheel-down.
+      let routeTravelActive=false;
+      let routeTravelStartedAt=-Infinity;
+      let routeTravelDurationMs=ROUTE_TRAVEL.maxDurationMs; // hard maximum, route may finish earlier once camera settles
+      let routeTravelDriveMs=ROUTE_TRAVEL.initialDriveMs;
+      let routeTravelTotalDeltaY=0;
+      let routeTravelAppliedDeltaY=0;
+      let routeTravelTargetSequence=null;
+      let routeTravelLoopDistance=1;
+
+      let manualGestureActive=false;
+      let manualGestureOriginStep=0;
+      let manualGestureTargetStep=0;
+      let manualGestureDirection=1;
+      let manualImpulseEnergy=0;
+      let manualImpulseDirection=0;
+      let lastManualImpulseAt=-Infinity;
+      let lastManualAcceptedStepAt=-Infinity;
+
+      function setPointerFromEvent(event){pointerNdc.x=(event.clientX/innerWidth)*2-1;pointerNdc.y=-(event.clientY/innerHeight)*2+1}
+      function updateGrabTargetFromPointer(){
+        if(!grabbedCard) return false;
+        raycaster.setFromCamera(pointerNdc,camera);
+        grabPlane.set(new THREE.Vector3(0,0,1),-grabbedCard.userData.basePosition.z);
+        if(!raycaster.ray.intersectPlane(grabPlane,grabPointerWorld)) return false;
+        grabTargetWorld.copy(grabPointerWorld).add(grabOffsetWorld);
+        return true;
+      }
+      addEventListener('pointermove',e=>{
+        setPointerFromEvent(e);pointerActive=true;
+        if(grabbedCard && e.pointerId===grabPointerId){
+          const dx=e.clientX-grabStartClient.x,dy=e.clientY-grabStartClient.y;
+          if(Math.hypot(dx,dy)>=GRAB_MOVE_THRESHOLD_PX) grabMoved=true;
+          updateGrabTargetFromPointer();
+          e.preventDefault();
+        }
+      },{passive:false});
+      addEventListener('pointerleave',()=>{if(!grabbedCard){pointerActive=false;hoveredCard=null;hoveredSquare=null;renderer.domElement.style.cursor='default'}});
+
+      const camProxy={t:0};
+      const setCamT=gsap.quickTo(camProxy,'t',{duration:1,ease:'power3.out'});
+      let cameraTween=null;
+      function tweenCamT(nextT,duration){
+        if(cameraTween) cameraTween.kill();
+        cameraTween=gsap.to(camProxy,{t:nextT,duration,ease:'power3.out',overwrite:'auto',onComplete:()=>{cameraTween=null;}});
+      }
+      function programmaticDurationForStep(step){
+        const cards=Math.abs(step-currentSequenceCoord());
+        return THREE.MathUtils.clamp(PROGRAMMATIC_MIN_DURATION+cards*PROGRAMMATIC_SECONDS_PER_CARD,PROGRAMMATIC_MIN_DURATION,PROGRAMMATIC_MAX_DURATION);
+      }
+      let targetT=0;
+
+      // Pure sequence state for the standalone carousel.
+      function normalizedSequenceNumber(sequenceNumber){
+        return THREE.MathUtils.clamp(Math.round(Number(sequenceNumber)||1),1,ORIGINAL_SEQUENCE_TOTAL);
+      }
+      function contentSequenceFor(sequenceNumber){
+        return normalizedSequenceNumber(sequenceNumber);
+      }
+      function nearestUnwrappedStepForSequence(sequenceNumber){
+        const n=normalizedSequenceNumber(sequenceNumber);
+        const base=n-1;
+        const coord=currentSequenceCoord();
+        return base+Math.round((coord-base)/ORIGINAL_SEQUENCE_TOTAL)*ORIGINAL_SEQUENCE_TOTAL;
+      }
+      function forwardUnwrappedStepForSequence(sequenceNumber){
+        const n=normalizedSequenceNumber(sequenceNumber);
+        const coord=currentSequenceCoord();
+        const currentLogical=normalizedSequenceNumber(heroCard?.userData.sequenceNumber||logicalGroupStart||1);
+        const logicalDelta=mod(n-currentLogical,ORIGINAL_SEQUENCE_TOTAL);
+        // Site-link transitions are visual rides, not literal 500-card jumps. Content identity is
+        // independent from physical path distance, so every route change gets a smooth 4..10-card
+        // forward roll and then lands on the requested logical content.
+        const visualTravel=THREE.MathUtils.clamp(logicalDelta||5,4,10);
+        return Math.round(coord)+visualTravel;
+      }
+      function buildPublicSceneState(){
+        const visible=activeCards
+          .filter(card=>card.visible && (card.userData.presence??0)>.08)
+          .sort((a,b)=>b.renderOrder-a.renderOrder)
+          .map(card=>({
+            sequenceNumber:card.userData.sequenceNumber,
+            sequenceStep:card.userData.sequenceStep,
+            isHero:card===heroCard,
+            layer:card===heroCard?1:(card.renderOrder>=SUPPORT_SECOND_RENDER_ORDER?2:3),
+            renderOrder:card.renderOrder,
+            bounds:cardScreenBounds(card)
+          }));
+        const heroBounds=heroNdcBounds.valid?{
+          left:(heroNdcBounds.minX*.5+.5)*innerWidth,
+          right:(heroNdcBounds.maxX*.5+.5)*innerWidth,
+          top:(-heroNdcBounds.maxY*.5+.5)*innerHeight,
+          bottom:(-heroNdcBounds.minY*.5+.5)*innerHeight
+        }:null;
+        if(heroBounds){heroBounds.width=heroBounds.right-heroBounds.left;heroBounds.height=heroBounds.bottom-heroBounds.top;}
+        return {
+          version:'carousel-core-pure-1.5.9.7-modular',
+          activeSequence:heroCard?.userData.sequenceNumber||1,
+          activeSequenceStep:heroCard?.userData.sequenceStep||0,
+          visibleActiveCount:visible.length,
+          sequenceDirection,
+          heroFlipped:heroFlipTarget>Math.PI*.5,
+          inputActive:performance.now()-lastInputAt<=SETTLE_DELAY_MS,
+          navigationActive:navigationActive||routeTravelActive,
+          logicalGroupStart,
+          logicalGroupSize,
+          logicalGroupDirection,
+          heroBounds,
+          visible
+        };
+      }
+      function publishSceneState(){
+        const detail=buildPublicSceneState();
+        const b=detail.heroBounds;
+        const visibleBoundsSignature=(detail.visible||[]).map(v=>{
+          const vb=v.bounds;
+          return vb
+            ?`${v.sequenceNumber}:${Math.round(vb.left)}:${Math.round(vb.top)}:${Math.round(vb.width)}:${Math.round(vb.height)}`
+            :`${v.sequenceNumber}:x`;
+        }).join(',');
+        const signature=[
+          detail.activeSequence,detail.visibleActiveCount,detail.sequenceDirection,
+          detail.heroFlipped,detail.inputActive,detail.navigationActive,
+          b?Math.round(b.left):0,b?Math.round(b.top):0,b?Math.round(b.width):0,b?Math.round(b.height):0,
+          visibleBoundsSignature
+        ].join('|');
+        if(signature===lastPublishedStateSignature) return;
+        lastPublishedStateSignature=signature;
+        window.dispatchEvent(new CustomEvent('aiultra:scene-state',{detail}));
+      }
+      window.AIUltraScene=Object.freeze({
+        version:'carousel-core-pure-1.5.9.7-modular',
+        getState:()=>buildPublicSceneState(),
+        goToSequence:(sequenceNumber,options={})=>navigateToSequence(
+          sequenceNumber,{
+            source:options.source||'api',
+            forceForward:options.forceForward===true,
+            minDuration:Number(options.minDuration)||0,
+            duration:Number(options.duration)||0
+          }
+        ),
+        eventName:'aiultra:scene-state',
+        navigationStartEvent:'aiultra:navigation-start',
+        navigationEndEvent:'aiultra:navigation-end'
+      });
+
+      function visibleWorldHeight(distance){return 2*distance*Math.tan(THREE.MathUtils.degToRad(camera.fov*.5))}
+      function sequenceNumberFromStep(step){return mod(step,ORIGINAL_SEQUENCE_TOTAL)+1}
+      function cardTFromStep(step){return wrap01(step/ORIGINAL_SEQUENCE_TOTAL)}
+      function currentSequenceCoord(){return -camProxy.t*ORIGINAL_SEQUENCE_TOTAL}
+
+      function queueManualStep(direction,now){
+        const dir=direction>=0?1:-1;
+        const baseStep=manualGestureActive
+          ? manualGestureTargetStep
+          : (heroCard?.userData.sequenceStep??Math.round(currentSequenceCoord()));
+        if(!manualGestureActive) manualGestureOriginStep=baseStep;
+        manualGestureDirection=dir;
+        manualGestureTargetStep=baseStep+dir;
+        manualGestureActive=true;
+        sequenceDirection=dir;
+        supportBiasDirection=dir;
+        targetT=-manualGestureTargetStep/ORIGINAL_SEQUENCE_TOTAL;
+        settleSnapDone=false;
+        tweenCamT(targetT,MANUAL_STEP_DURATION);
+        lastInputAt=now;
+      }
+
+      function registerManualImpulse(deltaY,now,inputType='wheel'){
+        const dir=deltaY>=0?1:-1;
+        const isWheel=inputType==='wheel';
+        lastInputAt=now;
+
+        // Desktop wheel: no energy gate. A real wheel impulse starts immediately. The short
+        // refractory window only collapses duplicate browser events from the same physical notch.
+        if(isWheel){
+          if(manualImpulseDirection!==0 && dir!==manualImpulseDirection){
+            manualImpulseEnergy=0;
+          }
+          manualImpulseDirection=dir;
+          lastManualImpulseAt=now;
+          if(now-lastManualAcceptedStepAt<MANUAL_WHEEL_REFRACTORY_MS) return false;
+          lastManualAcceptedStepAt=now;
+          queueManualStep(dir,now);
+          return true;
+        }
+
+        // Touch/pointer drag still aggregates tiny movement so one finger drag does not enqueue
+        // dozens of logical cards. This path does not affect desktop mouse-wheel responsiveness.
+        const idle=now-lastManualImpulseAt>MANUAL_TOUCH_IDLE_MS;
+        if(idle || (manualImpulseDirection!==0 && dir!==manualImpulseDirection)){
+          manualImpulseEnergy=0;
+          manualImpulseDirection=dir;
+        }
+        manualImpulseDirection=dir;
+        manualImpulseEnergy+=Math.min(Math.abs(deltaY),MANUAL_IMPULSE_EVENT_CAP);
+        lastManualImpulseAt=now;
+        if(manualImpulseEnergy<MANUAL_TOUCH_STEP_ENERGY) return false;
+        manualImpulseEnergy=0;
+        lastManualAcceptedStepAt=now;
+        queueManualStep(dir,now);
+        return true;
+      }
+
+      function cancelManualGesture(){
+        manualGestureActive=false;
+        manualGestureOriginStep=Math.round(currentSequenceCoord());
+        manualGestureTargetStep=manualGestureOriginStep;
+        manualImpulseEnergy=0;
+        manualImpulseDirection=0;
+      }
+
+      function wrapSequenceNumber(value){ return mod(Math.round(value)-1,ORIGINAL_SEQUENCE_TOTAL)+1; }
+      function groupSizeFromGestureEnergy(energy){
+        let count=MIN_VISIBLE_ACTIVE;
+        for(const threshold of GROUP_SIZE_THRESHOLDS) if(energy>=threshold) count+=1;
+        return THREE.MathUtils.clamp(count,MIN_VISIBLE_ACTIVE,MAX_VISIBLE_ACTIVE);
+      }
+      function registerLogicalGroupGesture(deltaY,now){
+        // New physical wheel session: numbering stays frozen until the camera has actually come to rest.
+        if(!groupGestureActive || now-groupGestureLastAt>GROUP_GESTURE_GAP_MS){
+          groupGestureActive=true;
+          groupGestureEnergy=0;
+          groupGestureSignedDelta=0;
+          groupGestureNextSize=MIN_VISIBLE_ACTIVE;
+        }
+        groupGestureEnergy+=Math.min(Math.abs(deltaY),ACTIVE_REVEAL_EVENT_CAP);
+        groupGestureSignedDelta+=deltaY;
+        groupGestureNextSize=groupSizeFromGestureEnergy(groupGestureEnergy);
+        groupGestureLastAt=now;
+      }
+      function commitLogicalGroupIfStopped(now){
+        if(!groupGestureActive || navigationActive || grabbedCard) return false;
+        if(now-groupGestureLastAt<=GROUP_GESTURE_GAP_MS) return false;
+        const visuallyStopped=Math.abs(camProxy.t-targetT)<=GROUP_VISUAL_STOP_EPSILON;
+        // Never advance funnel content while the original Pass 4 camera is still easing.
+        if(!visuallyStopped) return false;
+        const dir=groupGestureSignedDelta===0?sequenceDirection:(groupGestureSignedDelta>0?1:-1);
+        // FUNNEL CONTRACT: visual distance never decides content order. One fully settled scroll session
+        // moves the logical hero by exactly one card. The physical camera is never snapped or rewound.
+        // Ring semantics: content order is circular even though one settled gesture still advances exactly one card.
+        // Down: 1→2→3…→500→1. Up: 1→500→499…→2→1.
+        logicalGroupStart=wrapSequenceNumber(logicalGroupStart + dir);
+        logicalGroupDirection=dir;
+        // Visible-card count remains a visual-only property of the original V35 gesture. It does not affect numbering.
+        logicalGroupSize=THREE.MathUtils.clamp(groupGestureNextSize,MIN_VISIBLE_ACTIVE,MAX_VISIBLE_ACTIVE);
+        retainedVisibleCount=logicalGroupSize;
+        gestureVisibleCount=logicalGroupSize;
+        gestureEnergy=0;
+        groupGestureActive=false;
+        supportBiasDirection=dir;
+        sequenceDirection=dir;
+        heroFlipTarget=0; heroFlipCurrent=0; flipOwnerSequenceStep=null;
+        return true;
+      }
+
+      function desiredStepsFor(coord){
+        // Seven physical slots only provide room for a logical group of 1..7.
+        // Their identity/number is assigned separately from the physical path step.
+        const center=Math.round(coord);
+        return [center-3,center-2,center-1,center,center+1,center+2,center+3];
+      }
+
+      function ensureAssignments(coord){
+        const desired=desiredStepsFor(coord);
+        const desiredSet=new Set(desired);
+        const byStep=new Map();
+        for(const card of activeCards) if(card.userData.sequenceStep!==null) byStep.set(card.userData.sequenceStep,card);
+        const free=activeCards.filter(card=>card.userData.sequenceStep===null || !desiredSet.has(card.userData.sequenceStep));
+        for(const step of desired){
+          if(byStep.has(step)) continue;
+          const card=free.shift();
+          card.userData.sequenceStep=step;
+          card.userData.sequenceNumber=card.userData.sequenceNumber||1;
+          card.userData.hoverMix=0;
+          card.userData.visibilityMix=0;
+          card.userData.laneInitialized=false;
+          card.rotation.set(0,0,0);
+        }
+        for(const card of activeCards){
+          card.visible=desiredSet.has(card.userData.sequenceStep);
+        }
+      }
+
+      function setCardRenderOrder(card,order){
+        card.renderOrder=order;
+        // Glass bodies still respect lane depth, but all visible LED rims and outline strokes
+        // are promoted to a global foreground layer so every card keeps the same continuous
+        // side-line glow as the hero, even when another card partially overlaps it.
+        if(card.children[0]) card.children[0].renderOrder=8800;
+        if(card.userData.backFace) card.userData.backFace.renderOrder=8700;
+        if(card.userData.edgeGlow) card.userData.edgeGlow.renderOrder=8900;
+      }
+
+      function pickTopVisibleCard(){
+        raycaster.setFromCamera(pointerNdc,camera);
+        const candidates=activeCards.filter(c=>c.visible && (c.userData.presence??1)>.08);
+        // Raster cards render FrontSide, but a flipped hero still has to be clickable from its back
+        // so a second click can always return it face-on. Temporarily relax raycast culling only.
+        const restored=[];
+        for(const card of candidates){
+          if(card.material && card.material.side===THREE.FrontSide){restored.push(card.material);card.material.side=THREE.DoubleSide;}
+        }
+        const hits=raycaster.intersectObjects(candidates,false);
+        for(const material of restored) material.side=THREE.FrontSide;
+        if(!hits.length) return null;
+        // Renderer order is the visual truth in this scene. Prefer the top painted card first;
+        // use physical hit distance only as a tie-breaker inside the same visual layer.
+        hits.sort((a,b)=>(b.object.renderOrder-a.object.renderOrder)||(a.distance-b.distance));
+        return hits[0].object;
+      }
+
+      function supportLaneForOffset(offset){
+        // V33 lanes are untouched for +/-1 and +/-2. Two extra small outer slots are added only for 6/7-card groups.
+        if(offset===-1) return {x:-SIDE_LANE_X_NDC,y: SIDE_LANE_Y_NDC*.72,z:SIDE_LANE_DEPTH*.92,layer:2};
+        if(offset=== 1) return {x: SIDE_LANE_X_NDC,y:-SIDE_LANE_Y_NDC,z:SIDE_LANE_DEPTH*.78,layer:2};
+        if(offset===-2) return {x:-SIDE_LANE_X_FAR_NDC,y:-SIDE_LANE_Y_FAR_NDC,z:SIDE_LANE_DEPTH*1.42,layer:3};
+        if(offset=== 2) return {x: SIDE_LANE_X_FAR_NDC,y: SIDE_LANE_Y_FAR_NDC,z:SIDE_LANE_DEPTH*1.28,layer:3};
+        if(offset<=-3) return {x:-.60,y:.31,z:SIDE_LANE_DEPTH*1.88,layer:3};
+        return {x:.60,y:-.31,z:SIDE_LANE_DEPTH*1.74,layer:3};
+      }
+
+      function updateActiveFlow(coord,dt,inputActive){
+        ensureAssignments(coord);
+        const heroStep=Math.round(coord);
+        heroCard=activeCards.find(card=>card.visible && card.userData.sequenceStep===heroStep)||null;
+
+        // Logical group count is frozen for the whole visual scroll and changes only after full stop.
+        const visibleCount=THREE.MathUtils.clamp(logicalGroupSize,MIN_VISIBLE_ACTIVE,MAX_VISIBLE_ACTIVE);
+        const ranked=[...activeCards].sort((a,b)=>{
+          const da=Math.abs(a.userData.sequenceStep-coord),db=Math.abs(b.userData.sequenceStep-coord);
+          if(Math.abs(da-db)>1e-7) return da-db;
+          // When two cards are equally close, prefer the current scroll direction.
+          const aa=(a.userData.sequenceStep-heroStep)*supportBiasDirection>=0?0:1;
+          const bb=(b.userData.sequenceStep-heroStep)*supportBiasDirection>=0?0:1;
+          return aa-bb;
+        });
+        const activeSet=new Set(ranked.slice(0,visibleCount));
+        // Hero is always the frozen/current funnel number. Supports follow sequentially in the current
+        // reading direction and wrap across the 500↔1 seam.
+        for(let i=0;i<ranked.length;i++){
+          ranked[i].userData.sequenceNumber=wrapSequenceNumber(
+            logicalGroupStart + logicalGroupDirection*i
+          );
+        }
+
+        // The hero is the exact nearest physical step. At the half-way handoff boundary,
+        // the next hero wins deterministically instead of depending on mesh-array order.
+        for(const card of activeCards){
+          if(!card.visible) continue;
+          const step=card.userData.sequenceStep;
+          // Raster removed: every interactive foreground card uses the native glass material.
+          if(card.material!==overlayGlass) card.material=overlayGlass;
+          if(card.children[0]) card.children[0].visible=true;
+          if(card.userData.edgeGlow){
+            card.userData.edgeGlow.visible=true;
+            card.userData.edgeGlow.material=card===heroCard?bloomEdgeHeroMaterial:bloomEdgeSupportMaterial;
+          }
+          const distCards=Math.abs(step-coord);
+          const cardT=cardTFromStep(step);
+          const {pos,nx,ny}=curveFrame(curve,cardT);
+
+          // Preserve a small piece of the source Pass 4 local-normal spread, then add
+          // a camera-screen side lane for the four support cards. The lane strength grows
+          // naturally as the card leaves the face position, so scroll motion remains fluid.
+          const separation=THREE.MathUtils.clamp(distCards,0,1);
+          const signedLateral=(hash01(step*17.37+4.21)*2-1)*ACTIVE_LATERAL_MAX*.28;
+          const nativeDepth=(hash01(step*29.11+8.73)*2-1)*ACTIVE_DEPTH_MAX*.34;
+
+          let px=pos.x+nx*signedLateral*separation;
+          let py=pos.y+ny*signedLateral*separation;
+          let pz=pos.z+nativeDepth*separation;
+
+          let laneTargetX=0,laneTargetY=0,laneTargetZ=0,layer=1;
+          if(card!==heroCard){
+            const lane=supportLaneForOffset(step-heroStep);
+            const laneMix=THREE.MathUtils.smoothstep(distCards,.16,1.10);
+            laneTargetX=lane.x*laneMix;
+            laneTargetY=lane.y*laneMix;
+            laneTargetZ=lane.z*laneMix;
+            layer=lane.layer;
+          }
+
+          // The important V25 fix: lane changes are stateful. When hero ownership changes
+          // during the last part of a scroll, cards glide to their new side/center lane
+          // instead of receiving an instantaneous offset and visually jumping.
+          if(!card.userData.laneInitialized){
+            card.userData.laneX=laneTargetX;
+            card.userData.laneY=laneTargetY;
+            card.userData.laneZ=laneTargetZ;
+            card.userData.laneInitialized=true;
+          }else{
+            const laneDamp=inputActive?SUPPORT_LANE_DAMP_MOVING:SUPPORT_LANE_DAMP_SETTLE;
+            const laneA=1-Math.exp(-laneDamp*dt);
+            card.userData.laneX=THREE.MathUtils.lerp(card.userData.laneX,laneTargetX,laneA);
+            card.userData.laneY=THREE.MathUtils.lerp(card.userData.laneY,laneTargetY,laneA);
+            card.userData.laneZ=THREE.MathUtils.lerp(card.userData.laneZ,laneTargetZ,laneA);
+            if(!inputActive){
+              if(Math.abs(card.userData.laneX-laneTargetX)<.00015) card.userData.laneX=laneTargetX;
+              if(Math.abs(card.userData.laneY-laneTargetY)<.00015) card.userData.laneY=laneTargetY;
+              if(Math.abs(card.userData.laneZ-laneTargetZ)<.00015) card.userData.laneZ=laneTargetZ;
+            }
+          }
+
+          if(card.userData.laneX||card.userData.laneY||card.userData.laneZ){
+            const cameraDistance=Math.max(.75,camera.position.z-pz);
+            const visibleH=visibleWorldHeight(cameraDistance);
+            const visibleW=visibleH*camera.aspect;
+            px+=card.userData.laneX*(visibleW*.5);
+            py+=card.userData.laneY*(visibleH*.5);
+            pz-=card.userData.laneZ;
+          }
+
+          card.userData.basePosition.set(px,py,pz);
+          card.position.copy(card.userData.basePosition);
+
+          const cameraDistance=Math.max(.75,camera.position.z-card.position.z);
+          const visibleH=visibleWorldHeight(cameraDistance);
+          const focus=THREE.MathUtils.clamp(1-distCards/ACTIVE_FOCUS_RADIUS_CARDS,0,1);
+          const recyclePresence=1-THREE.MathUtils.smoothstep(distCards,ACTIVE_RECYCLE_FADE_START,ACTIVE_RECYCLE_FADE_END);
+          const visibilityTarget=(card===heroCard || activeSet.has(card))?1:0;
+          const visibilityA=1-Math.exp(-ACTIVE_VISIBILITY_DAMP*dt);
+          card.userData.visibilityMix=THREE.MathUtils.lerp(card.userData.visibilityMix,visibilityTarget,visibilityA);
+          if(card===heroCard) card.userData.visibilityMix=1;
+          const presence=recyclePresence*card.userData.visibilityMix;
+          const naturalScreenH=(MIN_ACTIVE_SCREEN_HEIGHT+(HERO_SCREEN_HEIGHT-MIN_ACTIVE_SCREEN_HEIGHT)*Math.pow(focus,1.35))*presence;
+          // User contract: any card that belongs to the currently displayed group may never
+          // render smaller than the old resting #3 card. Cards leaving the group may still
+          // shrink away so recycling remains smooth.
+          const belongsToDisplayedGroup=(card===heroCard || activeSet.has(card));
+          const screenH=belongsToDisplayedGroup
+            ?Math.max(THIRD_CARD_REFERENCE_SCREEN_HEIGHT,naturalScreenH)
+            :naturalScreenH;
+          card.userData.baseScale=visibleH*screenH;
+          card.userData.presence=presence;
+          card.scale.setScalar(card.userData.baseScale);
+          // Source-faithful: Pass 4 planes do not self-spin; perceived rotation comes from camera/path motion.
+          card.rotation.x=0; card.rotation.z=0; card.rotation.y=0;
+          if(card===heroCard) setCardRenderOrder(card,HERO_RENDER_ORDER);
+          else setCardRenderOrder(card,layer===2?SUPPORT_SECOND_RENDER_ORDER:SUPPORT_THIRD_RENDER_ORDER);
+        }
+
+        if(heroCard) setCardRenderOrder(heroCard,HERO_RENDER_ORDER);
+      }
+
+      const orbitalCardCornerLocal=[
+        new THREE.Vector3(-CARD_WIDTH*.5,-CARD_HEIGHT*.5,0),
+        new THREE.Vector3( CARD_WIDTH*.5,-CARD_HEIGHT*.5,0),
+        new THREE.Vector3( CARD_WIDTH*.5, CARD_HEIGHT*.5,0),
+        new THREE.Vector3(-CARD_WIDTH*.5, CARD_HEIGHT*.5,0)
+      ];
+      const orbitalProjectedCorner=new THREE.Vector3();
+      const orbitalCandidateWorld=new THREE.Vector3();
+      const orbitalCandidateNdc=new THREE.Vector3();
+      function ndcRectsOverlap(a,b){
+        return a.minX<b.maxX && a.maxX>b.minX && a.minY<b.maxY && a.maxY>b.minY;
+      }
+      function ndcOverlapArea(a,b){
+        const w=Math.max(0,Math.min(a.maxX,b.maxX)-Math.max(a.minX,b.minX));
+        const h=Math.max(0,Math.min(a.maxY,b.maxY)-Math.max(a.minY,b.minY));
+        return w*h;
+      }
+      function inflateNdcRect(rect,pad){
+        return {minX:rect.minX-pad,maxX:rect.maxX+pad,minY:rect.minY-pad,maxY:rect.maxY+pad};
+      }
+      function collectActiveCardNdcRects(){
+        const rects=[];
+        for(const card of activeCards){
+          if(!card.visible || (card.userData.presence??0)<.08) continue;
+          card.updateMatrixWorld(true);
+          let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity,valid=false;
+          for(const local of orbitalCardCornerLocal){
+            orbitalProjectedCorner.copy(local);
+            card.localToWorld(orbitalProjectedCorner);
+            orbitalProjectedCorner.project(camera);
+            if(!Number.isFinite(orbitalProjectedCorner.x)||!Number.isFinite(orbitalProjectedCorner.y)) continue;
+            minX=Math.min(minX,orbitalProjectedCorner.x);
+            minY=Math.min(minY,orbitalProjectedCorner.y);
+            maxX=Math.max(maxX,orbitalProjectedCorner.x);
+            maxY=Math.max(maxY,orbitalProjectedCorner.y);
+            valid=true;
+          }
+          if(!valid) continue;
+          rects.push({
+            minX:minX-ORBITAL_SQUARE_CARD_CLEARANCE_NDC,
+            maxX:maxX+ORBITAL_SQUARE_CARD_CLEARANCE_NDC,
+            minY:minY-ORBITAL_SQUARE_CARD_CLEARANCE_NDC,
+            maxY:maxY+ORBITAL_SQUARE_CARD_CLEARANCE_NDC
+          });
+        }
+        return rects;
+      }
+      function findFreeViewportButtonSlot(halfNdcX,halfNdcY,blockedRects,occupiedRects,desiredAngle,z){
+        // Last-resort spatial placement. It searches the free perimeter of the viewport rather
+        // than allowing a blue button to overlap glass. This keeps controls physically separate
+        // from every visible card even when the orbital ring becomes crowded.
+        const xs=[-.86,-.70,-.54,.54,.70,.86];
+        const ys=[.82,.62,.42,.22,0,-.22,-.42,-.62,-.82];
+        let best=null,bestScore=Infinity;
+        for(const ndcX of xs){
+          for(const ndcY of ys){
+            const rect={minX:ndcX-halfNdcX,maxX:ndcX+halfNdcX,minY:ndcY-halfNdcY,maxY:ndcY+halfNdcY};
+            const collisionRect=inflateNdcRect(rect,ORBITAL_SQUARE_BUTTON_CLEARANCE_NDC);
+            const inside=collisionRect.minX>-1+ORBITAL_SQUARE_EDGE_MARGIN_NDC && collisionRect.maxX<1-ORBITAL_SQUARE_EDGE_MARGIN_NDC &&
+                         collisionRect.minY>-1+ORBITAL_SQUARE_EDGE_MARGIN_NDC && collisionRect.maxY<1-ORBITAL_SQUARE_EDGE_MARGIN_NDC;
+            if(!inside) continue;
+            let blocked=false;
+            for(const r of blockedRects){if(ndcRectsOverlap(collisionRect,r)){blocked=true;break;}}
+            if(blocked) continue;
+            for(const r of occupiedRects){if(ndcRectsOverlap(collisionRect,r)){blocked=true;break;}}
+            if(blocked) continue;
+            const angle=Math.atan2(ndcY,ndcX);
+            let da=Math.abs(angle-desiredAngle)%(Math.PI*2);
+            if(da>Math.PI) da=Math.PI*2-da;
+            const score=da+Math.abs(Math.hypot(ndcX,ndcY)-.86)*.12;
+            if(score<bestScore){
+              bestScore=score;
+              best={
+                x:camera.position.x+ndcX*(visibleWorldHeight(Math.max(.75,camera.position.z-z))*camera.aspect*.5),
+                y:camera.position.y+ndcY*(visibleWorldHeight(Math.max(.75,camera.position.z-z))*.5),
+                z,rect,collisionRect,angleOffset:0,radialScale:1
+              };
+            }
+          }
+        }
+        return best;
+      }
+
+      function updateOrbitalSquares(dt,motionActive){
+        if(!heroCard || !heroCard.visible || (heroCard.userData.presence??0)<.08){
+          for(const sq of orbitalSquares) sq.visible=false;
+          return;
+        }
+
+        const TAU=Math.PI*2;
+        // V114.1 motion lock: satellites move only while the carousel itself moves.
+        // No post-scroll settle arc, no extra lap, no jump after wheel/touch release.
+        if(motionActive){
+          orbitalPhase+=ORBITAL_SQUARE_ROTATION_SPEED*dt;
+          orbitalWasMoving=true;
+        }else{
+          orbitalWasMoving=false;
+          // Freeze the exact last rendered transform once the carousel has stopped.
+          // We still allow one initial layout before the first gesture.
+          if(orbitalLayoutInitialized) return;
+        }
+
+        const heroPos=heroCard.position;
+        const depth=Math.max(.75,camera.position.z-heroPos.z);
+        const visibleH=visibleWorldHeight(depth);
+        const visibleW=visibleH*camera.aspect;
+        const phase=mod(orbitalPhase,TAU);
+        const blockedRects=collectActiveCardNdcRects();
+        const occupiedRects=[];
+
+        for(const sq of orbitalSquares){
+          const desiredAngle=sq.userData.baseAngle-phase;
+          const s=visibleH*ORBITAL_SQUARE_SCREEN_SIZE*sq.userData.sizeFactor;
+          const halfNdcY=(s/visibleH)*1.06;
+          const halfNdcX=halfNdcY/Math.max(camera.aspect,.35);
+          // Strict foreground rule: buttons are allowed only in free viewport perimeter slots.
+          // They no longer try to sit on the ring if that would intersect any visible glass.
+          const slot=findFreeViewportButtonSlot(halfNdcX,halfNdcY,blockedRects,occupiedRects,desiredAngle,heroPos.z+.90);
+          if(!slot){sq.visible=false;continue;}
+          sq.userData.angleOffset=slot.angleOffset;
+          sq.userData.radialScale=slot.radialScale;
+          sq.position.set(slot.x,slot.y,slot.z);
+          sq.rotation.set(0,0,0);
+          sq.userData.baseScale=s;
+          sq.scale.setScalar(s);
+          sq.visible=true;
+          occupiedRects.push(slot.collisionRect||inflateNdcRect(slot.rect,ORBITAL_SQUARE_BUTTON_CLEARANCE_NDC));
+        }
+        orbitalLayoutInitialized=true;
+      }
+
+      function pickTopOrbitalSquare(){
+        if(!pointerActive) return null;
+        raycaster.setFromCamera(pointerNdc,camera);
+        const targets=[];
+        for(const sq of orbitalSquares){
+          if(!sq.visible) continue;
+          const hit=sq.userData.hitTarget||sq.children?.[0];
+          if(hit) targets.push(hit);
+        }
+        const hits=raycaster.intersectObjects(targets,false);
+        return hits.length?(hits[0].object.userData.orbitalSquareOwner||hits[0].object.parent||null):null;
+      }
+      function applyOrbitalSquareHover(dt){
+        const a=1-Math.exp(-13.5*dt);
+        for(const sq of orbitalSquares){
+          const target=sq===hoveredSquare?1:0;
+          sq.userData.hoverMix=THREE.MathUtils.lerp(sq.userData.hoverMix||0,target,a);
+          const base=sq.userData.baseScale||sq.scale.x||1;
+          const pressed=performance.now()<(sq.userData.pressUntil||0);
+          sq.scale.setScalar(base*(1+sq.userData.hoverMix*.22)*(pressed?.92:1));
+        }
+      }
+      function updateHoverSelection(){
+        if(grabbedCard){hoveredCard=null;hoveredSquare=null;renderer.domElement.style.cursor='grabbing';return}
+        if(!pointerActive || manualGestureActive || navigationActive || performance.now()-lastInputAt<SETTLE_DELAY_MS){hoveredCard=null;hoveredSquare=null;renderer.domElement.style.cursor='default';return}
+        hoveredSquare=pickTopOrbitalSquare();
+        if(hoveredSquare){hoveredCard=null;renderer.domElement.style.cursor='pointer';return}
+        hoveredCard=pickTopVisibleCard();
+        renderer.domElement.style.cursor=hoveredCard?'grab':'default';
+      }
+
+      const hoverProjected=new THREE.Vector3(),hoverWorld=new THREE.Vector3();
+      function applyHoverPose(card,dt){
+        const shouldGrow=hoveredCard===card && card!==heroCard;
+        const target=shouldGrow?1:0;
+        const a=1-Math.exp(-HOVER_DAMP*dt);
+        card.userData.hoverMix=THREE.MathUtils.lerp(card.userData.hoverMix,target,a);
+        const m=card.userData.hoverMix;
+        if(m<.001){
+          card.position.copy(card.userData.basePosition);card.scale.setScalar(card.userData.baseScale);
+          if(card!==heroCard){
+            const offset=card.userData.sequenceStep-Math.round(currentSequenceCoord());
+            const lane=supportLaneForOffset(offset);
+            setCardRenderOrder(card,lane.layer===2?SUPPORT_SECOND_RENDER_ORDER:SUPPORT_THIRD_RENDER_ORDER);
+          }
+          return;
+        }
+
+        const basePosition=card.userData.basePosition,baseScale=card.userData.baseScale;
+        const depth=Math.max(.75,camera.position.z-basePosition.z);
+        const visibleH=visibleWorldHeight(depth),visibleW=visibleH*camera.aspect;
+        const targetScreenH=Math.min(HERO_SCREEN_HEIGHT,(1-HOVER_VIEWPORT_MARGIN_NDC)*camera.aspect/CARD_WIDTH);
+        const halfW=(targetScreenH*CARD_WIDTH)/camera.aspect,halfH=targetScreenH;
+        hoverProjected.copy(basePosition).project(camera);
+        let tx=THREE.MathUtils.clamp(hoverProjected.x,-1+halfW+HOVER_VIEWPORT_MARGIN_NDC,1-halfW-HOVER_VIEWPORT_MARGIN_NDC);
+        let ty=THREE.MathUtils.clamp(hoverProjected.y,-1+halfH+HOVER_VIEWPORT_MARGIN_NDC,1-halfH-HOVER_VIEWPORT_MARGIN_NDC);
+        hoverWorld.set(camera.position.x+tx*(visibleW*.5),camera.position.y+ty*(visibleH*.5),basePosition.z);
+        card.position.lerpVectors(basePosition,hoverWorld,m);
+        card.scale.setScalar(THREE.MathUtils.lerp(baseScale,visibleH*targetScreenH,m));
+        setCardRenderOrder(card,HOVER_RENDER_ORDER);
+      }
+
+      const grabProjected=new THREE.Vector3(),grabClampedWorld=new THREE.Vector3();
+      function applyGrabPose(card,dt){
+        const target=grabbedCard===card?1:0;
+        const damp=target?GRAB_DAMP:GRAB_RELEASE_DAMP;
+        const a=1-Math.exp(-damp*dt);
+        card.userData.grabMix=THREE.MathUtils.lerp(card.userData.grabMix,target,a);
+        const m=card.userData.grabMix;
+        if(m<.001){card.userData.grabMix=0;return;}
+
+        const basePosition=card.position.clone();
+        const baseScale=card.scale.x;
+        const depth=Math.max(.75,camera.position.z-card.userData.basePosition.z);
+        const visibleH=visibleWorldHeight(depth),visibleW=visibleH*camera.aspect;
+        const targetScale=visibleH*HERO_SCREEN_HEIGHT;
+        const targetScreenH=HERO_SCREEN_HEIGHT;
+        const halfW=(targetScreenH*CARD_WIDTH)/camera.aspect,halfH=targetScreenH;
+
+        const requested=(grabbedCard===card?grabTargetWorld:card.userData.basePosition);
+        grabProjected.copy(requested).project(camera);
+        const tx=THREE.MathUtils.clamp(grabProjected.x,-1+halfW+GRAB_VIEWPORT_MARGIN_NDC,1-halfW-GRAB_VIEWPORT_MARGIN_NDC);
+        const ty=THREE.MathUtils.clamp(grabProjected.y,-1+halfH+GRAB_VIEWPORT_MARGIN_NDC,1-halfH-GRAB_VIEWPORT_MARGIN_NDC);
+        grabClampedWorld.set(camera.position.x+tx*(visibleW*.5),camera.position.y+ty*(visibleH*.5),card.userData.basePosition.z);
+
+        if(grabbedCard===card){
+          card.position.lerpVectors(basePosition,grabClampedWorld,m);
+          card.scale.setScalar(THREE.MathUtils.lerp(baseScale,targetScale,m));
+          setCardRenderOrder(card,GRAB_RENDER_ORDER);
+        }else{
+          card.position.lerpVectors(card.userData.basePosition,basePosition,m);
+          card.scale.setScalar(THREE.MathUtils.lerp(card.userData.baseScale,baseScale,m));
+        }
+      }
+
+      const labelPoint=new THREE.Vector3(),labelLocal=new THREE.Vector3();
+      const heroCornerLocal=[
+        new THREE.Vector3(-CARD_WIDTH*.5,-CARD_HEIGHT*.5,0),
+        new THREE.Vector3( CARD_WIDTH*.5,-CARD_HEIGHT*.5,0),
+        new THREE.Vector3( CARD_WIDTH*.5, CARD_HEIGHT*.5,0),
+        new THREE.Vector3(-CARD_WIDTH*.5, CARD_HEIGHT*.5,0)
+      ];
+      const heroCornerWorld=new THREE.Vector3();
+      const heroNdcBounds={minX:0,maxX:0,minY:0,maxY:0,valid:false};
+      function updateHeroNdcBounds(){
+        heroNdcBounds.valid=false;
+        if(!heroCard || !heroCard.visible || (heroCard.userData.presence??1)<.08) return;
+        heroCard.updateMatrixWorld(true);
+        let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
+        for(const corner of heroCornerLocal){
+          heroCornerWorld.copy(corner);heroCard.localToWorld(heroCornerWorld);heroCornerWorld.project(camera);
+          minX=Math.min(minX,heroCornerWorld.x);maxX=Math.max(maxX,heroCornerWorld.x);
+          minY=Math.min(minY,heroCornerWorld.y);maxY=Math.max(maxY,heroCornerWorld.y);
+        }
+        heroNdcBounds.minX=minX;heroNdcBounds.maxX=maxX;heroNdcBounds.minY=minY;heroNdcBounds.maxY=maxY;heroNdcBounds.valid=true;
+      }
+      function cardScreenBounds(card){
+        if(!card || !card.visible || (card.userData.presence??1)<.08) return null;
+        card.updateMatrixWorld(true);
+        let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity,valid=false;
+        for(const corner of heroCornerLocal){
+          heroCornerWorld.copy(corner);card.localToWorld(heroCornerWorld);heroCornerWorld.project(camera);
+          if(!Number.isFinite(heroCornerWorld.x)||!Number.isFinite(heroCornerWorld.y)) continue;
+          minX=Math.min(minX,heroCornerWorld.x);maxX=Math.max(maxX,heroCornerWorld.x);
+          minY=Math.min(minY,heroCornerWorld.y);maxY=Math.max(maxY,heroCornerWorld.y);
+          valid=true;
+        }
+        if(!valid) return null;
+        const bounds={
+          left:(minX*.5+.5)*innerWidth,
+          right:(maxX*.5+.5)*innerWidth,
+          top:(-maxY*.5+.5)*innerHeight,
+          bottom:(-minY*.5+.5)*innerHeight
+        };
+        bounds.width=bounds.right-bounds.left;
+        bounds.height=bounds.bottom-bounds.top;
+        return bounds;
+      }
+      function updateNumberLabel(card){
+        const label=card.userData.label;
+        if(!card.visible || (card.userData.presence??1)<.08){label.style.display='none';return}
+        const isFlipped=card===heroCard && Math.cos(heroFlipCurrent)<0;
+        const localX=(isFlipped?1:-1)*(CARD_WIDTH*.5-CARD_NUMBER_PAD_X);
+        labelLocal.set(localX,CARD_HEIGHT*.5-CARD_NUMBER_PAD_Y,.004);
+        card.updateMatrixWorld(true); labelPoint.copy(labelLocal); card.localToWorld(labelPoint); labelPoint.project(camera);
+        if(labelPoint.z<-1||labelPoint.z>1){label.style.display='none';return}
+        // Every visible card keeps its own visible number, even during overlap.
+        label.textContent=String(contentSequenceFor(card.userData.sequenceNumber)); label.style.display='block';
+        label.classList.toggle('is-hero',card===heroCard);
+        label.style.zIndex=String(card===heroCard?8300:(card.renderOrder>=SUPPORT_SECOND_RENDER_ORDER?8200:8100));
+        label.style.transform=`translate(${Math.round((labelPoint.x*.5+.5)*innerWidth)}px,${Math.round((-labelPoint.y*.5+.5)*innerHeight)}px)`;
+      }
+
+      function moveCameraToStep(step){
+        cancelManualGesture();
+        heroFlipTarget=0; hoveredCard=null; hoveredSquare=null;
+        targetT=-step/ORIGINAL_SEQUENCE_TOTAL;
+        lastInputAt=performance.now(); settleSnapDone=true;
+        tweenCamT(targetT,MANUAL_STEP_DURATION);
+      }
+
+      function navigateToSequence(sequenceNumber,{source='api',forceForward=false,minDuration=0,duration=0,travelSteps=0}={}){
+        const normalized=normalizedSequenceNumber(sequenceNumber);
+
+        if(source==='core-route'){
+          // Do NOT set navigationActive here. That flag is reserved for direct programmatic
+          // navigation and intentionally blocks wheel input. Route travel must remain the same
+          // camera mechanism as a real wheel-down and must never leave scrolling locked.
+          cancelManualGesture();
+          if(cameraTween){cameraTween.kill();cameraTween=null;}
+          routeTravelActive=true;
+          routeTravelStartedAt=performance.now();
+          routeTravelAppliedDeltaY=0;
+          routeTravelTargetSequence=normalized;
+
+          // Same Pass 4 wheel-camera motion, but softened for route loading.
+          // Always complete at least one full orbit, then land on a small random extra arc.
+          routeTravelLoopDistance=ROUTE_TRAVEL.minLoops+Math.random()*(ROUTE_TRAVEL.maxLoops-ROUTE_TRAVEL.minLoops);
+          routeTravelTotalDeltaY=routeTravelLoopDistance/SENSITIVITY;
+
+          // Do not force an exact 1.5 s ride. Distance controls the natural travel time,
+          // while 1.5 s is only a hard ceiling. Most runs finish around 1.30–1.46 s.
+          const extraArc=routeTravelLoopDistance-1;
+          routeTravelDurationMs=Math.min(ROUTE_TRAVEL.maxDurationMs,ROUTE_TRAVEL.baseDurationMs+extraArc*ROUTE_TRAVEL.extraArcDurationMs);
+          // Feed the synthetic wheel over most of the ride instead of dumping it in the first ~0.5 s.
+          // This removes the sharp launch while leaving enough time for the existing quickTo inertia to settle.
+          routeTravelDriveMs=Math.min(ROUTE_TRAVEL.maxDriveMs,Math.max(ROUTE_TRAVEL.minDriveMs,routeTravelDurationMs-ROUTE_TRAVEL.settleReserveMs));
+
+          heroFlipTarget=0;heroFlipCurrent=0;flipOwnerSequenceStep=null;hoveredCard=null;hoveredSquare=null;
+          sequenceDirection=1;supportBiasDirection=1;
+          lastInputAt=routeTravelStartedAt;
+          settleSnapDone=true;
+          window.dispatchEvent(new CustomEvent('aiultra:navigation-start',{
+            detail:{sequenceNumber:normalized,sequenceStep:Math.round(currentSequenceCoord()),source}
+          }));
+          return true;
+        }
+
+        cancelManualGesture();
+        logicalGroupStart=normalized;
+        const step=forceForward?forwardUnwrappedStepForSequence(normalized):nearestUnwrappedStepForSequence(normalized);
+        sequenceDirection=forceForward?1:(step>=currentSequenceCoord()?1:-1);
+        supportBiasDirection=sequenceDirection;
+        navigationActive=true;
+        navigationTargetStep=step;
+        navigationTargetSequence=normalized;
+        navigationTargetAnchor=null;
+        navigationSource=source;
+        navigationStartedAt=performance.now();
+        heroFlipTarget=0;heroFlipCurrent=0;flipOwnerSequenceStep=null;hoveredCard=null;
+        targetT=-step/ORIGINAL_SEQUENCE_TOTAL;
+        lastInputAt=performance.now();
+        settleSnapDone=true;
+        navigationExpectedDuration=duration>0?duration:Math.max(programmaticDurationForStep(step),minDuration);
+        tweenCamT(targetT,navigationExpectedDuration);
+        window.dispatchEvent(new CustomEvent('aiultra:navigation-start',{
+          detail:{sequenceNumber:normalized,sequenceStep:step,source}
+        }));
+        return true;
+      }
+
+      function finishRouteTravel(){
+        if(!routeTravelActive) return;
+        // IMPORTANT: never kill the gsap.quickTo tween here. The same quickTo instance powers
+        // normal wheel scrolling and the next route click. Killing it made the first route work
+        // and every following click/scroll appear frozen. The final wheel impulse was injected
+        // ~1 s earlier, so by 1.5 s the camera has naturally settled at targetT.
+        routeTravelActive=false;
+        logicalGroupStart=normalizedSequenceNumber(routeTravelTargetSequence||logicalGroupStart);
+        logicalGroupDirection=1;
+        sequenceDirection=1;
+        supportBiasDirection=1;
+        lastInputAt=performance.now()-SETTLE_DELAY_MS-1;
+        settleSnapDone=true;
+        const detail={
+          sequenceNumber:routeTravelTargetSequence,
+          sequenceStep:Math.round(currentSequenceCoord()),
+          source:'core-route',
+          loopDistance:routeTravelLoopDistance
+        };
+        routeTravelTargetSequence=null;
+        routeTravelAppliedDeltaY=0;
+        routeTravelTotalDeltaY=0;
+        routeTravelLoopDistance=1;
+        window.dispatchEvent(new CustomEvent('aiultra:navigation-end',{detail}));
+      }
+
+      function finishNavigation(){
+        if(!navigationActive) return;
+        camProxy.t=-navigationTargetStep/ORIGINAL_SEQUENCE_TOTAL;
+        targetT=camProxy.t;
+        lastInputAt=performance.now()-SETTLE_DELAY_MS-1;
+        settleSnapDone=true;
+        if(navigationSource==='core-route' && navigationTargetSequence!==null){
+          logicalGroupStart=normalizedSequenceNumber(navigationTargetSequence);
+          logicalGroupDirection=1;
+          sequenceDirection=1;
+          supportBiasDirection=1;
+        }
+        const detail={
+          sequenceNumber:navigationTargetSequence,
+          sequenceStep:navigationTargetStep,
+          source:navigationSource
+        };
+        navigationActive=false;
+        window.dispatchEvent(new CustomEvent('aiultra:navigation-end',{detail}));
+        navigationTargetStep=null;navigationTargetSequence=null;navigationTargetAnchor=null;navigationSource=null;
+      }
+
+      renderer.domElement.addEventListener('pointerdown',event=>{
+        if(event.pointerType!=='mouse' || event.button!==0 || navigationActive) return;
+        setPointerFromEvent(event);pointerActive=true;
+        const card=pickTopVisibleCard();
+        if(!card) return;
+        // A flipped hero remains click-to-return; only face-on cards enter grab/play mode.
+        if(card===heroCard && Math.cos(heroFlipCurrent)<0) return;
+        grabbedCard=card;
+        grabPointerId=event.pointerId;
+        grabMoved=false;
+        grabStartClient.set(event.clientX,event.clientY);
+        hoveredCard=null;
+        heroFlipTarget=0;
+        renderer.domElement.style.cursor='grabbing';
+        try{renderer.domElement.setPointerCapture(event.pointerId)}catch(_){}
+        raycaster.setFromCamera(pointerNdc,camera);
+        grabPlane.set(new THREE.Vector3(0,0,1),-card.userData.basePosition.z);
+        if(raycaster.ray.intersectPlane(grabPlane,grabPointerWorld)){
+          grabOffsetWorld.copy(card.position).sub(grabPointerWorld);
+          grabTargetWorld.copy(card.position);
+        }else{
+          grabOffsetWorld.set(0,0,0);
+          grabTargetWorld.copy(card.position);
+        }
+        event.preventDefault();
+      },{passive:false});
+
+      function releaseGrab(event){
+        if(!grabbedCard || (event && event.pointerId!==grabPointerId)) return;
+        if(grabMoved) suppressNextClick=true;
+        grabbedCard=null;
+        grabPointerId=null;
+        renderer.domElement.style.cursor='grab';
+        if(event){try{renderer.domElement.releasePointerCapture(event.pointerId)}catch(_){}}
+      }
+      renderer.domElement.addEventListener('pointerup',releaseGrab);
+      renderer.domElement.addEventListener('pointercancel',releaseGrab);
+
+      renderer.domElement.addEventListener('click',event=>{
+        if(suppressNextClick){suppressNextClick=false;event.preventDefault();return;}
+        setPointerFromEvent(event);pointerActive=true;
+        const square=pickTopOrbitalSquare();
+        if(square){
+          square.userData.pressUntil=performance.now()+140;
+          const action=square.userData.action||null;
+          if(action==='search') window.dispatchEvent(new CustomEvent('aiultra:search-request'));
+          else if(action==='menu') window.dispatchEvent(new CustomEvent('aiultra:menu-request'));
+          else if(action==='music-off'){
+            const muted=document.body.dataset.musicMuted!=='true';
+            document.body.dataset.musicMuted=String(muted);
+            window.dispatchEvent(new CustomEvent('aiultra:music-toggle',{detail:{muted}}));
+          }
+          window.dispatchEvent(new CustomEvent('aiultra:satellite-click',{
+            detail:{buttonId:square.userData.buttonId,action,index:square.userData.orbitIndex+1}
+          }));
+          return;
+        }
+        const card=pickTopVisibleCard();
+        if(!card) return;
+        if(card===heroCard){
+          // Reliable two-way flip: front -> back -> front, including raster hero cards.
+          heroFlipTarget=heroFlipTarget>Math.PI*.5?0:Math.PI;
+        }else{
+          // A short click promotes a support card and its LOGICAL number becomes the new group hero.
+          logicalGroupStart=card.userData.sequenceNumber;
+          sequenceDirection=card.userData.sequenceStep>=currentSequenceCoord()?1:-1;
+          logicalGroupDirection=sequenceDirection;
+          moveCameraToStep(card.userData.sequenceStep);
+        }
+      });
+
+      function applyPass4WheelDelta(deltaY,inputNow,{updateLogical=true}={}){
+        if(Math.abs(deltaY)<.0001) return;
+        heroFlipTarget=0; hoveredCard=null; hoveredSquare=null;
+        lastInputAt=inputNow;
+        sequenceDirection=deltaY>=0?1:-1;
+        supportBiasDirection=sequenceDirection;
+        if(updateLogical) registerLogicalGroupGesture(deltaY,inputNow);
+        // Exact Pass 4 camera rule used by BOTH real wheel input and internal-link travel.
+        if(cameraTween){cameraTween.kill();cameraTween=null;}
+        targetT-=deltaY*SENSITIVITY;
+        setCamT(targetT);
+        settleSnapDone=true;
+      }
+
+      Observer.create({
+        target:window,type:'wheel,touch',
+        onChange:self=>{
+          if(navigationActive || routeTravelActive || grabbedCard) return;
+          if(Math.abs(self.deltaY)<.01) return;
+          applyPass4WheelDelta(self.deltaY,performance.now(),{updateLogical:true});
+        }
+      });
+
+      let previousFrame=performance.now();
+      function animate(now=performance.now()){
+        requestAnimationFrame(animate);
+        const dt=Math.min((now-previousFrame)/1000,.05); previousFrame=now;
+        const flowOffsetT=wrap01(now*0.001*FLOW_CLOCKWISE_SPEED);
+        updateFlowInstances(flowOffsetT);
+        // Blue flow squares are scroll-coupled, not clock-coupled: when cards stop, squares stop too.
+        const orbitalFlowOffsetT=wrap01(camProxy.t);
+        if(TINY_ORBITAL_FLOW_ENABLED) updateOrbitalFlowSquares(orbitalFlowOffsetT);
+        flowMaterial.uniforms.uOrbitAngle.value=0;
+
+        const t=wrap01(1-camProxy.t);
+        const pathPos=curve.getPoint(t);
+        camera.position.set(pathPos.x,pathPos.y,pathPos.z+CAM_Z);
+
+        // Static premium lighting: no moving 'sun' sweep across the cards.
+        glassLightTarget.position.set(pathPos.x,pathPos.y,pathPos.z);
+        glassKey.position.set(
+          pathPos.x+8.8,
+          pathPos.y+5.6,
+          pathPos.z+7.2
+        );
+        glassFill.position.set(
+          pathPos.x-7.4,
+          pathPos.y-4.8,
+          pathPos.z+4.0
+        );
+        flowMaterial.uniforms.uCurveT.value=t;
+        flowMaterial.uniforms.uCameraPos.value.copy(camera.position);
+        orbitalFlowSquareMaterial.uniforms.uCurveT.value=t;
+        orbitalFlowSquareMaterial.uniforms.uCameraPos.value.copy(camera.position);
+
+        if(routeTravelActive){
+          const elapsed=now-routeTravelStartedAt;
+          if(elapsed<routeTravelDriveMs){
+            const p=THREE.MathUtils.clamp(elapsed/routeTravelDriveMs,0,1);
+            // Smooth wheel pressure: gentle acceleration, long middle glide, gentle release.
+            // This still feeds the exact same Pass 4 wheel function as physical scrolling.
+            const progress=routeTravelProgress(p);
+            const cumulative=routeTravelTotalDeltaY*progress;
+            const delta=cumulative-routeTravelAppliedDeltaY;
+            if(delta>.0001){
+              routeTravelAppliedDeltaY=cumulative;
+              applyPass4WheelDelta(delta,now,{updateLogical:false});
+            }
+          }else if(routeTravelAppliedDeltaY<routeTravelTotalDeltaY){
+            const delta=routeTravelTotalDeltaY-routeTravelAppliedDeltaY;
+            routeTravelAppliedDeltaY=routeTravelTotalDeltaY;
+            applyPass4WheelDelta(delta,now,{updateLogical:false});
+          }
+
+          // Finish naturally as soon as the camera has nearly caught its final wheel target.
+          // Never exceed the 1.5 s ceiling requested for route loading.
+          const cameraSettled=routeTravelAppliedDeltaY>=routeTravelTotalDeltaY-.0001 && Math.abs(camProxy.t-targetT)<=ROUTE_TRAVEL.cameraSettleEpsilon;
+          if(cameraSettled || elapsed>=ROUTE_TRAVEL.maxDurationMs) finishRouteTravel();
+        }
+
+        if(navigationActive && navigationTargetStep!==null){
+          const arrived=Math.abs(currentSequenceCoord()-navigationTargetStep)<=NAVIGATION_ARRIVAL_EPSILON;
+          const timedOut=now-navigationStartedAt>navigationExpectedDuration*1400;
+          if(arrived||timedOut) finishNavigation();
+        }
+
+        // Input release never invents another destination. Repeated accepted impulses already
+        // moved manualGestureTargetStep one adjacent card at a time; settle only freezes support count.
+        if(!navigationActive && manualGestureActive && !settleSnapDone && now-lastInputAt>SETTLE_DELAY_MS){
+          // Freeze the largest count revealed so far. Already-active supports never disappear
+          // merely because the next gesture was short; they keep flowing with the ring.
+          retainedVisibleCount=THREE.MathUtils.clamp(
+            Math.max(retainedVisibleCount,gestureVisibleCount),
+            MIN_VISIBLE_ACTIVE,MAX_VISIBLE_ACTIVE
+          );
+          gestureVisibleCount=retainedVisibleCount;
+          settleSnapDone=true;
+        }
+        if(!navigationActive && manualGestureActive && now-lastInputAt>SETTLE_DELAY_MS){
+          const arrived=Math.abs(currentSequenceCoord()-manualGestureTargetStep)<=MANUAL_GESTURE_ARRIVAL_EPSILON;
+          if(arrived){
+            camProxy.t=-manualGestureTargetStep/ORIGINAL_SEQUENCE_TOTAL;
+            targetT=camProxy.t;
+            manualGestureOriginStep=manualGestureTargetStep;
+            manualGestureActive=false;
+          }
+        }
+
+        // Numbering commits only after the original visual tween has actually stopped.
+        commitLogicalGroupIfStopped(now);
+
+        const coord=currentSequenceCoord();
+        const routeTransitActive=routeTravelActive;
+        const inputActive=manualGestureActive || navigationActive || now-lastInputAt<=SETTLE_DELAY_MS;
+        const carouselMotionActive=navigationActive || Math.abs(camProxy.t-targetT)>GROUP_VISUAL_STOP_EPSILON || now-lastInputAt<=SETTLE_DELAY_MS;
+
+        // Route travel must remain true scroll motion internally. Cards continue following the
+        // carousel exactly as during wheel scrolling; they are hidden only for the final render.
+        updateActiveFlow(coord,dt,inputActive);
+        if(!routeTransitActive) updateHoverSelection();
+        else{hoveredCard=null;hoveredSquare=null;renderer.domElement.style.cursor='default';}
+        for(const card of activeCards) if(card.visible) applyHoverPose(card,dt);
+        for(const card of activeCards) if(card.visible || card.userData.grabMix>.001) applyGrabPose(card,dt);
+
+        // Hero is always the nearest face card and always the highest layer outside active grab/play mode. The outgoing
+        // hero still flies with the flow; dominance transfers only when the next card is nearer.
+        if(heroCard){
+          const currentHeroStep=heroCard.userData.sequenceStep;
+          // Flip belongs to one hero identity only. If scroll hands dominance to the next card
+          // before the previous flip has fully settled, the incoming hero always starts face-on.
+          if(flipOwnerSequenceStep!==null && currentHeroStep!==flipOwnerSequenceStep){
+            heroFlipCurrent=0;
+            heroFlipTarget=0;
+          }
+          flipOwnerSequenceStep=currentHeroStep;
+          const a=1-Math.exp(-HERO_FLIP_DAMP*dt);
+          heroFlipCurrent=THREE.MathUtils.lerp(heroFlipCurrent,heroFlipTarget,a);
+          for(const card of activeCards) if(card.visible && card!==heroCard) card.rotation.y=0;
+          heroCard.rotation.y=heroFlipCurrent;
+          if(grabbedCard!==heroCard) setCardRenderOrder(heroCard,HERO_RENDER_ORDER);
+          if(grabbedCard && grabbedCard!==heroCard) setCardRenderOrder(grabbedCard,GRAB_RENDER_ORDER);
+        }
+
+        // Satellites resolve their slots only after every visible card has reached its final frame pose,
+        // so the blue squares never disappear behind hero/support cards and always occupy free screen-space.
+        updateOrbitalSquares(dt,carouselMotionActive);
+        applyOrbitalSquareHover(dt);
+        updateHeroNdcBounds();
+        for(const card of activeCards) updateNumberLabel(card);
+        scene.userData.activeLogicalCard=heroCard?.userData.sequenceNumber||1;
+        scene.userData.activeSequenceStep=heroCard?.userData.sequenceStep||0;
+        scene.userData.sequenceDirection=sequenceDirection;
+        scene.userData.heroFlipped=heroFlipTarget>Math.PI*.5;
+        scene.userData.visibleActiveCount=activeCards.filter(c=>c.visible && (c.userData.presence??0)>.08).length;
+        scene.userData.supportSettleActive=!inputActive;
+        publishSceneState();
+
+        // Internal URL transition: the user sees only travel through the carousel world.
+        // The 7 foreground content cards are NOT allowed to flip past the camera during loading.
+        if(routeTransitActive){
+          const cardVisibility=activeCards.map(card=>card.visible);
+          const squareVisibility=orbitalSquares.map(square=>square.visible);
+          for(const card of activeCards){
+            card.visible=false;
+            if(card.userData.label) card.userData.label.style.display='none';
+          }
+          for(const square of orbitalSquares) square.visible=false;
+          composer.render();
+          activeCards.forEach((card,i)=>{card.visible=cardVisibility[i];});
+          orbitalSquares.forEach((square,i)=>{square.visible=squareVisibility[i];});
+        }else{
+          composer.render();
+        }
+      }
+
+      // Initial visible logical group is exactly 1,2,3,4,5 with hero 1.
+      // VISUAL SCROLL remains original V33/Pass 4 and can travel any distance.
+      // LOGICAL SEQUENCE changes only once after a complete stop: next hero = current hero +/- 1.
+      // The completed gesture may change only the visible group size (1..7); it never changes how many logical cards are advanced.
+      ensureAssignments(0);
+      animate();
+    }
+
+    init();
+    addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight)});
+
+</script>
+</body>
+</html>
