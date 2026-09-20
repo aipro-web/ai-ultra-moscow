@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>AI Ultra — Modular Carousel Core</title>
+<title>AI Ultra — Live Carousel</title>
 <style>
 /* LOCKED base shell from v1.5.9.6 */
 *{box-sizing:border-box;margin:0;padding:0}
@@ -517,13 +517,6 @@ window.AIULTRA_CONTENT = Object.freeze([
 
 </script>
 <script type="module">
-import * as THREE from 'https://esm.sh/three@0.184.0';
-    import { EffectComposer } from 'https://esm.sh/three@0.184.0/addons/postprocessing/EffectComposer.js';
-    import { RenderPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/RenderPass.js';
-    import { UnrealBloomPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/UnrealBloomPass.js';
-    import { OutputPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/OutputPass.js';
-    import { gsap } from 'https://esm.sh/gsap@3.15.0';
-    import { Observer } from 'https://esm.sh/gsap@3.15.0/Observer';
 // ROUTE TRAVEL LAB — edit this file to tune only the click-to-travel animation.
 // The actual camera still uses the exact Pass 4 wheel rule inside carousel-core.mjs.
 const ROUTE_TRAVEL = Object.freeze({
@@ -551,6 +544,13 @@ function routeTravelProgress(p) {
   return t4 * (35 - 84 * t + 70 * t2 - 20 * t3);
 }
 
+import * as THREE from 'https://esm.sh/three@0.184.0';
+    import { EffectComposer } from 'https://esm.sh/three@0.184.0/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/UnrealBloomPass.js';
+    import { OutputPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/OutputPass.js';
+    import { gsap } from 'https://esm.sh/gsap@3.15.0';
+    import { Observer } from 'https://esm.sh/gsap@3.15.0/Observer';
     gsap.registerPlugin(Observer);
 
     // V35.10.6 changes the ambient motion model: the background carousel no longer rotates around a shared center.
