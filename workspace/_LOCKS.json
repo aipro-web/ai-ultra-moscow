@@ -1,0 +1,48 @@
+﻿{
+  "schemaVersion": 1,
+  "project": "AI Ultra",
+  "branch": "drive-sync",
+  "updated": "2026-09-20",
+  "defaultPolicy": {
+    "lockedFiles": "do_not_reaudit_or_modify_without_explicit_unlock",
+    "editableFiles": "modify_only_when_in_requested_scope",
+    "regression": "local_dependencies_only",
+    "fullAuditCommand": "FULL CHECK"
+  },
+  "baselines": {
+    "seo": {
+      "status": "LOCKED_APPROVED_BASELINE",
+      "archive": "06_AI-ULTRA-v114-SEO-CAROUSEL-MERGE.zip",
+      "fingerprint": "1789905605602:3970538:06_AI-ULTRA-v114-SEO-CAROUSEL-MERGE.zip",
+      "lockedScope": [
+        "seo_architecture",
+        "semantic_core_current_baseline",
+        "moscow_moscow_region_russia_targeting_logic"
+      ],
+      "extensionAllowed": true
+    },
+    "carousel": {
+      "status": "IN_REVIEW",
+      "archive": "AI-ULTRA-CAROUSEL-PURE-CORE-v1.zip",
+      "fingerprint": "1789910044370:25012:AI-ULTRA-CAROUSEL-PURE-CORE-v1.zip"
+    }
+  },
+  "modules": {
+    "carousel.engine": "IN_REVIEW",
+    "carousel.geometry": "IN_REVIEW",
+    "carousel.interactions": "IN_REVIEW",
+    "carousel.navigation": "IN_REVIEW",
+    "carousel.buttons": "IN_REVIEW",
+    "carousel.layout": "IN_REVIEW",
+    "carousel.skins": "EDITABLE",
+    "carousel.content": "EDITABLE",
+    "carousel.effects": "EDITABLE",
+    "carousel.mobile": "IN_REVIEW",
+    "seo.foundation": "LOCKED_APPROVED",
+    "seo.expansion": "EDITABLE",
+    "seo.copy": "EDITABLE",
+    "analytics": "EDITABLE",
+    "crm": "EDITABLE",
+    "deployment": "EDITABLE"
+  }
+}
