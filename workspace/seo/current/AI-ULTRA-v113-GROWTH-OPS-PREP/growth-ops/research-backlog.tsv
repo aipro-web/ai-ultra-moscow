@@ -1,0 +1,11 @@
+id	topic	method	sample	impact	effort	distribution_angle
+R01	AI adoption on Moscow B2B websites	public website audit	100-250 companies	high	medium	press/data
+R02	AI Search/GEO readiness of Moscow business sites	public website audit	100-250 sites	high	medium	SEO/media
+R03	Yandex SERP anatomy for AI commercial queries in Moscow	SERP observation	100-300 queries	high	medium	SEO/media
+R04	AI agent ROI benchmark	real anonymized + modeled separated	10+ real cases + models	very high	high	business/media
+R05	Russian AI call-center benchmark	controlled benchmark	5-15 stacks	high	high	technical/media
+R06	Response-time impact in AI-assisted sales	project measurement	real workflows	high	high	sales/media
+R07	LLM benchmark for Russian business tasks	controlled benchmark	4-10 models × fixed tasks	high	medium	technical/media
+R08	CRM + AI integration failure modes	case synthesis	10+ implementations/observations	medium	medium	technical
+R09	AI automation opportunity map by industry	expert + case synthesis	5-10 industries	medium	medium	commercial
+R10	Annual AI ULTRA Moscow AI Business Index	recurring composite study	yearly	very high	very high	brand/reference

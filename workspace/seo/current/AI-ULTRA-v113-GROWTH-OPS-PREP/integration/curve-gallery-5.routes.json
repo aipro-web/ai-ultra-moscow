@@ -1,0 +1,3495 @@
+{
+  "version": "110",
+  "architecture": "SEO_CORE + CURVE_GALLERY_5_CARDS_ONLY_PRESENTATION",
+  "routingMode": "history-api-with-static-fallback",
+  "seoRoot": "../",
+  "cards": [
+    {
+      "cardId": "home",
+      "route": "/",
+      "label": "Главная",
+      "title": "AI-сотрудники  для взлёта ваших продаж",
+      "seoFile": "index.html",
+      "textureKey": "home",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "AI ULTRA",
+        "title": "AI-сотрудники для взлёта ваших продаж",
+        "body": "Продажи, реклама, CRM и автоматизация в одной AI-системе.",
+        "cta": "Запустить проект",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "ai-agents",
+      "route": "/agents/",
+      "label": "AI-сотрудники",
+      "title": "Рутина уходит.  Продажи растут.",
+      "seoFile": "agents/index.html",
+      "textureKey": "ai-agents",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "AI-СОТРУДНИКИ",
+        "title": "Рутина уходит. Продажи растут.",
+        "body": "AI-агенты отвечают, квалифицируют лиды, звонят и помогают продавать 24/7.",
+        "cta": "Внедрить AI",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "sales",
+      "route": "/sales-outsourcing/",
+      "label": "Продажи под ключ",
+      "title": "Продажи под ключ",
+      "seoFile": "sales-outsourcing/index.html",
+      "textureKey": "sales",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "ПРОДАЖИ",
+        "title": "Продажи под ключ",
+        "body": "От первого обращения и рекламы до разговора с клиентом и закрытия сделки.",
+        "cta": "Усилить продажи",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "seo",
+      "route": "/ai-seo/",
+      "label": "SEO · GEO · LLM",
+      "title": "GEO и SEO для  AI-поиска.",
+      "seoFile": "ai-seo/index.html",
+      "textureKey": "seo",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "SEO · GEO · LLM",
+        "title": "Быть там, где вас ищут",
+        "body": "SEO для Google и AI-поиска: структура, контент, GEO и техническая оптимизация.",
+        "cta": "Усилить SEO",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "marketing",
+      "route": "/ai-marketing/",
+      "label": "AI-маркетинг",
+      "title": "AI-маркетинг,  который приводит к действию.",
+      "seoFile": "ai-marketing/index.html",
+      "textureKey": "marketing",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "AI-МАРКЕТИНГ",
+        "title": "Маркетинг, который приводит к действию",
+        "body": "Реклама, контент, аналитика и автоматизация привлечения клиентов.",
+        "cta": "Запустить маркетинг",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "automation",
+      "route": "/ai-automation/",
+      "label": "Автоматизация",
+      "title": "Автоматизация бизнеса  начинается с правильной задачи.",
+      "seoFile": "ai-automation/index.html",
+      "textureKey": "automation",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "AUTOMATION",
+        "title": "Автоматизируем бизнес",
+        "body": "CRM, интеграции, телефония, процессы и AI — от одной операции до всей компании.",
+        "cta": "Автоматизировать",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "products",
+      "route": "/ai-products/",
+      "label": "AI / IT продукты",
+      "title": "Вашу идею можно  превратить в продукт.",
+      "seoFile": "ai-products/index.html",
+      "textureKey": "products",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "AI / IT",
+        "title": "Любой IT-продукт под ключ",
+        "body": "Боты, SaaS, приложения, API, корпоративный софт и нестандартные цифровые системы.",
+        "cta": "Обсудить продукт",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "digital",
+      "route": "/digital-agency/",
+      "label": "Digital под ключ",
+      "title": "Digital под ключ",
+      "seoFile": "digital-agency/index.html",
+      "textureKey": "digital",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "FULL DIGITAL",
+        "title": "Digital под ключ",
+        "body": "Разработка, реклама, маркетинг, софт, интеграции и сопровождение в одной команде.",
+        "cta": "Собрать решение",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "design",
+      "route": "/design-services/",
+      "label": "Дизайн",
+      "title": "Дизайн под ключ",
+      "seoFile": "design-services/index.html",
+      "textureKey": "design",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "DESIGN",
+        "title": "Дизайн под ключ",
+        "body": "Брендинг, UI/UX, rebranding, digital-art и визуальные системы для продукта и бизнеса.",
+        "cta": "Заказать дизайн",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "3d",
+      "route": "/3d-graphics/",
+      "label": "3D / WebGL",
+      "title": "3D-графика",
+      "seoFile": "3d-graphics/index.html",
+      "textureKey": "3d",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "3D · WEBGL",
+        "title": "3D без плоских решений",
+        "body": "3D-графика, WebGL, Three.js, интерактивные сайты, моделирование и 3D-печать.",
+        "cta": "Создать 3D",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "robotics",
+      "route": "/robotics/",
+      "label": "Робототехника",
+      "title": "Робототехника под ключ",
+      "seoFile": "robotics/index.html",
+      "textureKey": "robotics",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "ROBOTICS",
+        "title": "Робототехника под ключ",
+        "body": "R&D, механика, электроника, Computer Vision, локальный AI и системная интеграция.",
+        "cta": "Обсудить робота",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "invest",
+      "route": "/invest-robot-mvp/",
+      "label": "Инвестиции в Robotics",
+      "title": "Инвестиционный проект: MVP антропоморфного робота",
+      "seoFile": "invest-robot-mvp/index.html",
+      "textureKey": "invest",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "INVEST",
+        "title": "Инвестиции в Robotics",
+        "body": "MVP антропоморфной робототехнической платформы: технология, этапы и инвестиционная модель.",
+        "cta": "Открыть проект",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "knowledge",
+      "route": "/knowledge-base/",
+      "label": "База знаний",
+      "title": "База знаний для AI-агента: ответы по вашим документам",
+      "seoFile": "knowledge-base/index.html",
+      "textureKey": "knowledge",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "KNOWLEDGE",
+        "title": "База знаний AI ULTRA",
+        "body": "Практические материалы об AI, продажах, Digital, автоматизации, 3D и робототехнике.",
+        "cta": "Изучить материалы",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    },
+    {
+      "cardId": "contact",
+      "route": "/contact/",
+      "label": "Контакты",
+      "title": "Соберём вашу  систему под задачу.",
+      "seoFile": "contact/index.html",
+      "textureKey": "contact",
+      "enabled": true,
+      "uiCopy": {
+        "eyebrow": "AI ULTRA",
+        "title": "Соберём систему под вашу задачу",
+        "body": "Опишите результат — подберём технологии, этапы внедрения и формат работы.",
+        "cta": "Связаться",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "contactHandle": "ai_ultra_official",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "cardLayout": "vertical-9x16"
+    }
+  ],
+  "allRoutes": [
+    {
+      "id": "home",
+      "route": "/",
+      "file": "index.html",
+      "title": "AI ULTRA — DIGITAL & AI SYSTEMS",
+      "h1": "AI-сотрудники  для взлёта ваших продаж",
+      "description": ""
+    },
+    {
+      "id": "1c-integration-for-business",
+      "route": "/1c-integration/",
+      "file": "1c-integration/index.html",
+      "title": "Интеграция 1С для бизнеса — AI ULTRA",
+      "h1": "Интеграция 1С для бизнеса",
+      "description": "Интеграция 1С с CRM, сайтами, каталогами, заказами и другими бизнес-системами. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "sales-funnel",
+      "route": "/sales-funnel/",
+      "file": "sales-funnel/index.html",
+      "title": "Воронка продаж под ключ — AI ULTRA",
+      "h1": "Воронка продаж под ключ",
+      "description": ""
+    },
+    {
+      "id": "sales-scripts",
+      "route": "/sales-scripts/",
+      "file": "sales-scripts/index.html",
+      "title": "Скрипты продаж — AI ULTRA",
+      "h1": "Скрипты продаж",
+      "description": ""
+    },
+    {
+      "id": "invest-robot-mvp",
+      "route": "/invest-robot-mvp/",
+      "file": "invest-robot-mvp/index.html",
+      "title": "Инвестиционный проект: MVP антропоморфного робота — AI ULTRA",
+      "h1": "Инвестиционный проект: MVP антропоморфного робота",
+      "description": "Инвестиционное предложение Kaminski Corporation: первый этап разработки функционального MVP антропоморфного робота."
+    },
+    {
+      "id": "3d-printing-from-idea",
+      "route": "/3d-printing-from-idea/",
+      "file": "3d-printing-from-idea/index.html",
+      "title": "3D-печать от идеи до детали — AI ULTRA",
+      "h1": "3D-печать от идеи до детали",
+      "description": "Моделирование и 3D-печать: от задачи или эскиза до физического объекта."
+    },
+    {
+      "id": "subscription-bots",
+      "route": "/subscription-bots/",
+      "file": "subscription-bots/index.html",
+      "title": "Telegram-боты для продажи подписок и доступа | AI ULTRA",
+      "h1": "Telegram-боты для продажи подписок и управления доступом",
+      "description": ""
+    },
+    {
+      "id": "digital-production",
+      "route": "/digital-production/",
+      "file": "digital-production/index.html",
+      "title": "Digital production — AI ULTRA",
+      "h1": "Digital production",
+      "description": "Производство digital-материалов: сайты, графика, интерактив, контент и рекламные креативы."
+    },
+    {
+      "id": "reputation-marketing",
+      "route": "/reputation-marketing/",
+      "file": "reputation-marketing/index.html",
+      "title": "Управление digital-репутацией — AI ULTRA",
+      "h1": "Управление digital-репутацией",
+      "description": ""
+    },
+    {
+      "id": "3d-graphics",
+      "route": "/3d-graphics/",
+      "file": "3d-graphics/index.html",
+      "title": "3D-графика — AI ULTRA",
+      "h1": "3D-графика",
+      "description": ""
+    },
+    {
+      "id": "robotics-software",
+      "route": "/robotics-software/",
+      "file": "robotics-software/index.html",
+      "title": "Программное обеспечение для роботов — AI ULTRA",
+      "h1": "Программное обеспечение для роботов",
+      "description": "Архитектура, управление, интеграции, компьютерное зрение, речь, телеметрия и AI для робототехнических платформ."
+    },
+    {
+      "id": "digital-infrastructure-service-business",
+      "route": "/digital-infrastructure-service-business/",
+      "file": "digital-infrastructure-service-business/index.html",
+      "title": "Оцифровка сервисного бизнеса — AI ULTRA",
+      "h1": "Оцифровка сервисного бизнеса",
+      "description": "Запись, обращения, звонки, CRM, напоминания и повторные продажи для сервисных компаний."
+    },
+    {
+      "id": "3d-configurator",
+      "route": "/3d-configurator/",
+      "file": "3d-configurator/index.html",
+      "title": "3D-конфигураторы — AI ULTRA",
+      "h1": "3D-конфигураторы",
+      "description": ""
+    },
+    {
+      "id": "phone-sales",
+      "route": "/phone-sales/",
+      "file": "phone-sales/index.html",
+      "title": "Продажи по телефону — AI ULTRA",
+      "h1": "Продажи по телефону",
+      "description": ""
+    },
+    {
+      "id": "ai-crm-agent",
+      "route": "/ai-crm-agent/",
+      "file": "ai-crm-agent/index.html",
+      "title": "AI-агент в CRM — AI ULTRA",
+      "h1": "AI-агент в CRM",
+      "description": ""
+    },
+    {
+      "id": "social-media-management-for-business",
+      "route": "/social-media-management/",
+      "file": "social-media-management/index.html",
+      "title": "Ведение социальных сетей для бизнеса — AI ULTRA",
+      "h1": "Ведение социальных сетей для бизнеса",
+      "description": "Контент-план, публикации, адаптация материалов, аналитика и автоматизация социальных каналов. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "b2b-sales-service",
+      "route": "/b2b-sales-service/",
+      "file": "b2b-sales-service/index.html",
+      "title": "B2B-продажи под ключ — AI ULTRA",
+      "h1": "B2B-продажи под ключ",
+      "description": "Системная работа с B2B-лидами: квалификация, созвоны, предложения и сопровождение сделки."
+    },
+    {
+      "id": "robotics-cost-estimation",
+      "route": "/robotics-cost-estimation/",
+      "file": "robotics-cost-estimation/index.html",
+      "title": "Оценка бюджета разработки робота — AI ULTRA",
+      "h1": "Оценка бюджета разработки робота",
+      "description": "Формирование инженерной сметы по механике, электронике, сенсорам, вычислениям, ПО, испытаниям и резервам."
+    },
+    {
+      "id": "corporate-software-setup",
+      "route": "/corporate-software-setup/",
+      "file": "corporate-software-setup/index.html",
+      "title": "Настройка корпоративного ПО — AI ULTRA",
+      "h1": "Настройка корпоративного ПО",
+      "description": "Внедрение и настройка корпоративных программ, прав доступа, интеграций и рабочих сценариев."
+    },
+    {
+      "id": "digital-transformation-for-business",
+      "route": "/digital-transformation/",
+      "file": "digital-transformation/index.html",
+      "title": "Цифровая трансформация бизнеса для бизнеса — AI ULTRA",
+      "h1": "Цифровая трансформация бизнеса для бизнеса",
+      "description": "Оцифровка процессов, интеграции, CRM, AI и автоматизация бизнеса в единой системе. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "ai-call-center-for-business",
+      "route": "/ai-call-center/",
+      "file": "ai-call-center/index.html",
+      "title": "AI call-центр для бизнеса — AI ULTRA",
+      "h1": "AI call-центр для бизнеса",
+      "description": "AI-агенты для входящих и исходящих звонков, квалификации обращений и автоматизации коммуникаций. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "obuchenie",
+      "route": "/obuchenie/",
+      "file": "obuchenie/index.html",
+      "title": "Обучение сотрудников AI, ботам, SEO, GEO, LLM, SGE | AI ULTRA",
+      "h1": "Обучение сотрудников работе с AI.  Боты, SEO, GEO, LLM, SGE.",
+      "description": ""
+    },
+    {
+      "id": "electronic-art",
+      "route": "/electronic-art/",
+      "file": "electronic-art/index.html",
+      "title": "Electronic Art — AI ULTRA",
+      "h1": "Electronic Art",
+      "description": "Цифровое искусство, generative/3D visual, интерактивные композиции и digital-инсталляции."
+    },
+    {
+      "id": "repeat-sales",
+      "route": "/repeat-sales/",
+      "file": "repeat-sales/index.html",
+      "title": "Повторные продажи — AI ULTRA",
+      "h1": "Повторные продажи",
+      "description": ""
+    },
+    {
+      "id": "robotics-b2b",
+      "route": "/robotics-b2b/",
+      "file": "robotics-b2b/index.html",
+      "title": "B2B-робототехника — AI ULTRA",
+      "h1": "B2B-робототехника",
+      "description": "Разработка робототехнических решений для прикладных корпоративных сценариев и кастомных интеграций."
+    },
+    {
+      "id": "robot-development",
+      "route": "/robot-development/",
+      "file": "robot-development/index.html",
+      "title": "Разработка роботов под ключ — AI ULTRA",
+      "h1": "Разработка роботов под ключ",
+      "description": "Проектирование кастомных роботов и робототехнических систем под прикладные задачи бизнеса, образования и R&amp;D."
+    },
+    {
+      "id": "company-digital-audit",
+      "route": "/company-digital-audit/",
+      "file": "company-digital-audit/index.html",
+      "title": "Digital-аудит компании — AI ULTRA",
+      "h1": "Digital-аудит компании",
+      "description": "Аудит сайта, рекламы, CRM, продаж, аналитики и автоматизации перед оцифровкой."
+    },
+    {
+      "id": "technology-training",
+      "route": "/technology-training/",
+      "file": "technology-training/index.html",
+      "title": "Обучение технологиям — AI ULTRA",
+      "h1": "Обучение технологиям",
+      "description": "Индивидуальное, групповое и корпоративное обучение современным технологиям онлайн и офлайн."
+    },
+    {
+      "id": "electronic-art-for-business",
+      "route": "/electronic-art/",
+      "file": "electronic-art/index.html",
+      "title": "Electronic Art для бизнеса — AI ULTRA",
+      "h1": "Electronic Art для бизнеса",
+      "description": "Цифровое искусство, generative/3D visual, интерактивные композиции и digital-инсталляции. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "robot-sdk",
+      "route": "/robot-sdk/",
+      "file": "robot-sdk/index.html",
+      "title": "SDK для робототехнических платформ — AI ULTRA",
+      "h1": "SDK для робототехнических платформ",
+      "description": "Разработка программного интерфейса и SDK для интеграторов, образовательных проектов и кастомных приложений."
+    },
+    {
+      "id": "digital-strategy",
+      "route": "/digital-strategy/",
+      "file": "digital-strategy/index.html",
+      "title": "Digital-стратегия для бизнеса — AI ULTRA",
+      "h1": "Digital-стратегия для бизнеса",
+      "description": "Стратегия цифровых каналов, контента, сайта, рекламы, CRM и аналитики."
+    },
+    {
+      "id": "sales-and-advertising",
+      "route": "/sales-and-advertising/",
+      "file": "sales-and-advertising/index.html",
+      "title": "Реклама и продажи под ключ — AI ULTRA",
+      "h1": "Реклама и продажи под ключ",
+      "description": "Единая система: реклама приводит обращения, продажи обрабатывают и закрывают их."
+    },
+    {
+      "id": "digital-department-as-a-service-for-business",
+      "route": "/digital-department-as-a-service/",
+      "file": "digital-department-as-a-service/index.html",
+      "title": "Digital-отдел на аутсорсе для бизнеса — AI ULTRA",
+      "h1": "Digital-отдел на аутсорсе для бизнеса",
+      "description": "Внешний digital-отдел для бизнеса: маркетинг, дизайн, реклама, контент, аналитика и автоматизация. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "database-reactivation-sales-for-business",
+      "route": "/database-reactivation-sales/",
+      "file": "database-reactivation-sales/index.html",
+      "title": "Реактивация клиентской базы для бизнеса — AI ULTRA",
+      "h1": "Реактивация клиентской базы для бизнеса",
+      "description": "Возвращение неактивных клиентов через сегментацию, коммуникации и сценарии продаж. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "dmitry-lisakovich",
+      "route": "/dmitry-lisakovich/",
+      "file": "dmitry-lisakovich/index.html",
+      "title": "Дмитрий Лисакович — автор и разработчик AI ULTRA — AI ULTRA",
+      "h1": "Дмитрий Лисакович — автор и разработчик AI ULTRA",
+      "description": ""
+    },
+    {
+      "id": "local-ai-devices",
+      "route": "/local-ai-devices/",
+      "file": "local-ai-devices/index.html",
+      "title": "Локальный AI для устройств — AI ULTRA",
+      "h1": "Локальный AI для устройств",
+      "description": "Развёртывание AI-функций непосредственно на устройстве без обязательной постоянной зависимости от облака."
+    },
+    {
+      "id": "3d-printing-service",
+      "route": "/3d-printing-service/",
+      "file": "3d-printing-service/index.html",
+      "title": "3D-печать под заказ — AI ULTRA",
+      "h1": "3D-печать под заказ",
+      "description": "Подготовка модели и 3D-печать деталей, прототипов, макетов и индивидуальных изделий."
+    },
+    {
+      "id": "voice-agent-crm",
+      "route": "/voice-agent-crm/",
+      "file": "voice-agent-crm/index.html",
+      "title": "Голосовой AI-агент с CRM — AI ULTRA",
+      "h1": "Голосовой AI-агент с CRM",
+      "description": "Интеграция голосового AI-агента с CRM: карточка клиента, статусы, задачи и результаты звонков."
+    },
+    {
+      "id": "robotics-rnd",
+      "route": "/robotics-rnd/",
+      "file": "robotics-rnd/index.html",
+      "title": "R&amp;D в робототехнике — AI ULTRA",
+      "h1": "R&amp;D в робототехнике",
+      "description": "Исследовательско-инженерная разработка робототехнических систем с итерациями, стендовыми испытаниями и измеримыми критериями готовности."
+    },
+    {
+      "id": "outsourced-sales-manager-for-business",
+      "route": "/outsourced-sales-manager/",
+      "file": "outsourced-sales-manager/index.html",
+      "title": "Услуги продажника для бизнеса — AI ULTRA",
+      "h1": "Услуги продажника для бизнеса",
+      "description": "Внешний менеджер по продажам: звонки, заявки, переговоры, CRM и доведение клиента до сделки. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "robot-system-integration",
+      "route": "/robot-system-integration/",
+      "file": "robot-system-integration/index.html",
+      "title": "Системная интеграция робота — AI ULTRA",
+      "h1": "Системная интеграция робота",
+      "description": "Объединение механики, электроники, firmware, сенсоров, вычислений и AI в одну тестируемую систему."
+    },
+    {
+      "id": "webgl-website-development",
+      "route": "/webgl-website-development/",
+      "file": "webgl-website-development/index.html",
+      "title": "WebGL-сайты на заказ — AI ULTRA",
+      "h1": "WebGL-сайты на заказ",
+      "description": "Разработка WebGL-сайтов с 3D-графикой, камерой, светом и интерактивом."
+    },
+    {
+      "id": "web-app-development",
+      "route": "/web-app-development/",
+      "file": "web-app-development/index.html",
+      "title": "Разработка веб-приложений — AI ULTRA",
+      "h1": "Разработка веб-приложений",
+      "description": "Веб-приложения, кабинеты, панели управления, интеграции и автоматизированные сервисы."
+    },
+    {
+      "id": "telegram-funnel",
+      "route": "/telegram-funnel/",
+      "file": "telegram-funnel/index.html",
+      "title": "Telegram-воронка для продаж с AI-сотрудниками | AI ULTRA",
+      "h1": "Telegram-воронка,  которая ведёт к продаже.",
+      "description": ""
+    },
+    {
+      "id": "saas-integration",
+      "route": "/saas-integration/",
+      "file": "saas-integration/index.html",
+      "title": "Интеграция SaaS-сервисов — AI ULTRA",
+      "h1": "Интеграция SaaS-сервисов",
+      "description": "Связываем облачные сервисы, CRM, аналитику и автоматизации через API и готовые интеграции."
+    },
+    {
+      "id": "lead-generation",
+      "route": "/lead-generation/",
+      "file": "lead-generation/index.html",
+      "title": "Лидогенерация — AI ULTRA",
+      "h1": "Лидогенерация",
+      "description": ""
+    },
+    {
+      "id": "custom-software-development",
+      "route": "/custom-software-development/",
+      "file": "custom-software-development/index.html",
+      "title": "Разработка программ под задачу — AI ULTRA",
+      "h1": "Разработка программ под задачу",
+      "description": "Проектирование и разработка программных решений, внутренних инструментов и автоматизаций."
+    },
+    {
+      "id": "it-product-from-idea",
+      "route": "/it-product-from-idea/",
+      "file": "it-product-from-idea/index.html",
+      "title": "IT-продукт от идеи до запуска — AI ULTRA",
+      "h1": "IT-продукт от идеи до запуска",
+      "description": "Превращение бизнес-идеи в работающий цифровой продукт: аналитика, архитектура, дизайн, разработка, интеграции и запуск."
+    },
+    {
+      "id": "crm-customization-for-business",
+      "route": "/crm-customization/",
+      "file": "crm-customization/index.html",
+      "title": "Настройка CRM под бизнес для бизнеса — AI ULTRA",
+      "h1": "Настройка CRM под бизнес для бизнеса",
+      "description": "Проектирование воронок, полей, ролей, автоматизаций и отчётности под реальные процессы компании. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "team",
+      "route": "/team/",
+      "file": "team/index.html",
+      "title": "Команда AI ULTRA — AI, IT, маркетинг и продажи",
+      "h1": "Команда, которая  собирает AI-системы.",
+      "description": ""
+    },
+    {
+      "id": "ai-seo",
+      "route": "/ai-seo/",
+      "file": "ai-seo/index.html",
+      "title": "GEO и SEO для AI-поиска: LLM и AI Overviews | AI ULTRA",
+      "h1": "GEO и SEO для  AI-поиска.",
+      "description": ""
+    },
+    {
+      "id": "sales-automation-end-to-end-for-business",
+      "route": "/sales-automation-end-to-end/",
+      "file": "sales-automation-end-to-end/index.html",
+      "title": "Автоматизация продаж end-to-end для бизнеса — AI ULTRA",
+      "h1": "Автоматизация продаж end-to-end для бизнеса",
+      "description": "Связываем рекламу, лиды, звонки, CRM, AI и аналитику в единую воронку. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "context-ads",
+      "route": "/yandex-direct/",
+      "file": "yandex-direct/index.html",
+      "title": "Контекстная реклама — AI ULTRA",
+      "h1": "Контекстная реклама",
+      "description": ""
+    },
+    {
+      "id": "stl-preparation",
+      "route": "/stl-preparation/",
+      "file": "stl-preparation/index.html",
+      "title": "Подготовка STL к печати — AI ULTRA",
+      "h1": "Подготовка STL к печати",
+      "description": ""
+    },
+    {
+      "id": "robotics-documentation",
+      "route": "/robotics-documentation/",
+      "file": "robotics-documentation/index.html",
+      "title": "Документация робототехнического проекта — AI ULTRA",
+      "h1": "Документация робототехнического проекта",
+      "description": "Архитектурный реестр, технические решения, испытания, журналы изменений и документация для развития продукта."
+    },
+    {
+      "id": "voice-ai-agent",
+      "route": "/voice-ai-agent/",
+      "file": "voice-ai-agent/index.html",
+      "title": "Голосовой AI-агент — AI ULTRA",
+      "h1": "Голосовой AI-агент",
+      "description": ""
+    },
+    {
+      "id": "3d-design-service-for-business",
+      "route": "/3d-design-service/",
+      "file": "3d-design-service/index.html",
+      "title": "3D-дизайн для бизнеса — AI ULTRA",
+      "h1": "3D-дизайн для бизнеса",
+      "description": "3D-концепции, моделирование, визуализация, материалы и подготовка графики для digital и производства. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "robotics-api",
+      "route": "/robotics-api/",
+      "file": "robotics-api/index.html",
+      "title": "API для роботов и устройств — AI ULTRA",
+      "h1": "API для роботов и устройств",
+      "description": "API и интеграционный слой для связи роботов с CRM, приложениями, облачными сервисами и внутренними системами."
+    },
+    {
+      "id": "it-outsourcing-business",
+      "route": "/it-outsourcing-business/",
+      "file": "it-outsourcing-business/index.html",
+      "title": "IT-аутсорсинг для бизнеса — AI ULTRA",
+      "h1": "IT-аутсорсинг для бизнеса",
+      "description": "Настройка, интеграция и сопровождение программ, сервисов и цифровой инфраструктуры."
+    },
+    {
+      "id": "robot-python-cpp",
+      "route": "/robot-python-cpp/",
+      "file": "robot-python-cpp/index.html",
+      "title": "Python и C++ для робототехники — AI ULTRA",
+      "h1": "Python и C++ для робототехники",
+      "description": "Разработка прикладной и низкоуровневой логики робототехнических систем на Python и C++."
+    },
+    {
+      "id": "ai-call-routing",
+      "route": "/ai-call-routing/",
+      "file": "ai-call-routing/index.html",
+      "title": "AI-маршрутизация звонков — AI ULTRA",
+      "h1": "AI-маршрутизация звонков",
+      "description": "Распознавание цели звонка и маршрутизация клиента к нужному сценарию или сотруднику."
+    },
+    {
+      "id": "group-tech-training",
+      "route": "/group-tech-training/",
+      "file": "group-tech-training/index.html",
+      "title": "Групповое обучение технологиям — AI ULTRA",
+      "h1": "Групповое обучение технологиям",
+      "description": "Практические групповые программы по AI, Digital, продажам, дизайну, 3D и программам."
+    },
+    {
+      "id": "3d-model-for-printing",
+      "route": "/3d-model-for-printing/",
+      "file": "3d-model-for-printing/index.html",
+      "title": "3D-модель для печати — AI ULTRA",
+      "h1": "3D-модель для печати",
+      "description": "Подготовка и создание 3D-моделей с учетом требований последующей 3D-печати."
+    },
+    {
+      "id": "telegram-bot-development",
+      "route": "/telegram-bot-development/",
+      "file": "telegram-bot-development/index.html",
+      "title": "Разработка Telegram-ботов — AI ULTRA",
+      "h1": "Разработка Telegram-ботов",
+      "description": "Разработка Telegram-ботов любой бизнес-логики: продажи, поддержка, обучение, уведомления и интеграции."
+    },
+    {
+      "id": "raster-3d-integration",
+      "route": "/raster-3d-integration/",
+      "file": "raster-3d-integration/index.html",
+      "title": "Интеграция растра в 3D — AI ULTRA",
+      "h1": "Интеграция растра в 3D",
+      "description": ""
+    },
+    {
+      "id": "3d-animation-service",
+      "route": "/3d-animation-service/",
+      "file": "3d-animation-service/index.html",
+      "title": "3D-анимация на заказ — AI ULTRA",
+      "h1": "3D-анимация на заказ",
+      "description": "3D-анимация продукта, объекта или сцены для digital и презентационных задач."
+    },
+    {
+      "id": "graphic-design",
+      "route": "/graphic-design/",
+      "file": "graphic-design/index.html",
+      "title": "Графический дизайн — AI ULTRA",
+      "h1": "Графический дизайн",
+      "description": ""
+    },
+    {
+      "id": "customer-service-digitization",
+      "route": "/customer-service-digitization/",
+      "file": "customer-service-digitization/index.html",
+      "title": "Оцифровка клиентского сервиса — AI ULTRA",
+      "h1": "Оцифровка клиентского сервиса",
+      "description": "Единая система обращений, базы знаний, AI-помощников и передачи сложных случаев человеку."
+    },
+    {
+      "id": "robot-kinematics",
+      "route": "/robot-kinematics/",
+      "file": "robot-kinematics/index.html",
+      "title": "Кинематика роботов — AI ULTRA",
+      "h1": "Кинематика роботов",
+      "description": "Проектирование кинематических схем, приводных суставов и алгоритмов движения для робототехнических платформ."
+    },
+    {
+      "id": "interactive-art-web",
+      "route": "/interactive-art-web/",
+      "file": "interactive-art-web/index.html",
+      "title": "Интерактивное искусство для веба — AI ULTRA",
+      "h1": "Интерактивное искусство для веба",
+      "description": "Интерактивные digital-art сцены для сайтов, выставочных и брендовых проектов."
+    },
+    {
+      "id": "educational-robotics",
+      "route": "/educational-robotics/",
+      "file": "educational-robotics/index.html",
+      "title": "Образовательная робототехника — AI ULTRA",
+      "h1": "Образовательная робототехника",
+      "description": "Робототехнические платформы, демонстрационные стенды, SDK и учебные сценарии для образования и корпоративного обучения."
+    },
+    {
+      "id": "ai-call-analytics",
+      "route": "/ai-call-analytics/",
+      "file": "ai-call-analytics/index.html",
+      "title": "AI-аналитика звонков — AI ULTRA",
+      "h1": "AI-аналитика звонков",
+      "description": "Расшифровка и структурный анализ разговоров: темы, этапы, причины отказа и качество обработки."
+    },
+    {
+      "id": "sales-training",
+      "route": "/sales-training/",
+      "file": "sales-training/index.html",
+      "title": "Обучение продажам — AI ULTRA",
+      "h1": "Обучение продажам",
+      "description": "Индивидуальное, групповое и корпоративное обучение продажам и работе с цифровой воронкой."
+    },
+    {
+      "id": "sales-outsourcing",
+      "route": "/sales-outsourcing/",
+      "file": "sales-outsourcing/index.html",
+      "title": "Продажи под ключ — AI ULTRA",
+      "h1": "Продажи под ключ",
+      "description": ""
+    },
+    {
+      "id": "incoming-calls-sales-for-business",
+      "route": "/incoming-calls-sales/",
+      "file": "incoming-calls-sales/index.html",
+      "title": "Продажи через входящие звонки для бизнеса — AI ULTRA",
+      "h1": "Продажи через входящие звонки для бизнеса",
+      "description": "Обработка входящих звонков и заявок с квалификацией, фиксацией в CRM и сопровождением. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "google-ads-setup-for-business",
+      "route": "/google-ads-setup/",
+      "file": "google-ads-setup/index.html",
+      "title": "Настройка Google Ads для бизнеса — AI ULTRA",
+      "h1": "Настройка Google Ads для бизнеса",
+      "description": "Настройка рекламных кампаний Google Ads, аналитики, конверсий и структуры аккаунта. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "access",
+      "route": "/access/",
+      "file": "access/index.html",
+      "title": "AI-подписки ChatGPT, Gemini и Claude — AI ACCESS | AI ULTRA",
+      "h1": "Подписки ChatGPT, Gemini и Claude  для работы.",
+      "description": ""
+    },
+    {
+      "id": "robotics-consulting",
+      "route": "/robotics-consulting/",
+      "file": "robotics-consulting/index.html",
+      "title": "Консалтинг по робототехнике — AI ULTRA",
+      "h1": "Консалтинг по робототехнике",
+      "description": "Техническая декомпозиция робототехнической идеи, оценка архитектуры, компонентов, рисков и этапов MVP."
+    },
+    {
+      "id": "sales-as-a-service-for-business",
+      "route": "/sales-as-a-service/",
+      "file": "sales-as-a-service/index.html",
+      "title": "Продажи под ключ для бизнеса — AI ULTRA",
+      "h1": "Продажи под ключ для бизнеса",
+      "description": "Берём на себя входящие обращения, квалификацию лидов, сопровождение и закрытие сделок. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "digital-design-service",
+      "route": "/digital-design-service/",
+      "file": "digital-design-service/index.html",
+      "title": "Digital-дизайн на заказ — AI ULTRA",
+      "h1": "Digital-дизайн на заказ",
+      "description": "Дизайн сайтов, интерфейсов, рекламных материалов и цифровых коммуникаций."
+    },
+    {
+      "id": "business-analytics",
+      "route": "/business-analytics/",
+      "file": "business-analytics/index.html",
+      "title": "Цифровая аналитика бизнеса — AI ULTRA",
+      "h1": "Цифровая аналитика бизнеса",
+      "description": ""
+    },
+    {
+      "id": "social-media-management",
+      "route": "/social-media-management/",
+      "file": "social-media-management/index.html",
+      "title": "Ведение социальных сетей — AI ULTRA",
+      "h1": "Ведение социальных сетей",
+      "description": "Контент-план, публикации, адаптация материалов, аналитика и автоматизация социальных каналов."
+    },
+    {
+      "id": "crossposting",
+      "route": "/crossposting/",
+      "file": "crossposting/index.html",
+      "title": "Кросспостинг в соцсети и YouTube с AI | AI ULTRA",
+      "h1": "Один исходник.  Весь согласованный охват.",
+      "description": ""
+    },
+    {
+      "id": "ai-lead-qualification",
+      "route": "/ai-lead-qualification/",
+      "file": "ai-lead-qualification/index.html",
+      "title": "AI-квалификация лидов — AI ULTRA",
+      "h1": "AI-квалификация лидов",
+      "description": ""
+    },
+    {
+      "id": "crm-migration-for-business",
+      "route": "/crm-migration/",
+      "file": "crm-migration/index.html",
+      "title": "Миграция CRM для бизнеса — AI ULTRA",
+      "h1": "Миграция CRM для бизнеса",
+      "description": "Перенос данных, воронок и процессов между CRM с проверкой структуры и интеграций. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "robotics-mvp",
+      "route": "/robotics-mvp/",
+      "file": "robotics-mvp/index.html",
+      "title": "MVP робота — AI ULTRA",
+      "h1": "MVP робота",
+      "description": "Создание функционального MVP робота для проверки механики, электроники, сенсоров, управления и AI до серийной стадии."
+    },
+    {
+      "id": "database-reactivation",
+      "route": "/database-reactivation/",
+      "file": "database-reactivation/index.html",
+      "title": "Реактивация клиентской базы — AI ULTRA",
+      "h1": "Реактивация клиентской базы",
+      "description": ""
+    },
+    {
+      "id": "product-3d",
+      "route": "/product-3d/",
+      "file": "product-3d/index.html",
+      "title": "3D-визуализация продукта — AI ULTRA",
+      "h1": "3D-визуализация продукта",
+      "description": ""
+    },
+    {
+      "id": "3d-product-configurator",
+      "route": "/3d-product-configurator/",
+      "file": "3d-product-configurator/index.html",
+      "title": "3D-конфигуратор продукта — AI ULTRA",
+      "h1": "3D-конфигуратор продукта",
+      "description": "Интерактивный 3D-конфигуратор вариантов продукта для веба."
+    },
+    {
+      "id": "rnd-as-a-service",
+      "route": "/rnd-as-a-service/",
+      "file": "rnd-as-a-service/index.html",
+      "title": "R&amp;D as a Service — AI ULTRA",
+      "h1": "R&amp;D as a Service",
+      "description": "Исследовательская и инженерная работа как услуга для нестандартных software, AI, hardware и robotics-задач."
+    },
+    {
+      "id": "ai-inbound-agent-for-business",
+      "route": "/ai-inbound-agent/",
+      "file": "ai-inbound-agent/index.html",
+      "title": "AI-агент для входящих звонков для бизнеса — AI ULTRA",
+      "h1": "AI-агент для входящих звонков для бизнеса",
+      "description": "AI принимает звонки, фиксирует данные, отвечает по сценарию и передаёт обращение в нужный процесс. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "ai-support",
+      "route": "/ai-support/",
+      "file": "ai-support/index.html",
+      "title": "Установка AI-решений и техническая поддержка 24/7 | AI ULTRA",
+      "h1": "Установка AI-решений и техническая поддержка 24/7",
+      "description": ""
+    },
+    {
+      "id": "crm-integration",
+      "route": "/crm-integration/",
+      "file": "crm-integration/index.html",
+      "title": "Интеграция AI-агента с CRM и Telegram | AI ULTRA",
+      "h1": "Интеграция AI-агента с CRM и Telegram",
+      "description": ""
+    },
+    {
+      "id": "ai-outbound-calling",
+      "route": "/ai-outbound-calling/",
+      "file": "ai-outbound-calling/index.html",
+      "title": "AI-автообзвон — AI ULTRA",
+      "h1": "AI-автообзвон",
+      "description": "Автоматизированные исходящие звонки для разрешённых бизнес-сценариев, уведомлений и работы с клиентской базой."
+    },
+    {
+      "id": "ai-inbound-calls",
+      "route": "/ai-inbound-calls/",
+      "file": "ai-inbound-calls/index.html",
+      "title": "AI для входящих звонков — AI ULTRA",
+      "h1": "AI для входящих звонков",
+      "description": ""
+    },
+    {
+      "id": "jetson-robotics",
+      "route": "/jetson-robotics/",
+      "file": "jetson-robotics/index.html",
+      "title": "NVIDIA Jetson для робототехники — AI ULTRA",
+      "h1": "NVIDIA Jetson для робототехники",
+      "description": "Интеграция edge-вычислений и компьютерного зрения на NVIDIA Jetson в прототипы и робототехнические продукты."
+    },
+    {
+      "id": "bitrix24-license",
+      "route": "/bitrix24-license/",
+      "file": "bitrix24-license/index.html",
+      "title": "Лицензии Bitrix24 — AI ULTRA",
+      "h1": "Лицензии Bitrix24",
+      "description": "Подбор и поставка лицензии Bitrix24 с внедрением, настройкой и сопровождением."
+    },
+    {
+      "id": "technology-product-development",
+      "route": "/technology-product-development/",
+      "file": "technology-product-development/index.html",
+      "title": "Создание технологического продукта под ключ — AI ULTRA",
+      "h1": "Создание технологического продукта под ключ",
+      "description": "Полный цикл: идея, требования, UX, software, AI, hardware, MVP, тестирование, запуск и дальнейшее развитие."
+    },
+    {
+      "id": "ai-support-phone",
+      "route": "/ai-support-phone/",
+      "file": "ai-support-phone/index.html",
+      "title": "AI-поддержка по телефону — AI ULTRA",
+      "h1": "AI-поддержка по телефону",
+      "description": "AI-линия для типовых клиентских вопросов с эскалацией сложных случаев оператору."
+    },
+    {
+      "id": "threejs-development",
+      "route": "/threejs-development/",
+      "file": "threejs-development/index.html",
+      "title": "Three.js-разработка — AI ULTRA",
+      "h1": "Three.js-разработка",
+      "description": "Разработка интерактивных 3D-сцен и веб-интерфейсов на Three.js."
+    },
+    {
+      "id": "ai-call-center",
+      "route": "/ai-call-center/",
+      "file": "ai-call-center/index.html",
+      "title": "AI call-центр — AI ULTRA",
+      "h1": "AI call-центр",
+      "description": "AI-агенты для входящих и исходящих звонков, квалификации обращений и автоматизации коммуникаций."
+    },
+    {
+      "id": "ai-outbound-calls",
+      "route": "/ai-outbound-calls/",
+      "file": "ai-outbound-calls/index.html",
+      "title": "Исходящие звонки AI-агентом — AI ULTRA",
+      "h1": "AI-автообзвон",
+      "description": ""
+    },
+    {
+      "id": "3d-scene-optimization",
+      "route": "/3d-scene-optimization/",
+      "file": "3d-scene-optimization/index.html",
+      "title": "Оптимизация 3D-сцен — AI ULTRA",
+      "h1": "Оптимизация 3D-сцен",
+      "description": ""
+    },
+    {
+      "id": "ai-content-production",
+      "route": "/ai-content-production/",
+      "file": "ai-content-production/index.html",
+      "title": "Генерация изображений и видео для сайтов и рекламы | AI ULTRA",
+      "h1": "Генерация изображений и видео для сайтов, рекламы и соцсетей",
+      "description": ""
+    },
+    {
+      "id": "privacy",
+      "route": "/privacy/",
+      "file": "privacy/index.html",
+      "title": "Политика конфиденциальности | AI ULTRA",
+      "h1": "Политика конфиденциальности",
+      "description": ""
+    },
+    {
+      "id": "3d-printer-setup",
+      "route": "/3d-printer-setup/",
+      "file": "3d-printer-setup/index.html",
+      "title": "Настройка 3D-принтера — AI ULTRA",
+      "h1": "Настройка 3D-принтера",
+      "description": "Подключение, базовая настройка, калибровка и обучение рабочему процессу 3D-печати."
+    },
+    {
+      "id": "end-to-end-digital-system",
+      "route": "/end-to-end-digital-system/",
+      "file": "end-to-end-digital-system/index.html",
+      "title": "Сквозная digital-система бизнеса — AI ULTRA",
+      "h1": "Сквозная digital-система бизнеса",
+      "description": "Архитектура от рекламы и сайта до CRM, продаж, сервиса и аналитики."
+    },
+    {
+      "id": "automation-hardware",
+      "route": "/automation-hardware/",
+      "file": "automation-hardware/index.html",
+      "title": "Аппаратная автоматизация бизнеса — AI ULTRA",
+      "h1": "Аппаратная автоматизация бизнеса",
+      "description": "Автоматизация процессов с использованием датчиков, контроллеров, устройств, программного обеспечения и AI."
+    },
+    {
+      "id": "full-digital-outsourcing-for-business",
+      "route": "/full-digital-outsourcing/",
+      "file": "full-digital-outsourcing/index.html",
+      "title": "Полный Digital-аутсорсинг для бизнеса — AI ULTRA",
+      "h1": "Полный Digital-аутсорсинг для бизнеса",
+      "description": "Комплексный digital под ключ: стратегия, реклама, контент, аналитика, автоматизация и развитие цифровых каналов. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "sales-operations-automation",
+      "route": "/sales-operations-automation/",
+      "file": "sales-operations-automation/index.html",
+      "title": "Автоматизация Sales Operations — AI ULTRA",
+      "h1": "Автоматизация Sales Operations",
+      "description": "Автоматизация операционной части продаж: данные, статусы, задачи, отчёты и контроль процесса."
+    },
+    {
+      "id": "embedded-systems",
+      "route": "/embedded-systems/",
+      "file": "embedded-systems/index.html",
+      "title": "Embedded-разработка — AI ULTRA",
+      "h1": "Embedded-разработка",
+      "description": "Встраиваемое ПО и электроника для устройств: контроллеры, периферия, протоколы, телеметрия и управление."
+    },
+    {
+      "id": "bitrix24",
+      "route": "/bitrix24/",
+      "file": "bitrix24/index.html",
+      "title": "Лицензии Битрикс24 по цене ниже официального прайса | AI ULTRA",
+      "h1": "Лицензии Битрикс24 по цене ниже официального прайса",
+      "description": ""
+    },
+    {
+      "id": "technology-consulting",
+      "route": "/technology-consulting/",
+      "file": "technology-consulting/index.html",
+      "title": "Технологический консалтинг — AI ULTRA",
+      "h1": "Технологический консалтинг",
+      "description": "Разбор сложной технологической задачи, выбор архитектуры, стека, этапов реализации и модели внедрения."
+    },
+    {
+      "id": "3d-training",
+      "route": "/3d-training/",
+      "file": "3d-training/index.html",
+      "title": "Обучение 3D — AI ULTRA",
+      "h1": "Обучение 3D",
+      "description": "Обучение 3D-моделированию, визуализации и связанным программам онлайн и офлайн."
+    },
+    {
+      "id": "voice-ai-robotics",
+      "route": "/voice-ai-robotics/",
+      "file": "voice-ai-robotics/index.html",
+      "title": "Голосовой AI для роботов — AI ULTRA",
+      "h1": "Голосовой AI для роботов",
+      "description": "Распознавание речи, голосовые команды и диалоговые сценарии для физических AI-устройств."
+    },
+    {
+      "id": "ai-inbound-agent",
+      "route": "/ai-inbound-agent/",
+      "file": "ai-inbound-agent/index.html",
+      "title": "AI-агент для входящих звонков — AI ULTRA",
+      "h1": "AI-агент для входящих звонков",
+      "description": "AI принимает звонки, фиксирует данные, отвечает по сценарию и передаёт обращение в нужный процесс."
+    },
+    {
+      "id": "bitrix24-implementation",
+      "route": "/bitrix24-implementation/",
+      "file": "bitrix24-implementation/index.html",
+      "title": "Внедрение Bitrix24 — AI ULTRA",
+      "h1": "Внедрение Bitrix24",
+      "description": "Настройка CRM, воронок, роботов, телефонии, прав доступа, аналитики и интеграций Bitrix24."
+    },
+    {
+      "id": "api-integrations",
+      "route": "/api-integrations/",
+      "file": "api-integrations/index.html",
+      "title": "API-интеграции под ключ — AI ULTRA",
+      "h1": "API-интеграции под ключ",
+      "description": "Проектирование и внедрение API-интеграций между сервисами, CRM, ботами и внутренними системами."
+    },
+    {
+      "id": "lead-to-sale-automation",
+      "route": "/lead-to-sale-automation/",
+      "file": "lead-to-sale-automation/index.html",
+      "title": "Автоматизация от лида до продажи — AI ULTRA",
+      "h1": "Автоматизация от лида до продажи",
+      "description": "Связка рекламы, сайта, AI-агентов, CRM и отдела продаж в одном процессе."
+    },
+    {
+      "id": "design-services",
+      "route": "/design-services/",
+      "file": "design-services/index.html",
+      "title": "Дизайн под ключ — AI ULTRA",
+      "h1": "Дизайн под ключ",
+      "description": ""
+    },
+    {
+      "id": "electronic-art-service",
+      "route": "/electronic-art-service/",
+      "file": "electronic-art-service/index.html",
+      "title": "Electronic Art на заказ — AI ULTRA",
+      "h1": "Electronic Art на заказ",
+      "description": "Авторские digital-art и electronic-art проекты для брендов, сайтов и медиа."
+    },
+    {
+      "id": "automation-scripts-for-business",
+      "route": "/automation-scripts/",
+      "file": "automation-scripts/index.html",
+      "title": "Скрипты автоматизации для бизнеса — AI ULTRA",
+      "h1": "Скрипты автоматизации для бизнеса",
+      "description": "Разработка скриптов и сервисов для повторяющихся цифровых операций и обмена данными. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "iot-development",
+      "route": "/iot-development/",
+      "file": "iot-development/index.html",
+      "title": "IoT-разработка под ключ — AI ULTRA",
+      "h1": "IoT-разработка под ключ",
+      "description": "Подключённые устройства, телеметрия, управление, backend и интеграции для IoT-продуктов."
+    },
+    {
+      "id": "humanoid-robot-development",
+      "route": "/humanoid-robot-development/",
+      "file": "humanoid-robot-development/index.html",
+      "title": "Разработка антропоморфных роботов — AI ULTRA",
+      "h1": "Разработка антропоморфных роботов",
+      "description": "R&amp;D антропоморфных платформ: механика, приводы, сенсоры, управление, зрение, голос и локальный AI."
+    },
+    {
+      "id": "custom-software-development-for-business",
+      "route": "/custom-software-development/",
+      "file": "custom-software-development/index.html",
+      "title": "Разработка программ под задачу для бизнеса — AI ULTRA",
+      "h1": "Разработка программ под задачу для бизнеса",
+      "description": "Проектирование и разработка программных решений, внутренних инструментов и автоматизаций. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "sales-crm-setup",
+      "route": "/sales-crm-setup/",
+      "file": "sales-crm-setup/index.html",
+      "title": "CRM для отдела продаж — AI ULTRA",
+      "h1": "CRM для отдела продаж",
+      "description": "Настройка CRM-логики для лидов, звонков, задач, статусов и аналитики продаж."
+    },
+    {
+      "id": "brand-digital-design",
+      "route": "/brand-digital-design/",
+      "file": "brand-digital-design/index.html",
+      "title": "Digital-дизайн бренда — AI ULTRA",
+      "h1": "Digital-дизайн бренда",
+      "description": "Цифровая визуальная система бренда для сайта, соцсетей, презентаций и рекламы."
+    },
+    {
+      "id": "telegram-bot-development-for-business",
+      "route": "/telegram-bot-development/",
+      "file": "telegram-bot-development/index.html",
+      "title": "Разработка Telegram-ботов для бизнеса — AI ULTRA",
+      "h1": "Разработка Telegram-ботов для бизнеса",
+      "description": "Разработка Telegram-ботов любой бизнес-логики: продажи, поддержка, обучение, уведомления и интеграции. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "robotics-for-education",
+      "route": "/robotics-for-education/",
+      "file": "robotics-for-education/index.html",
+      "title": "Роботы для образования — AI ULTRA",
+      "h1": "Роботы для образования",
+      "description": "Робототехнические платформы и программные инструменты для учебных и исследовательских сценариев."
+    },
+    {
+      "id": "custom-hardware-software",
+      "route": "/custom-hardware-software/",
+      "file": "custom-hardware-software/index.html",
+      "title": "Аппаратно-программные продукты под ключ — AI ULTRA",
+      "h1": "Аппаратно-программные продукты под ключ",
+      "description": "Создание продуктов, где hardware, embedded, backend, AI и пользовательский интерфейс проектируются как единая система."
+    },
+    {
+      "id": "3d-printing",
+      "route": "/3d-printing/",
+      "file": "3d-printing/index.html",
+      "title": "3D-печать на заказ — AI ULTRA",
+      "h1": "3D-печать на заказ",
+      "description": ""
+    },
+    {
+      "id": "solutions",
+      "route": "/solutions/",
+      "file": "solutions/index.html",
+      "title": "Решения AI ULTRA — AI, IT, маркетинг и продажи",
+      "h1": "Вся сила  в одной системе.",
+      "description": ""
+    },
+    {
+      "id": "webgl-development-for-business",
+      "route": "/webgl-development/",
+      "file": "webgl-development/index.html",
+      "title": "WebGL-разработка для бизнеса — AI ULTRA",
+      "h1": "WebGL-разработка для бизнеса",
+      "description": "Интерактивная 3D-графика и визуальные интерфейсы в браузере. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "robotics",
+      "route": "/robotics/",
+      "file": "robotics/index.html",
+      "title": "Робототехника под ключ — AI ULTRA",
+      "h1": "Робототехника под ключ",
+      "description": "Разработка робототехнических продуктов: от постановки задачи и прототипа до программного обеспечения, интеграции AI, испытаний и подготовки к масштабированию."
+    },
+    {
+      "id": "ai-crm-automation",
+      "route": "/ai-crm-automation/",
+      "file": "ai-crm-automation/index.html",
+      "title": "AI + CRM автоматизация — AI ULTRA",
+      "h1": "AI + CRM автоматизация",
+      "description": "AI-агенты и автоматизация CRM для обработки обращений, задач и клиентского контекста."
+    },
+    {
+      "id": "motion-design",
+      "route": "/motion-design/",
+      "file": "motion-design/index.html",
+      "title": "Motion-дизайн — AI ULTRA",
+      "h1": "Motion-дизайн",
+      "description": ""
+    },
+    {
+      "id": "sales-department-outsourcing",
+      "route": "/sales-department-outsourcing/",
+      "file": "sales-department-outsourcing/index.html",
+      "title": "Отдел продаж на аутсорсе — AI ULTRA",
+      "h1": "Отдел продаж на аутсорсе",
+      "description": "Внешний отдел продаж под ключ: процессы, звонки, CRM, контроль лидов и закрытие сделок."
+    },
+    {
+      "id": "business-process-automation",
+      "route": "/business-process-automation/",
+      "file": "business-process-automation/index.html",
+      "title": "Автоматизация бизнес-процессов — AI ULTRA",
+      "h1": "Автоматизация бизнес-процессов",
+      "description": "Автоматизация повторяемых операций, передачи данных, задач и уведомлений."
+    },
+    {
+      "id": "robotics-investor-minsk",
+      "route": "/invest-robot-mvp/",
+      "file": "invest-robot-mvp/index.html",
+      "title": "Инвестор в робототехнику: Минск — AI ULTRA",
+      "h1": "Инвестор в робототехнику: Минск",
+      "description": "Информационная страница для потенциальных инвесторов и партнёров, рассматривающих робототехнические R&amp;D-проекты в Минске."
+    },
+    {
+      "id": "conversion-optimization",
+      "route": "/conversion-optimization/",
+      "file": "conversion-optimization/index.html",
+      "title": "Оптимизация конверсии — AI ULTRA",
+      "h1": "Оптимизация конверсии",
+      "description": ""
+    },
+    {
+      "id": "ai-business-automation",
+      "route": "/ai-business-automation/",
+      "file": "ai-business-automation/index.html",
+      "title": "AI-автоматизация бизнеса — AI ULTRA",
+      "h1": "AI-автоматизация бизнеса",
+      "description": "AI-агенты, интеграции и автоматические процессы для продаж, поддержки, маркетинга и операций."
+    },
+    {
+      "id": "ai-database-calling",
+      "route": "/ai-database-calling/",
+      "file": "ai-database-calling/index.html",
+      "title": "AI-обзвон клиентской базы — AI ULTRA",
+      "h1": "AI-обзвон клиентской базы",
+      "description": "Обработка клиентской базы голосовым AI-агентом с фиксацией результатов и сегментацией ответов."
+    },
+    {
+      "id": "social-media-marketing",
+      "route": "/social-media-marketing/",
+      "file": "social-media-marketing/index.html",
+      "title": "SMM и социальные сети — AI ULTRA",
+      "h1": "SMM и социальные сети",
+      "description": ""
+    },
+    {
+      "id": "tiktok-ads-setup",
+      "route": "/tiktok-ads-setup/",
+      "file": "tiktok-ads-setup/index.html",
+      "title": "Настройка TikTok Ads — AI ULTRA",
+      "h1": "Настройка TikTok Ads",
+      "description": "Запуск и настройка TikTok Ads, аналитики, креативных гипотез и воронок."
+    },
+    {
+      "id": "electronics-prototyping",
+      "route": "/electronics-prototyping/",
+      "file": "electronics-prototyping/index.html",
+      "title": "Прототипирование электроники — AI ULTRA",
+      "h1": "Прототипирование электроники",
+      "description": "Прототипирование электронных узлов, контроллеров и интерфейсов для новых IT- и hardware-продуктов."
+    },
+    {
+      "id": "sales-manager-service",
+      "route": "/sales-manager-service/",
+      "file": "sales-manager-service/index.html",
+      "title": "Услуги менеджера по продажам — AI ULTRA",
+      "h1": "Услуги менеджера по продажам",
+      "description": "Личный менеджер по продажам: входящие обращения, звонки, квалификация, сопровождение и закрытие сделок."
+    },
+    {
+      "id": "meta-ads-setup",
+      "route": "/meta-ads-setup/",
+      "file": "meta-ads-setup/index.html",
+      "title": "Настройка Meta Ads — AI ULTRA",
+      "h1": "Настройка Meta Ads",
+      "description": "Настройка рекламных кампаний, аудиторий, аналитики и конверсионных сценариев Meta Ads."
+    },
+    {
+      "id": "robot-actuators",
+      "route": "/robot-actuators/",
+      "file": "robot-actuators/index.html",
+      "title": "Приводы и суставы роботов — AI ULTRA",
+      "h1": "Приводы и суставы роботов",
+      "description": "Подбор и интеграция приводов, контроллеров, обратной связи и приводных модулей."
+    },
+    {
+      "id": "individual-tech-training",
+      "route": "/individual-tech-training/",
+      "file": "individual-tech-training/index.html",
+      "title": "Индивидуальное обучение технологиям — AI ULTRA",
+      "h1": "Индивидуальное обучение технологиям",
+      "description": "Персональная программа обучения цифровым инструментам и программам под конкретную задачу."
+    },
+    {
+      "id": "3d-website-development",
+      "route": "/3d-website-development/",
+      "file": "3d-website-development/index.html",
+      "title": "3D-сайты — AI ULTRA",
+      "h1": "3D-сайты",
+      "description": "Интерактивные 3D-сайты с WebGL/Three.js, анимацией, глубиной и оптимизацией интерфейса."
+    },
+    {
+      "id": "google-ads-setup",
+      "route": "/google-ads-setup/",
+      "file": "google-ads-setup/index.html",
+      "title": "Настройка Google Ads — AI ULTRA",
+      "h1": "Настройка Google Ads",
+      "description": "Настройка рекламных кампаний Google Ads, аналитики, конверсий и структуры аккаунта."
+    },
+    {
+      "id": "robotics-investor-moscow",
+      "route": "/invest-robot-mvp/",
+      "file": "invest-robot-mvp/index.html",
+      "title": "Инвестор в робототехнику: Москва — AI ULTRA",
+      "h1": "Инвестор в робототехнику: Москва",
+      "description": "Информационная страница для потенциальных инвесторов и технологических партнёров из Москвы, заинтересованных в робототехнике и R&amp;D."
+    },
+    {
+      "id": "web-design",
+      "route": "/web-design/",
+      "file": "web-design/index.html",
+      "title": "Веб-дизайн — AI ULTRA",
+      "h1": "Веб-дизайн",
+      "description": ""
+    },
+    {
+      "id": "meta-ads-setup-for-business",
+      "route": "/meta-ads-setup/",
+      "file": "meta-ads-setup/index.html",
+      "title": "Настройка Meta Ads для бизнеса — AI ULTRA",
+      "h1": "Настройка Meta Ads для бизнеса",
+      "description": "Настройка рекламных кампаний, аудиторий, аналитики и конверсионных сценариев Meta Ads. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "tiktok-ads-setup-for-business",
+      "route": "/tiktok-ads-setup/",
+      "file": "tiktok-ads-setup/index.html",
+      "title": "Настройка TikTok Ads для бизнеса — AI ULTRA",
+      "h1": "Настройка TikTok Ads для бизнеса",
+      "description": "Запуск и настройка TikTok Ads, аналитики, креативных гипотез и воронок. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "call-analytics",
+      "route": "/call-analytics/",
+      "file": "call-analytics/index.html",
+      "title": "Аналитика телефонных разговоров с AI — AI ULTRA",
+      "h1": "AI-аналитика звонков",
+      "description": ""
+    },
+    {
+      "id": "3d-visualization",
+      "route": "/3d-visualization/",
+      "file": "3d-visualization/index.html",
+      "title": "3D-визуализация — AI ULTRA",
+      "h1": "3D-визуализация",
+      "description": ""
+    },
+    {
+      "id": "commercial-proposal-design",
+      "route": "/commercial-proposal-design/",
+      "file": "commercial-proposal-design/index.html",
+      "title": "Дизайн коммерческого предложения — AI ULTRA",
+      "h1": "Дизайн коммерческого предложения",
+      "description": "Структура и дизайн КП для продаж услуг и сложных digital-продуктов."
+    },
+    {
+      "id": "incoming-sales",
+      "route": "/incoming-sales/",
+      "file": "incoming-sales/index.html",
+      "title": "Обработка входящих заявок — AI ULTRA",
+      "h1": "Обработка входящих заявок",
+      "description": ""
+    },
+    {
+      "id": "customer-service-automation",
+      "route": "/customer-service-automation/",
+      "file": "customer-service-automation/index.html",
+      "title": "Автоматизация клиентского сервиса — AI ULTRA",
+      "h1": "Автоматизация клиентского сервиса",
+      "description": ""
+    },
+    {
+      "id": "mobile-farm-setup",
+      "route": "/mobile-farm-setup/",
+      "file": "mobile-farm-setup/index.html",
+      "title": "Настройка мобильной фермы — AI ULTRA",
+      "h1": "Настройка мобильной фермы",
+      "description": "Сборка, подключение, настройка устройств и программного окружения мобильной фермы."
+    },
+    {
+      "id": "3d-prototyping-for-business",
+      "route": "/3d-prototyping/",
+      "file": "3d-prototyping/index.html",
+      "title": "3D-прототипирование для бизнеса — AI ULTRA",
+      "h1": "3D-прототипирование для бизнеса",
+      "description": "Создание цифровой модели, тестового прототипа и подготовка к дальнейшему производству. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "prototype-printing",
+      "route": "/prototype-printing/",
+      "file": "prototype-printing/index.html",
+      "title": "3D-печать прототипов — AI ULTRA",
+      "h1": "3D-печать прототипов",
+      "description": ""
+    },
+    {
+      "id": "robot-firmware",
+      "route": "/robot-firmware/",
+      "file": "robot-firmware/index.html",
+      "title": "Firmware для роботов — AI ULTRA",
+      "h1": "Firmware для роботов",
+      "description": "Низкоуровневое программное обеспечение для приводов, сенсоров, контроллеров и обмена данными."
+    },
+    {
+      "id": "sales-conversion-improvement",
+      "route": "/sales-conversion-improvement/",
+      "file": "sales-conversion-improvement/index.html",
+      "title": "Повышение конверсии отдела продаж — AI ULTRA",
+      "h1": "Повышение конверсии отдела продаж",
+      "description": "Работа с конверсией лидов в диалог, встречу, предложение и сделку."
+    },
+    {
+      "id": "software-setup-service-for-business",
+      "route": "/software-setup-service/",
+      "file": "software-setup-service/index.html",
+      "title": "Настройка программ и сервисов для бизнеса — AI ULTRA",
+      "h1": "Настройка программ и сервисов для бизнеса",
+      "description": "Подключение, настройка, интеграция и обучение работе с программами и облачными сервисами. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "ai-appointment-booking",
+      "route": "/ai-appointment-booking/",
+      "file": "ai-appointment-booking/index.html",
+      "title": "AI-запись клиентов по телефону — AI ULTRA",
+      "h1": "AI-запись клиентов по телефону",
+      "description": "Голосовой AI-агент для записи, переноса и подтверждения визитов или консультаций."
+    },
+    {
+      "id": "3d-modeling",
+      "route": "/3d-modeling/",
+      "file": "3d-modeling/index.html",
+      "title": "3D-моделирование — AI ULTRA",
+      "h1": "3D-моделирование",
+      "description": ""
+    },
+    {
+      "id": "creative-direction",
+      "route": "/creative-direction/",
+      "file": "creative-direction/index.html",
+      "title": "Арт-дирекшн — AI ULTRA",
+      "h1": "Арт-дирекшн",
+      "description": ""
+    },
+    {
+      "id": "interactive-design",
+      "route": "/interactive-design/",
+      "file": "interactive-design/index.html",
+      "title": "Интерактивный дизайн — AI ULTRA",
+      "h1": "Интерактивный дизайн",
+      "description": ""
+    },
+    {
+      "id": "performance-marketing-for-business",
+      "route": "/performance-marketing/",
+      "file": "performance-marketing/index.html",
+      "title": "Performance-маркетинг для бизнеса — AI ULTRA",
+      "h1": "Performance-маркетинг для бизнеса",
+      "description": "Реклама и аналитика с фокусом на измеримые обращения, продажи и стоимость результата. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "architectural-3d",
+      "route": "/architectural-3d/",
+      "file": "architectural-3d/index.html",
+      "title": "Архитектурная 3D-визуализация — AI ULTRA",
+      "h1": "Архитектурная 3D-визуализация",
+      "description": ""
+    },
+    {
+      "id": "3d-model-for-print",
+      "route": "/3d-model-for-print/",
+      "file": "3d-model-for-print/index.html",
+      "title": "3D-моделирование для печати — AI ULTRA",
+      "h1": "3D-моделирование для печати",
+      "description": "Создание и подготовка 3D-моделей с учётом технологии печати и требований изделия."
+    },
+    {
+      "id": "3d-scan-to-model",
+      "route": "/3d-scan-to-model/",
+      "file": "3d-scan-to-model/index.html",
+      "title": "Подготовка 3D-модели по исходным данным — AI ULTRA",
+      "h1": "Подготовка 3D-модели по исходным данным",
+      "description": "Восстановление или подготовка цифровой модели по доступным размерам и референсам для дальнейшей работы."
+    },
+    {
+      "id": "ai-marketing",
+      "route": "/ai-marketing/",
+      "file": "ai-marketing/index.html",
+      "title": "AI-маркетинг и контент для бизнеса | AI ULTRA",
+      "h1": "AI-маркетинг,  который приводит к действию.",
+      "description": ""
+    },
+    {
+      "id": "startup-mvp-development",
+      "route": "/startup-mvp-development/",
+      "file": "startup-mvp-development/index.html",
+      "title": "MVP для стартапа — AI ULTRA",
+      "h1": "MVP для стартапа",
+      "description": "Разработка MVP с приоритетом ключевой пользовательской ценности, измеримых гипотез и архитектуры для последующего развития."
+    },
+    {
+      "id": "sales-as-a-service",
+      "route": "/sales-as-a-service/",
+      "file": "sales-as-a-service/index.html",
+      "title": "Отдел продаж как услуга — AI ULTRA",
+      "h1": "Продажи под ключ",
+      "description": ""
+    },
+    {
+      "id": "digital-audit-for-business",
+      "route": "/digital-audit/",
+      "file": "digital-audit/index.html",
+      "title": "Digital-аудит бизнеса для бизнеса — AI ULTRA",
+      "h1": "Digital-аудит бизнеса для бизнеса",
+      "description": "Аудит сайта, рекламы, CRM, аналитики, контента и автоматизаций с планом улучшений. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "business-digitalization",
+      "route": "/business-digitalization/",
+      "file": "business-digitalization/index.html",
+      "title": "Оцифровка бизнеса под ключ — AI ULTRA",
+      "h1": "Оцифровка бизнеса под ключ",
+      "description": ""
+    },
+    {
+      "id": "3d-product-visualization",
+      "route": "/3d-product-visualization/",
+      "file": "3d-product-visualization/index.html",
+      "title": "Предметная 3D-визуализация для бизнеса — AI ULTRA",
+      "h1": "3D-визуализация продукта",
+      "description": ""
+    },
+    {
+      "id": "saas-integration-for-business",
+      "route": "/saas-integration/",
+      "file": "saas-integration/index.html",
+      "title": "Интеграция SaaS-сервисов для бизнеса — AI ULTRA",
+      "h1": "Интеграция SaaS-сервисов для бизнеса",
+      "description": "Связываем облачные сервисы, CRM, аналитику и автоматизации через API и готовые интеграции. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "3d-design-service",
+      "route": "/3d-design-service/",
+      "file": "3d-design-service/index.html",
+      "title": "3D-дизайн — AI ULTRA",
+      "h1": "3D-дизайн",
+      "description": "3D-концепции, моделирование, визуализация, материалы и подготовка графики для digital и производства."
+    },
+    {
+      "id": "3d-modeling-service",
+      "route": "/3d-modeling-service/",
+      "file": "3d-modeling-service/index.html",
+      "title": "3D-моделирование на заказ — AI ULTRA",
+      "h1": "3D-моделирование на заказ",
+      "description": "Создание 3D-моделей для визуализации, web, прототипирования и печати."
+    },
+    {
+      "id": "sales-department",
+      "route": "/sales-department/",
+      "file": "sales-department/index.html",
+      "title": "Отдел продаж под ключ — AI ULTRA",
+      "h1": "Отдел продаж под ключ",
+      "description": ""
+    },
+    {
+      "id": "3d-landing-page",
+      "route": "/3d-landing-page/",
+      "file": "3d-landing-page/index.html",
+      "title": "3D-лендинг — AI ULTRA",
+      "h1": "3D-лендинг",
+      "description": "Посадочная страница с 3D-сценой, интерактивом и HTML-контентом."
+    },
+    {
+      "id": "ai-incoming-call-agent",
+      "route": "/ai-incoming-call-agent/",
+      "file": "ai-incoming-call-agent/index.html",
+      "title": "AI-оператор входящей линии — AI ULTRA",
+      "h1": "AI-агент для входящих звонков",
+      "description": ""
+    },
+    {
+      "id": "robotics-roadmap",
+      "route": "/robotics-roadmap/",
+      "file": "robotics-roadmap/index.html",
+      "title": "Roadmap разработки робота — AI ULTRA",
+      "h1": "Roadmap разработки робота",
+      "description": "Планирование этапов от технического доказательства и MVP до испытаний, документации и подготовки дальнейшей коммерциализации."
+    },
+    {
+      "id": "bitrix24-automation-for-business",
+      "route": "/bitrix24-automation/",
+      "file": "bitrix24-automation/index.html",
+      "title": "Автоматизация Bitrix24 для бизнеса — AI ULTRA",
+      "h1": "Автоматизация Bitrix24 для бизнеса",
+      "description": "Роботы, бизнес-процессы, триггеры, интеграции и автоматизация CRM. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "google-ads-30-offer",
+      "route": "/google-ads-30-offer/",
+      "file": "google-ads-30-offer/index.html",
+      "title": "Предложение 30% для Google Ads — AI ULTRA",
+      "h1": "Предложение 30% для Google Ads",
+      "description": "Коммерческое предложение AI ULTRA: 30% выгоды для Google Ads при покупке решения — условия фиксируются в договоре."
+    },
+    {
+      "id": "product-discovery",
+      "route": "/product-discovery/",
+      "file": "product-discovery/index.html",
+      "title": "Product Discovery — AI ULTRA",
+      "h1": "Product Discovery",
+      "description": "Исследование задачи, пользователей, ограничений и технических вариантов перед разработкой продукта."
+    },
+    {
+      "id": "outsourced-sales-manager",
+      "route": "/outsourced-sales-manager/",
+      "file": "outsourced-sales-manager/index.html",
+      "title": "Услуги продажника — AI ULTRA",
+      "h1": "Услуги продажника",
+      "description": "Внешний менеджер по продажам: звонки, заявки, переговоры, CRM и доведение клиента до сделки."
+    },
+    {
+      "id": "branding-design",
+      "route": "/branding-design/",
+      "file": "branding-design/index.html",
+      "title": "Брендинг и дизайн — AI ULTRA",
+      "h1": "Брендинг и дизайн",
+      "description": "Айдентика, визуальные системы, digital-дизайн и материалы для бизнеса."
+    },
+    {
+      "id": "crm-customization",
+      "route": "/crm-customization/",
+      "file": "crm-customization/index.html",
+      "title": "Настройка CRM под бизнес — AI ULTRA",
+      "h1": "Настройка CRM под бизнес",
+      "description": "Проектирование воронок, полей, ролей, автоматизаций и отчётности под реальные процессы компании."
+    },
+    {
+      "id": "knowledge-3d-site-seo",
+      "route": "/knowledge-3d-site-seo/",
+      "file": "knowledge-3d-site-seo/index.html",
+      "title": "Как совместить 3D-сайт и SEO — AI ULTRA",
+      "h1": "Как совместить 3D-сайт и SEO",
+      "description": "Архитектура 3D-сайта, в которой WebGL-сцена отделена от индексируемого HTML-контента."
+    },
+    {
+      "id": "crm-automation",
+      "route": "/crm-automation/",
+      "file": "crm-automation/index.html",
+      "title": "Автоматизация CRM — AI ULTRA",
+      "h1": "Автоматизация CRM",
+      "description": ""
+    },
+    {
+      "id": "ai-database-conversion",
+      "route": "/ai-database-conversion/",
+      "file": "ai-database-conversion/index.html",
+      "title": "AI-конвертация клиентской базы — AI ULTRA",
+      "h1": "AI-конвертация клиентской базы",
+      "description": "AI-сценарии для сегментации, коммуникаций и обработки существующей клиентской базы."
+    },
+    {
+      "id": "business-bot-development-for-business",
+      "route": "/business-bot-development/",
+      "file": "business-bot-development/index.html",
+      "title": "Разработка бизнес-ботов для бизнеса — AI ULTRA",
+      "h1": "Разработка бизнес-ботов для бизнеса",
+      "description": "Боты для продаж, поддержки, HR, обучения, уведомлений и внутренних процессов. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "motion-design-digital",
+      "route": "/motion-design-digital/",
+      "file": "motion-design-digital/index.html",
+      "title": "Motion design для digital — AI ULTRA",
+      "h1": "Motion design для digital",
+      "description": "Анимация интерфейсов, промо-сцен, заставок и digital-контента."
+    },
+    {
+      "id": "ai-call-center-integration",
+      "route": "/ai-call-center-integration/",
+      "file": "ai-call-center-integration/index.html",
+      "title": "Внедрение AI call-центра — AI ULTRA",
+      "h1": "Внедрение AI call-центра",
+      "description": "Проектирование и внедрение AI-телефонии, сценариев, CRM и аналитики."
+    },
+    {
+      "id": "advertising-creatives-design",
+      "route": "/advertising-creatives-design/",
+      "file": "advertising-creatives-design/index.html",
+      "title": "Дизайн рекламных креативов — AI ULTRA",
+      "h1": "Дизайн рекламных креативов",
+      "description": "Креативы для digital-рекламы с адаптацией под форматы и гипотезы."
+    },
+    {
+      "id": "3d-website-development-for-business",
+      "route": "/3d-website-development/",
+      "file": "3d-website-development/index.html",
+      "title": "3D-сайты для бизнеса — AI ULTRA",
+      "h1": "3D-сайты для бизнеса",
+      "description": "Интерактивные 3D-сайты с WebGL/Three.js, анимацией, глубиной и оптимизацией интерфейса. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "bitrix24-training",
+      "route": "/bitrix24-training/",
+      "file": "bitrix24-training/index.html",
+      "title": "Обучение Bitrix24 — AI ULTRA",
+      "h1": "Обучение Bitrix24",
+      "description": "Индивидуальное, групповое и корпоративное обучение работе с Bitrix24 онлайн и офлайн."
+    },
+    {
+      "id": "mobile-farm-minsk",
+      "route": "/mobile-farm-turnkey/",
+      "file": "mobile-farm-turnkey/index.html",
+      "title": "Мобильная ферма под ключ в Минске — AI ULTRA",
+      "h1": "Мобильная ферма под ключ в Минске",
+      "description": "Готовая мобильная ферма в Минске: комплект, сборка, настройка и передача под ключ от 2800 долларов."
+    },
+    {
+      "id": "email-marketing",
+      "route": "/email-marketing/",
+      "file": "email-marketing/index.html",
+      "title": "Email-маркетинг — AI ULTRA",
+      "h1": "Email-маркетинг",
+      "description": ""
+    },
+    {
+      "id": "3d-printing-service-for-business",
+      "route": "/3d-printing-service/",
+      "file": "3d-printing-service/index.html",
+      "title": "3D-печать под заказ для бизнеса — AI ULTRA",
+      "h1": "3D-печать под заказ для бизнеса",
+      "description": "Подготовка модели и 3D-печать деталей, прототипов, макетов и индивидуальных изделий. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "digital-infrastructure-small-business",
+      "route": "/digital-infrastructure-small-business/",
+      "file": "digital-infrastructure-small-business/index.html",
+      "title": "Digital-инфраструктура для малого бизнеса — AI ULTRA",
+      "h1": "Digital-инфраструктура для малого бизнеса",
+      "description": "Практичная связка сайта, рекламы, CRM, телефонии и автоматизации для небольшой команды."
+    },
+    {
+      "id": "software-training",
+      "route": "/software-training/",
+      "file": "software-training/index.html",
+      "title": "Обучение программам и софту — AI ULTRA",
+      "h1": "Обучение программам и софту",
+      "description": "Обучение работе с программами и цифровыми сервисами под задачи пользователя или компании."
+    },
+    {
+      "id": "database-reactivation-sales",
+      "route": "/database-reactivation-sales/",
+      "file": "database-reactivation-sales/index.html",
+      "title": "Возврат клиентов и продажи по базе — AI ULTRA",
+      "h1": "Реактивация клиентской базы",
+      "description": ""
+    },
+    {
+      "id": "smart-device-development",
+      "route": "/smart-device-development/",
+      "file": "smart-device-development/index.html",
+      "title": "Разработка умных устройств — AI ULTRA",
+      "h1": "Разработка умных устройств",
+      "description": "Проектирование smart-устройств с сенсорами, связью, автоматикой и AI-функциями."
+    },
+    {
+      "id": "corporate-software-setup-for-business",
+      "route": "/corporate-software-setup/",
+      "file": "corporate-software-setup/index.html",
+      "title": "Настройка корпоративного ПО для бизнеса — AI ULTRA",
+      "h1": "Настройка корпоративного ПО для бизнеса",
+      "description": "Внедрение и настройка корпоративных программ, прав доступа, интеграций и рабочих сценариев. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "technical-feasibility",
+      "route": "/technical-feasibility/",
+      "file": "technical-feasibility/index.html",
+      "title": "Техническое исследование идеи — AI ULTRA",
+      "h1": "Техническое исследование идеи",
+      "description": "Проверка реализуемости сложной digital, AI, hardware или robotics-идеи до крупных инвестиций в разработку."
+    },
+    {
+      "id": "sales-script-development",
+      "route": "/sales-script-development/",
+      "file": "sales-script-development/index.html",
+      "title": "Разработка скриптов продаж — AI ULTRA",
+      "h1": "Разработка скриптов продаж",
+      "description": "Скрипты звонков и переписки на основе продукта, сегментов клиентов и этапов сделки."
+    },
+    {
+      "id": "data-bi",
+      "route": "/data-bi/",
+      "file": "data-bi/index.html",
+      "title": "Базы данных, BI и ABT-информация для бизнеса | AI ULTRA",
+      "h1": "Данные, которым  можно доверять.",
+      "description": ""
+    },
+    {
+      "id": "bitrix24-training-for-business",
+      "route": "/bitrix24-training/",
+      "file": "bitrix24-training/index.html",
+      "title": "Обучение Bitrix24 для бизнеса — AI ULTRA",
+      "h1": "Обучение Bitrix24 для бизнеса",
+      "description": "Индивидуальное, групповое и корпоративное обучение работе с Bitrix24 онлайн и офлайн. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "digital-transformation",
+      "route": "/digital-transformation/",
+      "file": "digital-transformation/index.html",
+      "title": "Цифровая трансформация бизнеса — AI ULTRA",
+      "h1": "Цифровая трансформация бизнеса",
+      "description": "Оцифровка процессов, интеграции, CRM, AI и автоматизация бизнеса в единой системе."
+    },
+    {
+      "id": "digital-audit",
+      "route": "/digital-audit/",
+      "file": "digital-audit/index.html",
+      "title": "Digital-аудит бизнеса — AI ULTRA",
+      "h1": "Digital-аудит бизнеса",
+      "description": "Аудит сайта, рекламы, CRM, аналитики, контента и автоматизаций с планом улучшений."
+    },
+    {
+      "id": "rebranding-service",
+      "route": "/rebranding-service/",
+      "file": "rebranding-service/index.html",
+      "title": "Ребрендинг под ключ — AI ULTRA",
+      "h1": "Ребрендинг под ключ",
+      "description": "Стратегия бренда, визуальная система, digital-носители, дизайн и внедрение нового образа."
+    },
+    {
+      "id": "mobile-farm-turnkey",
+      "route": "/mobile-farm-turnkey/",
+      "file": "mobile-farm-turnkey/index.html",
+      "title": "Мобильная ферма под ключ — AI ULTRA",
+      "h1": "Мобильная ферма под ключ",
+      "description": "Комплект мобильной фермы с подготовкой, настройкой и вводом в эксплуатацию для разрешённых бизнес-сценариев."
+    },
+    {
+      "id": "landing-page-design",
+      "route": "/landing-page-design/",
+      "file": "landing-page-design/index.html",
+      "title": "Дизайн лендинга — AI ULTRA",
+      "h1": "Дизайн лендинга",
+      "description": "Дизайн посадочной страницы под конкретное предложение, аудиторию и рекламный трафик."
+    },
+    {
+      "id": "marketing-outsourcing",
+      "route": "/marketing-outsourcing/",
+      "file": "marketing-outsourcing/index.html",
+      "title": "Маркетинг под ключ — AI ULTRA",
+      "h1": "Маркетинг под ключ",
+      "description": "Стратегия, реклама, контент, аналитика, CRM и автоматизация маркетинга в одной системе."
+    },
+    {
+      "id": "digital-business-roadmap",
+      "route": "/digital-business-roadmap/",
+      "file": "digital-business-roadmap/index.html",
+      "title": "Roadmap оцифровки бизнеса — AI ULTRA",
+      "h1": "Roadmap оцифровки бизнеса",
+      "description": "Пошаговый план внедрения digital, AI и автоматизации с приоритетами и зависимостями."
+    },
+    {
+      "id": "no-code-low-code",
+      "route": "/no-code-low-code/",
+      "file": "no-code-low-code/index.html",
+      "title": "No-code и low-code автоматизация — AI ULTRA",
+      "h1": "No-code и low-code автоматизация",
+      "description": "Быстрое создание интеграций и рабочих процессов на no-code/low-code платформах."
+    },
+    {
+      "id": "business-digitization-service",
+      "route": "/business-digitization-service/",
+      "file": "business-digitization-service/index.html",
+      "title": "Комплексная цифровизация компании — AI ULTRA",
+      "h1": "Оцифровка бизнеса под ключ",
+      "description": ""
+    },
+    {
+      "id": "branding-design-for-business",
+      "route": "/branding-design/",
+      "file": "branding-design/index.html",
+      "title": "Брендинг и дизайн для бизнеса — AI ULTRA",
+      "h1": "Брендинг и дизайн для бизнеса",
+      "description": "Айдентика, визуальные системы, digital-дизайн и материалы для бизнеса. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "robot-prototyping",
+      "route": "/robot-prototyping/",
+      "file": "robot-prototyping/index.html",
+      "title": "Прототипирование роботов — AI ULTRA",
+      "h1": "Прототипирование роботов",
+      "description": "Быстрое прототипирование узлов и систем робота с последовательной проверкой инженерных гипотез."
+    },
+    {
+      "id": "robotics-architecture",
+      "route": "/robotics-architecture/",
+      "file": "robotics-architecture/index.html",
+      "title": "Архитектура робототехнической системы — AI ULTRA",
+      "h1": "Архитектура робототехнической системы",
+      "description": "Декомпозиция робота на механику, приводы, питание, сенсоры, вычислитель, firmware, AI и интеграционный слой."
+    },
+    {
+      "id": "3d-web-performance",
+      "route": "/3d-web-performance/",
+      "file": "3d-web-performance/index.html",
+      "title": "Оптимизация производительности 3D-сайтов — AI ULTRA",
+      "h1": "Оптимизация производительности 3D-сайтов",
+      "description": "Оптимизация моделей, текстур, рендера и загрузки WebGL-сцен для desktop и mobile."
+    },
+    {
+      "id": "proof-of-concept",
+      "route": "/proof-of-concept/",
+      "file": "proof-of-concept/index.html",
+      "title": "Proof of Concept — AI ULTRA",
+      "h1": "Proof of Concept",
+      "description": "Создание технического доказательства ключевой гипотезы перед полноценным MVP или продуктовой разработкой."
+    },
+    {
+      "id": "spatial-audio-robotics",
+      "route": "/spatial-audio-robotics/",
+      "file": "spatial-audio-robotics/index.html",
+      "title": "Пространственный звук в робототехнике — AI ULTRA",
+      "h1": "Пространственный звук в робототехнике",
+      "description": "Аудиоподсистема робота: захват звука, обработка и интеграция с голосовыми сценариями."
+    },
+    {
+      "id": "lead-processing",
+      "route": "/lead-processing/",
+      "file": "lead-processing/index.html",
+      "title": "Обработка лидов под ключ — AI ULTRA",
+      "h1": "Обработка лидов под ключ",
+      "description": "Обработка лидов из рекламы, сайта, мессенджеров и телефонии в единой системе."
+    },
+    {
+      "id": "robotics-investment",
+      "route": "/robotics-investment/",
+      "file": "robotics-investment/index.html",
+      "title": "Инвестиции в робототехнику — AI ULTRA",
+      "h1": "Инвестиции в робототехнику",
+      "description": "Раздел для обсуждения инвестиций и партнёрства в робототехнических R&amp;D-проектах с прозрачными этапами и критериями результата."
+    },
+    {
+      "id": "cross-posting-for-business",
+      "route": "/cross-posting/",
+      "file": "cross-posting/index.html",
+      "title": "Кросс-постинг для бизнеса для бизнеса — AI ULTRA",
+      "h1": "Кросс-постинг для бизнеса для бизнеса",
+      "description": "Настройка публикации контента в нескольких социальных каналах с адаптацией и автоматизацией. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "blueprint",
+      "route": "/blueprint/",
+      "file": "blueprint/index.html",
+      "title": "Внутренняя карта сайта и SEO-разметка — AI ULTRA",
+      "h1": "Карта сайта  до финальных текстур.",
+      "description": ""
+    },
+    {
+      "id": "bitrix24-license-for-business",
+      "route": "/bitrix24-license/",
+      "file": "bitrix24-license/index.html",
+      "title": "Лицензии Bitrix24 для бизнеса — AI ULTRA",
+      "h1": "Лицензии Bitrix24 для бизнеса",
+      "description": "Подбор и поставка лицензии Bitrix24 с внедрением, настройкой и сопровождением. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "3d-animation",
+      "route": "/3d-animation/",
+      "file": "3d-animation/index.html",
+      "title": "3D-анимация — AI ULTRA",
+      "h1": "3D-анимация",
+      "description": ""
+    },
+    {
+      "id": "incoming-sales-service",
+      "route": "/incoming-sales-service/",
+      "file": "incoming-sales-service/index.html",
+      "title": "Обработка входящих заявок и продажи — AI ULTRA",
+      "h1": "Обработка входящих заявок и продажи",
+      "description": "Системная обработка входящих лидов: скорость ответа, квалификация, follow-up и продажа."
+    },
+    {
+      "id": "ads-platform-setup",
+      "route": "/ads-platform-setup/",
+      "file": "ads-platform-setup/index.html",
+      "title": "Настройка рекламных сервисов — AI ULTRA",
+      "h1": "Настройка рекламных сервисов",
+      "description": "Подключение и настройка рекламных платформ, аналитики, событий и конверсий."
+    },
+    {
+      "id": "physical-ai",
+      "route": "/physical-ai/",
+      "file": "physical-ai/index.html",
+      "title": "Physical AI — AI ULTRA",
+      "h1": "Physical AI",
+      "description": "AI-системы, которые воспринимают физическую среду через сенсоры и выполняют действия через устройства и роботов."
+    },
+    {
+      "id": "3d-printing-from-file",
+      "route": "/3d-printing-from-file/",
+      "file": "3d-printing-from-file/index.html",
+      "title": "3D-печать по готовому файлу — AI ULTRA",
+      "h1": "3D-печать по готовому файлу",
+      "description": "Проверка готовой 3D-модели и печать физического объекта."
+    },
+    {
+      "id": "full-digital-service",
+      "route": "/full-digital-service/",
+      "file": "full-digital-service/index.html",
+      "title": "Digital под ключ — AI ULTRA",
+      "h1": "Digital под ключ",
+      "description": "Сайт, реклама, контент, аналитика, автоматизация и продажи как единая digital-система."
+    },
+    {
+      "id": "3d-prototyping",
+      "route": "/3d-prototyping/",
+      "file": "3d-prototyping/index.html",
+      "title": "3D-прототипирование — AI ULTRA",
+      "h1": "3D-прототипирование",
+      "description": "Создание цифровой модели, тестового прототипа и подготовка к дальнейшему производству."
+    },
+    {
+      "id": "sales-follow-up",
+      "route": "/sales-follow-up/",
+      "file": "sales-follow-up/index.html",
+      "title": "Follow-up клиентов и возврат к сделке — AI ULTRA",
+      "h1": "Follow-up клиентов и возврат к сделке",
+      "description": "Система повторных касаний с клиентами, которые не приняли решение после первого контакта."
+    },
+    {
+      "id": "computer-vision-robotics",
+      "route": "/computer-vision-robotics/",
+      "file": "computer-vision-robotics/index.html",
+      "title": "Computer Vision для роботов — AI ULTRA",
+      "h1": "Computer Vision для роботов",
+      "description": "Компьютерное зрение для распознавания объектов, навигационных и прикладных сценариев робототехники."
+    },
+    {
+      "id": "marketing-outsourcing-for-business",
+      "route": "/marketing-outsourcing/",
+      "file": "marketing-outsourcing/index.html",
+      "title": "Маркетинг под ключ для бизнеса — AI ULTRA",
+      "h1": "Маркетинг под ключ для бизнеса",
+      "description": "Стратегия, реклама, контент, аналитика, CRM и автоматизация маркетинга в одной системе. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "knowledge-automation",
+      "route": "/knowledge-automation/",
+      "file": "knowledge-automation/index.html",
+      "title": "Автоматизация базы знаний — AI ULTRA",
+      "h1": "Автоматизация базы знаний",
+      "description": ""
+    },
+    {
+      "id": "commercial-process-digitization",
+      "route": "/commercial-process-digitization/",
+      "file": "commercial-process-digitization/index.html",
+      "title": "Оцифровка коммерческого процесса — AI ULTRA",
+      "h1": "Оцифровка коммерческого процесса",
+      "description": "Оцифровка рекламы, лидов, звонков, CRM и продаж в единой архитектуре."
+    },
+    {
+      "id": "ai-sales-agent-for-business",
+      "route": "/ai-sales-agent/",
+      "file": "ai-sales-agent/index.html",
+      "title": "AI-агент продаж для бизнеса — AI ULTRA",
+      "h1": "AI-агент продаж для бизнеса",
+      "description": "AI-агент для первичного контакта, квалификации, консультаций и передачи лида менеджеру. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "lead-follow-up",
+      "route": "/lead-follow-up/",
+      "file": "lead-follow-up/index.html",
+      "title": "Дожим и follow-up клиентов — AI ULTRA",
+      "h1": "Дожим и follow-up клиентов",
+      "description": ""
+    },
+    {
+      "id": "digital-agency",
+      "route": "/digital-agency/",
+      "file": "digital-agency/index.html",
+      "title": "Digital-агентство полного цикла — AI ULTRA",
+      "h1": "Digital под ключ",
+      "description": ""
+    },
+    {
+      "id": "bitrix24-automation",
+      "route": "/bitrix24-automation/",
+      "file": "bitrix24-automation/index.html",
+      "title": "Автоматизация Bitrix24 — AI ULTRA",
+      "h1": "Автоматизация Bitrix24",
+      "description": "Роботы, бизнес-процессы, триггеры, интеграции и автоматизация CRM."
+    },
+    {
+      "id": "lead-qualification-service",
+      "route": "/lead-qualification-service/",
+      "file": "lead-qualification-service/index.html",
+      "title": "Квалификация лидов — AI ULTRA",
+      "h1": "Квалификация лидов",
+      "description": "Системная квалификация заявок и распределение лидов по сценариям продаж."
+    },
+    {
+      "id": "it-outsourcing-business-for-business",
+      "route": "/it-outsourcing-business/",
+      "file": "it-outsourcing-business/index.html",
+      "title": "IT-аутсорсинг для бизнеса для бизнеса — AI ULTRA",
+      "h1": "IT-аутсорсинг для бизнеса для бизнеса",
+      "description": "Настройка, интеграция и сопровождение программ, сервисов и цифровой инфраструктуры. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "knowledge-base",
+      "route": "/knowledge-base/",
+      "file": "knowledge-base/index.html",
+      "title": "База знаний для AI-агента | AI ULTRA",
+      "h1": "База знаний для AI-агента: ответы по вашим документам",
+      "description": ""
+    },
+    {
+      "id": "3d-websites",
+      "route": "/3d-websites/",
+      "file": "3d-websites/index.html",
+      "title": "Интерактивные 3D-сайты для бизнеса — AI ULTRA",
+      "h1": "3D-сайты",
+      "description": ""
+    },
+    {
+      "id": "business-bot-development",
+      "route": "/business-bot-development/",
+      "file": "business-bot-development/index.html",
+      "title": "Разработка бизнес-ботов — AI ULTRA",
+      "h1": "Разработка бизнес-ботов",
+      "description": "Боты для продаж, поддержки, HR, обучения, уведомлений и внутренних процессов."
+    },
+    {
+      "id": "digital-infrastructure-b2b",
+      "route": "/digital-infrastructure-b2b/",
+      "file": "digital-infrastructure-b2b/index.html",
+      "title": "Оцифровка B2B-продаж — AI ULTRA",
+      "h1": "Оцифровка B2B-продаж",
+      "description": "CRM, лиды, звонки, предложения и аналитика для длинного B2B-цикла."
+    },
+    {
+      "id": "lead-qualification",
+      "route": "/lead-qualification/",
+      "file": "lead-qualification/index.html",
+      "title": "Квалификация и скоринг лидов — AI ULTRA",
+      "h1": "Квалификация лидов",
+      "description": ""
+    },
+    {
+      "id": "bitrix24-implementation-for-business",
+      "route": "/bitrix24-implementation/",
+      "file": "bitrix24-implementation/index.html",
+      "title": "Внедрение Bitrix24 для бизнеса — AI ULTRA",
+      "h1": "Внедрение Bitrix24 для бизнеса",
+      "description": "Настройка CRM, воронок, роботов, телефонии, прав доступа, аналитики и интеграций Bitrix24. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "social-media-content-distribution",
+      "route": "/social-media-content-distribution/",
+      "file": "social-media-content-distribution/index.html",
+      "title": "Дистрибуция контента — AI ULTRA",
+      "h1": "Дистрибуция контента",
+      "description": "Система распространения контента по социальным каналам, мессенджерам и корпоративным площадкам."
+    },
+    {
+      "id": "ai-robots",
+      "route": "/ai-robots/",
+      "file": "ai-robots/index.html",
+      "title": "AI-роботы — AI ULTRA",
+      "h1": "AI-роботы",
+      "description": "Интеграция компьютерного зрения, речи, локальных моделей и автономных сценариев в физические робототехнические системы."
+    },
+    {
+      "id": "lead-qualification-service-for-business",
+      "route": "/lead-qualification-service/",
+      "file": "lead-qualification-service/index.html",
+      "title": "Квалификация лидов для бизнеса — AI ULTRA",
+      "h1": "Квалификация лидов для бизнеса",
+      "description": "Системная квалификация заявок и распределение лидов по сценариям продаж. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "robot-power-safety",
+      "route": "/robot-power-safety/",
+      "file": "robot-power-safety/index.html",
+      "title": "Питание и безопасность роботов — AI ULTRA",
+      "h1": "Питание и безопасность роботов",
+      "description": "Проектирование энергетической системы, мониторинга состояния и аварийных сценариев робототехнических устройств."
+    },
+    {
+      "id": "design-outsourcing",
+      "route": "/design-outsourcing/",
+      "file": "design-outsourcing/index.html",
+      "title": "Дизайн на аутсорсе — AI ULTRA",
+      "h1": "Дизайн на аутсорсе",
+      "description": "Внешняя design-функция для регулярных digital, web и marketing задач."
+    },
+    {
+      "id": "sales-audit",
+      "route": "/sales-audit/",
+      "file": "sales-audit/index.html",
+      "title": "Аудит отдела продаж — AI ULTRA",
+      "h1": "Аудит отдела продаж",
+      "description": "Аудит обработки лидов, звонков, CRM, конверсий и точек потери клиентов."
+    },
+    {
+      "id": "ai-lead-qualification-calls",
+      "route": "/ai-lead-qualification-calls/",
+      "file": "ai-lead-qualification-calls/index.html",
+      "title": "AI-квалификация лидов звонком — AI ULTRA",
+      "h1": "AI-квалификация лидов звонком",
+      "description": "Автоматическая первичная квалификация заявок голосовым AI-агентом."
+    },
+    {
+      "id": "rebranding-service-for-business",
+      "route": "/rebranding-service/",
+      "file": "rebranding-service/index.html",
+      "title": "Ребрендинг под ключ для бизнеса — AI ULTRA",
+      "h1": "Ребрендинг под ключ для бизнеса",
+      "description": "Стратегия бренда, визуальная система, digital-носители, дизайн и внедрение нового образа. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "ai-sales-automation",
+      "route": "/ai-sales-automation/",
+      "file": "ai-sales-automation/index.html",
+      "title": "AI-автоматизация продаж — AI ULTRA",
+      "h1": "AI-автоматизация продаж",
+      "description": "Автоматизация повторяемых этапов продаж с AI: квалификация, follow-up, CRM и аналитика."
+    },
+    {
+      "id": "knowledge-3d-print-preparation",
+      "route": "/knowledge-3d-print-preparation/",
+      "file": "knowledge-3d-print-preparation/index.html",
+      "title": "Как подготовить модель к 3D-печати — AI ULTRA",
+      "h1": "Как подготовить модель к 3D-печати",
+      "description": "Базовые проверки геометрии, масштаба и технологичности перед 3D-печатью."
+    },
+    {
+      "id": "messenger-marketing",
+      "route": "/messenger-marketing/",
+      "file": "messenger-marketing/index.html",
+      "title": "Маркетинг в мессенджерах — AI ULTRA",
+      "h1": "Маркетинг в мессенджерах",
+      "description": ""
+    },
+    {
+      "id": "robot-cad-design",
+      "route": "/robot-cad-design/",
+      "file": "robot-cad-design/index.html",
+      "title": "CAD-проектирование роботов — AI ULTRA",
+      "h1": "CAD-проектирование роботов",
+      "description": "CAD-моделирование механики, компоновки, корпусов, креплений и узлов робототехнической платформы."
+    },
+    {
+      "id": "small-batch-printing",
+      "route": "/small-batch-printing/",
+      "file": "small-batch-printing/index.html",
+      "title": "Мелкосерийная 3D-печать — AI ULTRA",
+      "h1": "Мелкосерийная 3D-печать",
+      "description": ""
+    },
+    {
+      "id": "api-integrations-for-business",
+      "route": "/api-integrations/",
+      "file": "api-integrations/index.html",
+      "title": "API-интеграции под ключ для бизнеса — AI ULTRA",
+      "h1": "API-интеграции под ключ для бизнеса",
+      "description": "Проектирование и внедрение API-интеграций между сервисами, CRM, ботами и внутренними системами. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "cross-posting-automation",
+      "route": "/cross-posting-automation/",
+      "file": "cross-posting-automation/index.html",
+      "title": "Автоматизация кросс-постинга — AI ULTRA",
+      "h1": "Автоматизация кросс-постинга",
+      "description": "Автоматические сценарии публикации и распределения контента между подключёнными площадками."
+    },
+    {
+      "id": "robot-sensors",
+      "route": "/robot-sensors/",
+      "file": "robot-sensors/index.html",
+      "title": "Сенсорные системы для роботов — AI ULTRA",
+      "h1": "Сенсорные системы для роботов",
+      "description": "Интеграция IMU, энкодеров, датчиков нагрузки, сканирования и других сенсоров в единый контур управления."
+    },
+    {
+      "id": "mobile-farm-support",
+      "route": "/mobile-farm-support/",
+      "file": "mobile-farm-support/index.html",
+      "title": "Обслуживание мобильной фермы — AI ULTRA",
+      "h1": "Обслуживание мобильной фермы",
+      "description": "Диагностика, настройка и техническое сопровождение мобильной фермы."
+    },
+    {
+      "id": "cross-posting-automation-for-business",
+      "route": "/cross-posting-automation/",
+      "file": "cross-posting-automation/index.html",
+      "title": "Автоматизация кросс-постинга для бизнеса — AI ULTRA",
+      "h1": "Автоматизация кросс-постинга для бизнеса",
+      "description": "Автоматические сценарии публикации и распределения контента между подключёнными площадками. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "marketing-sales-integration",
+      "route": "/marketing-sales-integration/",
+      "file": "marketing-sales-integration/index.html",
+      "title": "Интеграция маркетинга и продаж — AI ULTRA",
+      "h1": "Интеграция маркетинга и продаж",
+      "description": "Связываем рекламные источники, обращения, CRM и фактические результаты продаж."
+    },
+    {
+      "id": "full-digital-outsourcing",
+      "route": "/full-digital-outsourcing/",
+      "file": "full-digital-outsourcing/index.html",
+      "title": "Полный Digital-аутсорсинг — AI ULTRA",
+      "h1": "Полный Digital-аутсорсинг",
+      "description": "Комплексный digital под ключ: стратегия, реклама, контент, аналитика, автоматизация и развитие цифровых каналов."
+    },
+    {
+      "id": "social-media-content-distribution-for-business",
+      "route": "/social-media-content-distribution/",
+      "file": "social-media-content-distribution/index.html",
+      "title": "Дистрибуция контента для бизнеса — AI ULTRA",
+      "h1": "Дистрибуция контента для бизнеса",
+      "description": "Система распространения контента по социальным каналам, мессенджерам и корпоративным площадкам. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "text-first",
+      "route": "/text-first/",
+      "file": "text-first/index.html",
+      "title": "AI сотрудники для взлета ваших продаж | AI ULTRA",
+      "h1": "AI сотрудники  для взлета ваших продаж.",
+      "description": ""
+    },
+    {
+      "id": "no-code-low-code-for-business",
+      "route": "/no-code-low-code/",
+      "file": "no-code-low-code/index.html",
+      "title": "No-code и low-code автоматизация для бизнеса — AI ULTRA",
+      "h1": "No-code и low-code автоматизация для бизнеса",
+      "description": "Быстрое создание интеграций и рабочих процессов на no-code/low-code платформах. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "3d-printing-prototype",
+      "route": "/3d-printing-prototype/",
+      "file": "3d-printing-prototype/index.html",
+      "title": "Изготовление прототипов на 3D-принтере — AI ULTRA",
+      "h1": "3D-печать прототипов",
+      "description": ""
+    },
+    {
+      "id": "ai-business-automation-for-business",
+      "route": "/ai-business-automation/",
+      "file": "ai-business-automation/index.html",
+      "title": "AI-автоматизация бизнеса для бизнеса — AI ULTRA",
+      "h1": "AI-автоматизация бизнеса для бизнеса",
+      "description": "AI-агенты, интеграции и автоматические процессы для продаж, поддержки, маркетинга и операций. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "robotics-team",
+      "route": "/robotics-team/",
+      "file": "robotics-team/index.html",
+      "title": "Команда разработки робота — AI ULTRA",
+      "h1": "Команда разработки робота",
+      "description": "Формирование междисциплинарной команды: механика, электроника, embedded, AI, computer vision и системная интеграция."
+    },
+    {
+      "id": "webgl-development",
+      "route": "/webgl-development/",
+      "file": "webgl-development/index.html",
+      "title": "WebGL-разработка — AI ULTRA",
+      "h1": "WebGL-разработка",
+      "description": "Интерактивная 3D-графика и визуальные интерфейсы в браузере."
+    },
+    {
+      "id": "business-process-digitization-for-business",
+      "route": "/business-process-digitization/",
+      "file": "business-process-digitization/index.html",
+      "title": "Оцифровка бизнес-процессов для бизнеса — AI ULTRA",
+      "h1": "Оцифровка бизнес-процессов для бизнеса",
+      "description": "Перевод ручных процессов в управляемые цифровые сценарии с аналитикой и автоматизацией. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "raspberry-stm32-robotics",
+      "route": "/raspberry-stm32-robotics/",
+      "file": "raspberry-stm32-robotics/index.html",
+      "title": "Raspberry Pi и STM32 в робототехнике — AI ULTRA",
+      "h1": "Raspberry Pi и STM32 в робототехнике",
+      "description": "Связка высокоуровневого вычислителя и микроконтроллеров для сенсоров, приводов и управляющей логики."
+    },
+    {
+      "id": "content-repurposing-for-business",
+      "route": "/content-repurposing/",
+      "file": "content-repurposing/index.html",
+      "title": "Переупаковка контента для бизнеса — AI ULTRA",
+      "h1": "Переупаковка контента для бизнеса",
+      "description": "Адаптация одного исходного материала в форматы для разных digital-площадок. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "crm-sales",
+      "route": "/crm-sales/",
+      "file": "crm-sales/index.html",
+      "title": "CRM для продаж — AI ULTRA",
+      "h1": "CRM для продаж",
+      "description": ""
+    },
+    {
+      "id": "ai-call-center-for-small-business",
+      "route": "/ai-call-center-for-small-business/",
+      "file": "ai-call-center-for-small-business/index.html",
+      "title": "AI call-центр для малого бизнеса — AI ULTRA",
+      "h1": "AI call-центр для малого бизнеса",
+      "description": "Автоматизация части входящих и исходящих звонков без развертывания большого call-центра."
+    },
+    {
+      "id": "ai-hardware-integration",
+      "route": "/ai-hardware-integration/",
+      "file": "ai-hardware-integration/index.html",
+      "title": "Интеграция AI в оборудование — AI ULTRA",
+      "h1": "Интеграция AI в оборудование",
+      "description": "Добавление зрения, речи, аналитики и автономной логики в оборудование и физические устройства."
+    },
+    {
+      "id": "ai-customer-reactivation",
+      "route": "/ai-customer-reactivation/",
+      "file": "ai-customer-reactivation/index.html",
+      "title": "AI-реактивация клиентов — AI ULTRA",
+      "h1": "AI-реактивация клиентов",
+      "description": "AI-агенты для повторного контакта с неактивными клиентами и лидами."
+    },
+    {
+      "id": "digital-department-as-a-service",
+      "route": "/digital-department-as-a-service/",
+      "file": "digital-department-as-a-service/index.html",
+      "title": "Digital-отдел на аутсорсе — AI ULTRA",
+      "h1": "Digital-отдел на аутсорсе",
+      "description": "Внешний digital-отдел для бизнеса: маркетинг, дизайн, реклама, контент, аналитика и автоматизация."
+    },
+    {
+      "id": "edge-ai-robotics",
+      "route": "/edge-ai-robotics/",
+      "file": "edge-ai-robotics/index.html",
+      "title": "Edge AI для робототехники — AI ULTRA",
+      "h1": "Edge AI для робототехники",
+      "description": "Локальный AI на вычислителе устройства для сценариев, где важны автономность, задержка и контроль данных."
+    },
+    {
+      "id": "custom-ai-agent",
+      "route": "/custom-ai-agent/",
+      "file": "custom-ai-agent/index.html",
+      "title": "Разработка AI-агента под задачу — AI ULTRA",
+      "h1": "Разработка AI-агента под задачу",
+      "description": "Проектируем AI-агента под конкретный бизнес-процесс, данные, каналы и интеграции."
+    },
+    {
+      "id": "ads-platform-setup-for-business",
+      "route": "/ads-platform-setup/",
+      "file": "ads-platform-setup/index.html",
+      "title": "Настройка рекламных сервисов для бизнеса — AI ULTRA",
+      "h1": "Настройка рекламных сервисов для бизнеса",
+      "description": "Подключение и настройка рекламных платформ, аналитики, событий и конверсий. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "ai-outbound-calling-for-business",
+      "route": "/ai-outbound-calling/",
+      "file": "ai-outbound-calling/index.html",
+      "title": "AI-автообзвон для бизнеса — AI ULTRA",
+      "h1": "AI-автообзвон для бизнеса",
+      "description": "Автоматизированные исходящие звонки для разрешённых бизнес-сценариев, уведомлений и работы с клиентской базой. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "contact",
+      "route": "/contact/",
+      "file": "contact/index.html",
+      "title": "Контакты AI ULTRA — обсудить AI-систему",
+      "h1": "Соберём вашу  систему под задачу.",
+      "description": ""
+    },
+    {
+      "id": "crm-migration",
+      "route": "/crm-migration/",
+      "file": "crm-migration/index.html",
+      "title": "Миграция CRM — AI ULTRA",
+      "h1": "Миграция CRM",
+      "description": "Перенос данных, воронок и процессов между CRM с проверкой структуры и интеграций."
+    },
+    {
+      "id": "generative-art-design",
+      "route": "/generative-art-design/",
+      "file": "generative-art-design/index.html",
+      "title": "Generative art для digital-проектов — AI ULTRA",
+      "h1": "Generative art для digital-проектов",
+      "description": "Генеративная графика и процедурные визуальные системы для digital-среды."
+    },
+    {
+      "id": "performance-marketing",
+      "route": "/performance-marketing/",
+      "file": "performance-marketing/index.html",
+      "title": "Performance-маркетинг — AI ULTRA",
+      "h1": "Performance-маркетинг",
+      "description": "Реклама и аналитика с фокусом на измеримые обращения, продажи и стоимость результата."
+    },
+    {
+      "id": "resources",
+      "route": "/resources/",
+      "file": "resources/index.html",
+      "title": "Ресурсы AI ULTRA — блог, база знаний, обучение, команда",
+      "h1": "Всё, что мы пишем  и чему учим — в одном месте.",
+      "description": ""
+    },
+    {
+      "id": "electronic-arts",
+      "route": "/electronic-arts/",
+      "file": "electronic-arts/index.html",
+      "title": "Electronic Arts / digital art — AI ULTRA",
+      "h1": "Electronic Arts / digital art",
+      "description": ""
+    },
+    {
+      "id": "knowledge-business-digitization-plan",
+      "route": "/knowledge-business-digitization-plan/",
+      "file": "knowledge-business-digitization-plan/index.html",
+      "title": "С чего начать оцифровку бизнеса — AI ULTRA",
+      "h1": "С чего начать оцифровку бизнеса",
+      "description": "Порядок аудита процессов, данных, CRM, коммуникаций и автоматизации перед внедрением AI."
+    },
+    {
+      "id": "ai-business-agent-system",
+      "route": "/ai-business-agent-system/",
+      "file": "ai-business-agent-system/index.html",
+      "title": "Система AI-агентов для бизнеса — AI ULTRA",
+      "h1": "Система AI-агентов для бизнеса",
+      "description": "Несколько AI-агентов для звонков, заявок, CRM и внутренних операций в единой архитектуре."
+    },
+    {
+      "id": "robotics-outsourcing",
+      "route": "/robotics-outsourcing/",
+      "file": "robotics-outsourcing/index.html",
+      "title": "Аутсорсинг разработки робототехники — AI ULTRA",
+      "h1": "Аутсорсинг разработки робототехники",
+      "description": "Подключение инженеров и разработчиков к отдельным подсистемам или полному циклу робототехнического проекта."
+    },
+    {
+      "id": "google-ads-30-offer-for-business",
+      "route": "/google-ads-30-offer/",
+      "file": "google-ads-30-offer/index.html",
+      "title": "Предложение 30% для Google Ads для бизнеса — AI ULTRA",
+      "h1": "Предложение 30% для Google Ads для бизнеса",
+      "description": "Коммерческое предложение AI ULTRA: 30% выгоды для Google Ads при покупке решения — условия фиксируются в договоре. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "custom-3d-print",
+      "route": "/custom-3d-print/",
+      "file": "custom-3d-print/index.html",
+      "title": "Индивидуальная 3D-печать — AI ULTRA",
+      "h1": "Индивидуальная 3D-печать",
+      "description": ""
+    },
+    {
+      "id": "workflow-design",
+      "route": "/workflow-design/",
+      "file": "workflow-design/index.html",
+      "title": "Проектирование цифровых процессов — AI ULTRA",
+      "h1": "Проектирование цифровых процессов",
+      "description": ""
+    },
+    {
+      "id": "agents",
+      "route": "/agents/",
+      "file": "agents/index.html",
+      "title": "AI-агенты для продаж и поддержки — AI ULTRA",
+      "h1": "Рутина уходит.  Продажи растут.",
+      "description": ""
+    },
+    {
+      "id": "content-repurposing",
+      "route": "/content-repurposing/",
+      "file": "content-repurposing/index.html",
+      "title": "Переупаковка контента — AI ULTRA",
+      "h1": "Переупаковка контента",
+      "description": "Адаптация одного исходного материала в форматы для разных digital-площадок."
+    },
+    {
+      "id": "sales-automation-end-to-end",
+      "route": "/sales-automation-end-to-end/",
+      "file": "sales-automation-end-to-end/index.html",
+      "title": "Автоматизация продаж end-to-end — AI ULTRA",
+      "h1": "Автоматизация продаж end-to-end",
+      "description": "Связываем рекламу, лиды, звонки, CRM, AI и аналитику в единую воронку."
+    },
+    {
+      "id": "incoming-calls-sales",
+      "route": "/incoming-calls-sales/",
+      "file": "incoming-calls-sales/index.html",
+      "title": "Продажи через входящие звонки — AI ULTRA",
+      "h1": "Продажи через входящие звонки",
+      "description": "Обработка входящих звонков и заявок с квалификацией, фиксацией в CRM и сопровождением."
+    },
+    {
+      "id": "brand-design",
+      "route": "/brand-design/",
+      "file": "brand-design/index.html",
+      "title": "Бренд-дизайн — AI ULTRA",
+      "h1": "Бренд-дизайн",
+      "description": ""
+    },
+    {
+      "id": "ai-database-conversion-for-business",
+      "route": "/ai-database-conversion/",
+      "file": "ai-database-conversion/index.html",
+      "title": "AI-конвертация клиентской базы для бизнеса — AI ULTRA",
+      "h1": "AI-конвертация клиентской базы для бизнеса",
+      "description": "AI-сценарии для сегментации, коммуникаций и обработки существующей клиентской базы. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "custom-ai-agent-for-business",
+      "route": "/custom-ai-agent/",
+      "file": "custom-ai-agent/index.html",
+      "title": "Разработка AI-агента под задачу для бизнеса — AI ULTRA",
+      "h1": "Разработка AI-агента под задачу для бизнеса",
+      "description": "Проектируем AI-агента под конкретный бизнес-процесс, данные, каналы и интеграции. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "1c-integration",
+      "route": "/1c-integration/",
+      "file": "1c-integration/index.html",
+      "title": "Интеграция 1С — AI ULTRA",
+      "h1": "Интеграция 1С",
+      "description": "Интеграция 1С с CRM, сайтами, каталогами, заказами и другими бизнес-системами."
+    },
+    {
+      "id": "threejs-development-for-business",
+      "route": "/threejs-development/",
+      "file": "threejs-development/index.html",
+      "title": "Three.js-разработка для бизнеса — AI ULTRA",
+      "h1": "Three.js-разработка для бизнеса",
+      "description": "Разработка интерактивных 3D-сцен и веб-интерфейсов на Three.js. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "ui-ux-design",
+      "route": "/ui-ux-design/",
+      "file": "ui-ux-design/index.html",
+      "title": "UI/UX-дизайн — AI ULTRA",
+      "h1": "UI/UX-дизайн",
+      "description": "Проектирование интерфейсов сайтов, приложений и цифровых продуктов."
+    },
+    {
+      "id": "robot-telemetry-logging",
+      "route": "/robot-telemetry-logging/",
+      "file": "robot-telemetry-logging/index.html",
+      "title": "Телеметрия и журналирование роботов — AI ULTRA",
+      "h1": "Телеметрия и журналирование роботов",
+      "description": "Сбор телеметрии и технических журналов для диагностики, тестирования и улучшения робототехнических систем."
+    },
+    {
+      "id": "3d-model-for-print-for-business",
+      "route": "/3d-model-for-print/",
+      "file": "3d-model-for-print/index.html",
+      "title": "3D-моделирование для печати для бизнеса — AI ULTRA",
+      "h1": "3D-моделирование для печати для бизнеса",
+      "description": "Создание и подготовка 3D-моделей с учётом технологии печати и требований изделия. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "knowledge-sales-lead-speed",
+      "route": "/knowledge-sales-lead-speed/",
+      "file": "knowledge-sales-lead-speed/index.html",
+      "title": "Почему скорость ответа на лид влияет на процесс продаж — AI ULTRA",
+      "h1": "Почему скорость ответа на лид влияет на процесс продаж",
+      "description": "Как организовать быстрый ответ на входящие обращения без потери качества квалификации."
+    },
+    {
+      "id": "repost-pro",
+      "route": "/repost-pro/",
+      "file": "repost-pro/index.html",
+      "title": "AI REPOST PRO — мобильные фермы и дистрибуция | AI ULTRA",
+      "h1": "Охват, который  можно масштабировать.",
+      "description": ""
+    },
+    {
+      "id": "3d-printing-parts",
+      "route": "/3d-printing-parts/",
+      "file": "3d-printing-parts/index.html",
+      "title": "3D-печать деталей на заказ — AI ULTRA",
+      "h1": "3D-печать деталей на заказ",
+      "description": "Изготовление единичных деталей и малых серий методом 3D-печати."
+    },
+    {
+      "id": "crm-business-digitization",
+      "route": "/crm-business-digitization/",
+      "file": "crm-business-digitization/index.html",
+      "title": "CRM и оцифровка клиентского пути — AI ULTRA",
+      "h1": "CRM и оцифровка клиентского пути",
+      "description": "Единая CRM-логика для обращений, звонков, сделок, задач и клиентской истории."
+    },
+    {
+      "id": "product-design",
+      "route": "/product-design/",
+      "file": "product-design/index.html",
+      "title": "Дизайн цифровых продуктов — AI ULTRA",
+      "h1": "Дизайн цифровых продуктов",
+      "description": ""
+    },
+    {
+      "id": "functional-parts",
+      "route": "/functional-parts/",
+      "file": "functional-parts/index.html",
+      "title": "Печать функциональных деталей — AI ULTRA",
+      "h1": "Печать функциональных деталей",
+      "description": ""
+    },
+    {
+      "id": "software-setup-service",
+      "route": "/software-setup-service/",
+      "file": "software-setup-service/index.html",
+      "title": "Настройка программ и сервисов — AI ULTRA",
+      "h1": "Настройка программ и сервисов",
+      "description": "Подключение, настройка, интеграция и обучение работе с программами и облачными сервисами."
+    },
+    {
+      "id": "ui-ux-design-for-business",
+      "route": "/ui-ux-design/",
+      "file": "ui-ux-design/index.html",
+      "title": "UI/UX-дизайн для бизнеса — AI ULTRA",
+      "h1": "UI/UX-дизайн для бизнеса",
+      "description": "Проектирование интерфейсов сайтов, приложений и цифровых продуктов. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "blog",
+      "route": "/blog/",
+      "file": "blog/index.html",
+      "title": "Блог AI ULTRA — AI, продажи, Telegram и SEO",
+      "h1": "Практика AI  для бизнеса.",
+      "description": ""
+    },
+    {
+      "id": "business-process-digitization",
+      "route": "/business-process-digitization/",
+      "file": "business-process-digitization/index.html",
+      "title": "Оцифровка бизнес-процессов — AI ULTRA",
+      "h1": "Оцифровка бизнес-процессов",
+      "description": "Перевод ручных процессов в управляемые цифровые сценарии с аналитикой и автоматизацией."
+    },
+    {
+      "id": "cross-posting",
+      "route": "/cross-posting/",
+      "file": "cross-posting/index.html",
+      "title": "Кросс-постинг для бизнеса — AI ULTRA",
+      "h1": "Кросс-постинг для бизнеса",
+      "description": "Настройка публикации контента в нескольких социальных каналах с адаптацией и автоматизацией."
+    },
+    {
+      "id": "3d-scan-to-print",
+      "route": "/3d-scan-to-print/",
+      "file": "3d-scan-to-print/index.html",
+      "title": "От 3D-модели до печати — AI ULTRA",
+      "h1": "От 3D-модели до печати",
+      "description": ""
+    },
+    {
+      "id": "knowledge-ai-calls-vs-operator",
+      "route": "/knowledge-ai-calls-vs-operator/",
+      "file": "knowledge-ai-calls-vs-operator/index.html",
+      "title": "AI-звонки и оператор: как разделить задачи — AI ULTRA",
+      "h1": "AI-звонки и оператор: как разделить задачи",
+      "description": "Практический разбор задач, которые можно передать AI-агенту, и случаев, где нужен человек."
+    },
+    {
+      "id": "service-robots-business",
+      "route": "/service-robots-business/",
+      "file": "service-robots-business/index.html",
+      "title": "Сервисные роботы для бизнеса — AI ULTRA",
+      "h1": "Сервисные роботы для бизнеса",
+      "description": "Проектирование сервисных роботов для автоматизации повторяемых физических и информационных операций."
+    },
+    {
+      "id": "web-app-development-for-business",
+      "route": "/web-app-development/",
+      "file": "web-app-development/index.html",
+      "title": "Разработка веб-приложений для бизнеса — AI ULTRA",
+      "h1": "Разработка веб-приложений для бизнеса",
+      "description": "Веб-приложения, кабинеты, панели управления, интеграции и автоматизированные сервисы. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "invest",
+      "route": "/invest/",
+      "file": "invest/index.html",
+      "title": "Инвестиционные проекты AI ULTRA — AI ULTRA",
+      "h1": "Инвестиционные проекты AI ULTRA",
+      "description": "Технологические проекты, R&amp;D, AI и робототехника: материалы для потенциальных инвесторов и стратегических партнёров."
+    },
+    {
+      "id": "content-marketing",
+      "route": "/content-marketing/",
+      "file": "content-marketing/index.html",
+      "title": "Контент-маркетинг — AI ULTRA",
+      "h1": "Контент-маркетинг",
+      "description": ""
+    },
+    {
+      "id": "ai-products",
+      "route": "/ai-products/",
+      "file": "ai-products/index.html",
+      "title": "AI IT-продукты, Web, SaaS и интеграции | AI ULTRA",
+      "h1": "Вашу идею можно  превратить в продукт.",
+      "description": ""
+    },
+    {
+      "id": "3d-print-modeling",
+      "route": "/3d-print-modeling/",
+      "file": "3d-print-modeling/index.html",
+      "title": "Моделирование для 3D-печати — AI ULTRA",
+      "h1": "Моделирование для 3D-печати",
+      "description": ""
+    },
+    {
+      "id": "ai-support-agent",
+      "route": "/ai-support-agent/",
+      "file": "ai-support-agent/index.html",
+      "title": "AI-агент поддержки — AI ULTRA",
+      "h1": "AI-агент поддержки",
+      "description": ""
+    },
+    {
+      "id": "robotics-partnership",
+      "route": "/robotics-partnership/",
+      "file": "robotics-partnership/index.html",
+      "title": "Партнёрство в робототехнике — AI ULTRA",
+      "h1": "Партнёрство в робототехнике",
+      "description": "Инженерное, технологическое и коммерческое партнёрство для разработки и интеграции робототехнических решений."
+    },
+    {
+      "id": "web-design-service",
+      "route": "/web-design-service/",
+      "file": "web-design-service/index.html",
+      "title": "Веб-дизайн на заказ — AI ULTRA",
+      "h1": "Веб-дизайн на заказ",
+      "description": "Дизайн сайтов и посадочных страниц с учётом структуры, контента и конверсии."
+    },
+    {
+      "id": "automation-scripts",
+      "route": "/automation-scripts/",
+      "file": "automation-scripts/index.html",
+      "title": "Скрипты автоматизации — AI ULTRA",
+      "h1": "Скрипты автоматизации",
+      "description": "Разработка скриптов и сервисов для повторяющихся цифровых операций и обмена данными."
+    },
+    {
+      "id": "business-ai-transformation",
+      "route": "/business-ai-transformation/",
+      "file": "business-ai-transformation/index.html",
+      "title": "AI-трансформация бизнес-процессов — AI ULTRA",
+      "h1": "AI-трансформация бизнес-процессов",
+      "description": "Поиск и внедрение сценариев AI в коммуникации, аналитику и внутренние операции."
+    },
+    {
+      "id": "ai-training",
+      "route": "/ai-training/",
+      "file": "ai-training/index.html",
+      "title": "Обучение AI — AI ULTRA",
+      "h1": "Обучение AI",
+      "description": "Практическое обучение AI-инструментам, агентам и автоматизации онлайн и офлайн."
+    },
+    {
+      "id": "digital-marketing-training",
+      "route": "/digital-marketing-training/",
+      "file": "digital-marketing-training/index.html",
+      "title": "Обучение Digital-маркетингу — AI ULTRA",
+      "h1": "Обучение Digital-маркетингу",
+      "description": "Практическое обучение рекламе, аналитике, контенту и digital-процессам."
+    },
+    {
+      "id": "presentation-design",
+      "route": "/presentation-design/",
+      "file": "presentation-design/index.html",
+      "title": "Дизайн презентаций — AI ULTRA",
+      "h1": "Дизайн презентаций",
+      "description": "Коммерческие и продуктовые презентации: структура, визуальная система, инфографика и подача."
+    },
+    {
+      "id": "ai-sales-agent",
+      "route": "/ai-sales-agent/",
+      "file": "ai-sales-agent/index.html",
+      "title": "AI-агент продаж — AI ULTRA",
+      "h1": "AI-агент продаж",
+      "description": "AI-агент для первичного контакта, квалификации, консультаций и передачи лида менеджеру."
+    },
+    {
+      "id": "ai-automation",
+      "route": "/ai-automation/",
+      "file": "ai-automation/index.html",
+      "title": "Автоматизация бизнеса с AI и AI-сотрудниками | AI ULTRA",
+      "h1": "Автоматизация бизнеса  начинается с правильной задачи.",
+      "description": ""
+    },
+    {
+      "id": "web-analytics",
+      "route": "/web-analytics/",
+      "file": "web-analytics/index.html",
+      "title": "Веб-аналитика — AI ULTRA",
+      "h1": "Веб-аналитика",
+      "description": ""
+    },
+    {
+      "id": "oferta",
+      "route": "/oferta/",
+      "file": "oferta/index.html",
+      "title": "Публичная оферта | AI ULTRA",
+      "h1": "Публичная оферта",
+      "description": ""
+    },
+    {
+      "id": "technology-investor",
+      "route": "/technology-investor/",
+      "file": "technology-investor/index.html",
+      "title": "Инвестор в технологические проекты — AI ULTRA",
+      "h1": "Инвестор в технологические проекты",
+      "description": "Партнёрство и инвестиционный диалог вокруг AI, software, hardware и робототехнических продуктов."
+    },
+    {
+      "id": "ros2-development",
+      "route": "/ros2-development/",
+      "file": "ros2-development/index.html",
+      "title": "Разработка на ROS 2 — AI ULTRA",
+      "h1": "Разработка на ROS 2",
+      "description": "Архитектура и интеграция робототехнического ПО на ROS 2: узлы, сообщения, сенсоры и управляющие контуры."
+    },
+    {
+      "id": "robot-testing",
+      "route": "/robot-testing/",
+      "file": "robot-testing/index.html",
+      "title": "Испытания робототехнических систем — AI ULTRA",
+      "h1": "Испытания робототехнических систем",
+      "description": "Стендовые, интеграционные и сценарные испытания роботов с фиксацией измерений и результатов."
+    },
+    {
+      "id": "3d-printer-setup-for-business",
+      "route": "/3d-printer-setup/",
+      "file": "3d-printer-setup/index.html",
+      "title": "Настройка 3D-принтера для бизнеса — AI ULTRA",
+      "h1": "Настройка 3D-принтера для бизнеса",
+      "description": "Подключение, базовая настройка, калибровка и обучение рабочему процессу 3D-печати. Решение адаптируется под процессы, команду, каналы и используемые системы компании."
+    },
+    {
+      "id": "corporate-tech-training",
+      "route": "/corporate-tech-training/",
+      "file": "corporate-tech-training/index.html",
+      "title": "Корпоративное обучение технологиям — AI ULTRA",
+      "h1": "Корпоративное обучение технологиям",
+      "description": "Программы обучения для команд: AI, CRM, реклама, продажи, дизайн, 3D и автоматизация."
+    },
+    {
+      "id": "generative-design",
+      "route": "/generative-design/",
+      "file": "generative-design/index.html",
+      "title": "Генеративный дизайн — AI ULTRA",
+      "h1": "Генеративный дизайн",
+      "description": ""
+    },
+    {
+      "id": "process-automation",
+      "route": "/process-automation/",
+      "file": "process-automation/index.html",
+      "title": "Автоматизация процессов компании — AI ULTRA",
+      "h1": "Автоматизация бизнес-процессов",
+      "description": ""
+    },
+    {
+      "id": "blog--ai-jobs-statistics",
+      "route": "/blog/ai-jobs-statistics/",
+      "file": "blog/ai-jobs-statistics/index.html",
+      "title": "AI и рынок труда: проверенные данные и источники | AI ULTRA",
+      "h1": "Как AI меняет рынок труда:  что подтверждают крупные исследования.",
+      "description": ""
+    },
+    {
+      "id": "blog--digital-art-for-brands",
+      "route": "/blog/digital-art-for-brands/",
+      "file": "blog/digital-art-for-brands/index.html",
+      "title": "Digital art в коммерческом дизайне — AI ULTRA",
+      "h1": "Digital art в коммерческом дизайне",
+      "description": ""
+    },
+    {
+      "id": "blog--ai-calls-vs-call-center",
+      "route": "/blog/ai-calls-vs-call-center/",
+      "file": "blog/ai-calls-vs-call-center/index.html",
+      "title": "AI-обзвон и классический call-центр: различия — AI ULTRA",
+      "h1": "AI-обзвон и классический call-центр: различия",
+      "description": ""
+    },
+    {
+      "id": "blog--sales-funnel-guide",
+      "route": "/blog/sales-funnel-guide/",
+      "file": "blog/sales-funnel-guide/index.html",
+      "title": "Как связать рекламу и продажи в одну воронку — AI ULTRA",
+      "h1": "Как связать рекламу и продажи в одну воронку",
+      "description": ""
+    },
+    {
+      "id": "blog--digital-strategy-guide",
+      "route": "/blog/digital-strategy-guide/",
+      "file": "blog/digital-strategy-guide/index.html",
+      "title": "Из чего состоит digital-стратегия — AI ULTRA",
+      "h1": "Из чего состоит digital-стратегия",
+      "description": ""
+    },
+    {
+      "id": "blog--business-digitalization-roadmap",
+      "route": "/blog/business-digitalization-roadmap/",
+      "file": "blog/business-digitalization-roadmap/index.html",
+      "title": "План оцифровки бизнеса — AI ULTRA",
+      "h1": "План оцифровки бизнеса",
+      "description": ""
+    },
+    {
+      "id": "blog--ai-agent-for-sales",
+      "route": "/blog/ai-agent-for-sales/",
+      "file": "blog/ai-agent-for-sales/index.html",
+      "title": "AI-сотрудник для отдела продаж | AI ULTRA",
+      "h1": "AI-сотрудник  для отдела продаж.",
+      "description": ""
+    },
+    {
+      "id": "blog--telegram-funnel",
+      "route": "/blog/telegram-funnel/",
+      "file": "blog/telegram-funnel/index.html",
+      "title": "Как построить Telegram-воронку для продаж | AI ULTRA",
+      "h1": "Telegram-воронка  для продаж.",
+      "description": ""
+    },
+    {
+      "id": "blog--prepare-model-for-3d-print",
+      "route": "/blog/prepare-model-for-3d-print/",
+      "file": "blog/prepare-model-for-3d-print/index.html",
+      "title": "Подготовка 3D-модели к печати: руководство — AI ULTRA",
+      "h1": "Как подготовить модель к 3D-печати",
+      "description": ""
+    },
+    {
+      "id": "blog--ai-news",
+      "route": "/blog/ai-news/",
+      "file": "blog/ai-news/index.html",
+      "title": "Новости AI, рейтинги моделей и прогнозы на 2027 год | AI ULTRA",
+      "h1": "Новости AI,  которые можно применить.",
+      "description": ""
+    },
+    {
+      "id": "blog--how-ai-calls-work",
+      "route": "/blog/how-ai-calls-work/",
+      "file": "blog/how-ai-calls-work/index.html",
+      "title": "Как работают AI-агенты для звонков — AI ULTRA",
+      "h1": "Как работают AI-агенты для звонков",
+      "description": ""
+    },
+    {
+      "id": "blog--webgl-mobile-performance",
+      "route": "/blog/webgl-mobile-performance/",
+      "file": "blog/webgl-mobile-performance/index.html",
+      "title": "WebGL на мобильных устройствах — AI ULTRA",
+      "h1": "WebGL на мобильных устройствах",
+      "description": ""
+    },
+    {
+      "id": "blog--how-to-reactivate-client-base",
+      "route": "/blog/how-to-reactivate-client-base/",
+      "file": "blog/how-to-reactivate-client-base/index.html",
+      "title": "Как реактивировать клиентскую базу — AI ULTRA",
+      "h1": "Как реактивировать клиентскую базу",
+      "description": ""
+    },
+    {
+      "id": "blog--3d-website-seo",
+      "route": "/blog/3d-website-seo/",
+      "file": "blog/3d-website-seo/index.html",
+      "title": "SEO для интерактивных 3D-сайтов — AI ULTRA",
+      "h1": "Как совместить 3D-сайт и SEO",
+      "description": ""
+    },
+    {
+      "id": "blog--geo-llm-search",
+      "route": "/blog/geo-llm-search/",
+      "file": "blog/geo-llm-search/index.html",
+      "title": "GEO и LLM: как подготовить сайт к AI-поиску | AI ULTRA",
+      "h1": "GEO, LLM  и AI-поиск.",
+      "description": ""
+    },
+    {
+      "id": "blog--interactive-design-guide",
+      "route": "/blog/interactive-design-guide/",
+      "file": "blog/interactive-design-guide/index.html",
+      "title": "Интерактивный дизайн: что влияет на UX — AI ULTRA",
+      "h1": "Интерактивный дизайн: что влияет на UX",
+      "description": ""
+    },
+    {
+      "id": "blog--chatgpt-for-business",
+      "route": "/blog/chatgpt-for-business/",
+      "file": "blog/chatgpt-for-business/index.html",
+      "title": "ChatGPT для бизнеса: внедрение в процессы | AI ULTRA",
+      "h1": "ChatGPT  для бизнеса.",
+      "description": ""
+    },
+    {
+      "id": "blog--ai-sales-agent-guide",
+      "route": "/blog/ai-sales-agent-guide/",
+      "file": "blog/ai-sales-agent-guide/index.html",
+      "title": "Как внедрить AI-агента продаж — AI ULTRA",
+      "h1": "Как внедрить AI-агента продаж",
+      "description": ""
+    },
+    {
+      "id": "blog--ai-roi-cases",
+      "route": "/blog/ai-roi-cases/",
+      "file": "blog/ai-roi-cases/index.html",
+      "title": "ROI AI-агента: как считать эффект без выдуманных цифр | AI ULTRA",
+      "h1": "Как измерять эффект  AI-агента без выдуманных цифр.",
+      "description": ""
+    },
+    {
+      "id": "blog--kak-zarabotat-na-kripte",
+      "route": "/blog/kak-zarabotat-na-kripte/",
+      "file": "blog/kak-zarabotat-na-kripte/index.html",
+      "title": "Как зарабатывают на крипте и при чём тут AI-агент | AI ULTRA",
+      "h1": "Как зарабатывают на крипте  и при чём тут AI-агент.",
+      "description": ""
+    },
+    {
+      "id": "blog--ai-agent-crm-integration",
+      "route": "/blog/ai-agent-crm-integration/",
+      "file": "blog/ai-agent-crm-integration/index.html",
+      "title": "Как интегрировать AI-агента с CRM — AI ULTRA",
+      "h1": "Как интегрировать AI-агента с CRM",
+      "description": ""
+    },
+    {
+      "id": "blog--incoming-leads-process",
+      "route": "/blog/incoming-leads-process/",
+      "file": "blog/incoming-leads-process/index.html",
+      "title": "Как не терять входящие заявки — AI ULTRA",
+      "h1": "Как не терять входящие заявки",
+      "description": ""
+    },
+    {
+      "id": "blog--crm-license-checklist",
+      "route": "/blog/crm-license-checklist/",
+      "file": "blog/crm-license-checklist/index.html",
+      "title": "Как выбрать лицензию CRM: сравнение Битрикс24 | AI ULTRA",
+      "h1": "Как выбрать лицензию CRM и сравнить предложения на Битрикс24",
+      "description": ""
+    },
+    {
+      "id": "blog--seo-and-ai-search",
+      "route": "/blog/seo-and-ai-search/",
+      "file": "blog/seo-and-ai-search/index.html",
+      "title": "SEO, GEO и AI Search: как строить единое ядро — AI ULTRA",
+      "h1": "SEO, GEO и AI Search: как строить единое ядро",
+      "description": ""
+    },
+    {
+      "id": "blog--design-system-guide",
+      "route": "/blog/design-system-guide/",
+      "file": "blog/design-system-guide/index.html",
+      "title": "Зачем проекту дизайн-система — AI ULTRA",
+      "h1": "Зачем проекту дизайн-система",
+      "description": ""
+    },
+    {
+      "id": "blog--3d-printing-workflow",
+      "route": "/blog/3d-printing-workflow/",
+      "file": "blog/3d-printing-workflow/index.html",
+      "title": "Как проходит заказ на 3D-печать — AI ULTRA",
+      "h1": "Как проходит заказ на 3D-печать",
+      "description": ""
+    },
+    {
+      "id": "blog--ai-agent-quality",
+      "route": "/blog/ai-agent-quality/",
+      "file": "blog/ai-agent-quality/index.html",
+      "title": "Как проверить AI-агента перед запуском | AI ULTRA",
+      "h1": "Как проверить AI-агента перед запуском: сценарии и критерии",
+      "description": ""
+    },
+    {
+      "id": "blog--prototype-with-3d-print",
+      "route": "/blog/prototype-with-3d-print/",
+      "file": "blog/prototype-with-3d-print/index.html",
+      "title": "Когда использовать 3D-печать для прототипа — AI ULTRA",
+      "h1": "Когда использовать 3D-печать для прототипа",
+      "description": ""
+    },
+    {
+      "id": "blog--threejs-performance",
+      "route": "/blog/threejs-performance/",
+      "file": "blog/threejs-performance/index.html",
+      "title": "Как оптимизировать Three.js-сайт — AI ULTRA",
+      "h1": "Как оптимизировать Three.js-сайт",
+      "description": ""
+    },
+    {
+      "id": "blog--3d-site-content-architecture",
+      "route": "/blog/3d-site-content-architecture/",
+      "file": "blog/3d-site-content-architecture/index.html",
+      "title": "Архитектура контента для 3D-сайта — AI ULTRA",
+      "h1": "Архитектура контента для 3D-сайта",
+      "description": ""
+    },
+    {
+      "id": "blog--sales-outsourcing-guide",
+      "route": "/blog/sales-outsourcing-guide/",
+      "file": "blog/sales-outsourcing-guide/index.html",
+      "title": "Когда бизнесу нужен продажник на аутсорсе — AI ULTRA",
+      "h1": "Когда бизнесу нужен продажник на аутсорсе",
+      "description": ""
+    },
+    {
+      "id": "blog--ai-agent-cost",
+      "route": "/blog/ai-agent-cost/",
+      "file": "blog/ai-agent-cost/index.html",
+      "title": "Сколько стоит AI-агент: расчёт бюджета внедрения | AI ULTRA",
+      "h1": "Сколько стоит AI-агент: как рассчитать бюджет внедрения",
+      "description": ""
+    },
+    {
+      "id": "blog--voice-ai-use-cases",
+      "route": "/blog/voice-ai-use-cases/",
+      "file": "blog/voice-ai-use-cases/index.html",
+      "title": "Где применять голосовых AI-агентов — AI ULTRA",
+      "h1": "Где применять голосовых AI-агентов",
+      "description": ""
+    },
+    {
+      "id": "blog--raster-textures-threejs",
+      "route": "/blog/raster-textures-threejs/",
+      "file": "blog/raster-textures-threejs/index.html",
+      "title": "Растровые текстуры в Three.js без перерисовки — AI ULTRA",
+      "h1": "Растровые текстуры в Three.js без перерисовки",
+      "description": ""
+    },
+    {
+      "id": "blog--crm-for-sales-guide",
+      "route": "/blog/crm-for-sales-guide/",
+      "file": "blog/crm-for-sales-guide/index.html",
+      "title": "Как подготовить CRM к системным продажам — AI ULTRA",
+      "h1": "Как подготовить CRM к системным продажам",
+      "description": ""
+    },
+    {
+      "id": "access--claude",
+      "route": "/access/claude/",
+      "file": "access/claude/index.html",
+      "title": "Подписки Claude для работы, текстов и разработки | AI ULTRA",
+      "h1": "Подписки Claude для работы, текстов и разработки",
+      "description": ""
+    }
+  ],
+  "presentation": {
+    "aspectRatio": "9:16",
+    "safeAreaPercent": 8,
+    "contentWidthPercent": 84,
+    "titleMaxChars": 52,
+    "bodyMaxChars": 132,
+    "ctaMaxChars": 22,
+    "desktopMinCardCssPx": "270x480",
+    "preferredCardCssPx": "315x560",
+    "focusedPreferredCssPx": "350x622",
+    "rule": "Never render canonical SEO article text inside WebGL card; cards use uiCopy only."
+  },
+  "cardInteraction": {
+    "flip": "front/back",
+    "routeOnCTA": true,
+    "flipChangesUrl": false
+  }
+}

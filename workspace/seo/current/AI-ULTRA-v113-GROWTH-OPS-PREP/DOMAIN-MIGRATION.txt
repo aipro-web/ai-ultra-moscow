@@ -1,0 +1,1 @@
+Before production launch, replace the current chatgpt.site base URL consistently in canonical, JSON-LD, sitemap.xml, robots.txt and llms.txt with the final production domain.

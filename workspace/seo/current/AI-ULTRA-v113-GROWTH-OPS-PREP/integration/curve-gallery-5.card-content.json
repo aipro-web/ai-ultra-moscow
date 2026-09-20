@@ -1,0 +1,591 @@
+{
+  "version": "111",
+  "contact": {
+    "label": "@ai_ultra_official",
+    "url": "https://t.me/ai_ultra_official"
+  },
+  "cards": [
+    {
+      "cardId": "home",
+      "route": "/",
+      "label": "Главная",
+      "uiCopy": {
+        "eyebrow": "AI ULTRA",
+        "title": "AI-сотрудники для взлёта ваших продаж",
+        "body": "Продажи, реклама, CRM и автоматизация в одной AI-системе.",
+        "cta": "Запустить проект",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "AI ULTRA",
+          "title": "AI-сотрудники для взлёта ваших продаж",
+          "body": "Продажи, реклама, CRM и автоматизация в одной AI-системе.",
+          "cta": "Запустить проект"
+        },
+        "back": {
+          "title": "Что получаете",
+          "items": [
+            "AI и digital в одной системе",
+            "Удалённое внедрение без привязки к офису",
+            "Москва — приоритет; Россия и СНГ — рабочая география"
+          ],
+          "cta": "Обсудить задачу",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "ai-agents",
+      "route": "/agents/",
+      "label": "AI-сотрудники",
+      "uiCopy": {
+        "eyebrow": "AI-СОТРУДНИКИ",
+        "title": "Рутина уходит. Продажи растут.",
+        "body": "AI-агенты отвечают, квалифицируют лиды, звонят и помогают продавать 24/7.",
+        "cta": "Внедрить AI",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "AI-СОТРУДНИКИ",
+          "title": "Рутина уходит. Продажи растут.",
+          "body": "AI-агенты отвечают, квалифицируют лиды, звонят и помогают продавать 24/7.",
+          "cta": "Внедрить AI"
+        },
+        "back": {
+          "title": "Что решаем",
+          "items": [
+            "Входящие обращения и квалификация",
+            "Поддержка клиентов 24/7",
+            "Повторные касания и передача в CRM"
+          ],
+          "cta": "Внедрить AI-агента",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "sales",
+      "route": "/sales-outsourcing/",
+      "label": "Продажи под ключ",
+      "uiCopy": {
+        "eyebrow": "ПРОДАЖИ",
+        "title": "Продажи под ключ",
+        "body": "От первого обращения и рекламы до разговора с клиентом и закрытия сделки.",
+        "cta": "Усилить продажи",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "ПРОДАЖИ",
+          "title": "Продажи под ключ",
+          "body": "От первого обращения и рекламы до разговора с клиентом и закрытия сделки.",
+          "cta": "Усилить продажи"
+        },
+        "back": {
+          "title": "Как усиливаем продажи",
+          "items": [
+            "Обработка входящих лидов",
+            "Квалификация и сценарии продаж",
+            "CRM, аналитика и контроль результата"
+          ],
+          "cta": "Усилить отдел продаж",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "seo",
+      "route": "/ai-seo/",
+      "label": "SEO · GEO · LLM",
+      "uiCopy": {
+        "eyebrow": "SEO · GEO · LLM",
+        "title": "Быть там, где вас ищут",
+        "body": "SEO для Google и AI-поиска: структура, контент, GEO и техническая оптимизация.",
+        "cta": "Усилить SEO",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "SEO · GEO · LLM",
+          "title": "Быть там, где вас ищут",
+          "body": "SEO для Google и AI-поиска: структура, контент, GEO и техническая оптимизация.",
+          "cta": "Усилить SEO"
+        },
+        "back": {
+          "title": "Как строим видимость",
+          "items": [
+            "Один URL — один реальный intent",
+            "People-first контент без doorway-страниц",
+            "Google, Яндекс и AI-поиск на общей SEO-базе"
+          ],
+          "cta": "Провести SEO-аудит",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "marketing",
+      "route": "/ai-marketing/",
+      "label": "AI-маркетинг",
+      "uiCopy": {
+        "eyebrow": "AI-МАРКЕТИНГ",
+        "title": "Маркетинг, который приводит к действию",
+        "body": "Реклама, контент, аналитика и автоматизация привлечения клиентов.",
+        "cta": "Запустить маркетинг",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "AI-МАРКЕТИНГ",
+          "title": "Маркетинг, который приводит к действию",
+          "body": "Реклама, контент, аналитика и автоматизация привлечения клиентов.",
+          "cta": "Запустить маркетинг"
+        },
+        "back": {
+          "title": "Что входит",
+          "items": [
+            "Стратегия и позиционирование",
+            "Контент и дистрибуция",
+            "Яндекс-реклама, аналитика и автоматизация"
+          ],
+          "cta": "Запустить продвижение",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "automation",
+      "route": "/ai-automation/",
+      "label": "Автоматизация",
+      "uiCopy": {
+        "eyebrow": "AUTOMATION",
+        "title": "Автоматизируем бизнес",
+        "body": "CRM, интеграции, телефония, процессы и AI — от одной операции до всей компании.",
+        "cta": "Автоматизировать",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "AUTOMATION",
+          "title": "Автоматизируем бизнес",
+          "body": "CRM, интеграции, телефония, процессы и AI — от одной операции до всей компании.",
+          "cta": "Автоматизировать"
+        },
+        "back": {
+          "title": "Что автоматизируем",
+          "items": [
+            "Повторяемые процессы",
+            "CRM, API и базы знаний",
+            "AI с понятной точкой контроля человека"
+          ],
+          "cta": "Найти процесс для автоматизации",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "products",
+      "route": "/ai-products/",
+      "label": "AI / IT продукты",
+      "uiCopy": {
+        "eyebrow": "AI / IT",
+        "title": "Любой IT-продукт под ключ",
+        "body": "Боты, SaaS, приложения, API, корпоративный софт и нестандартные цифровые системы.",
+        "cta": "Обсудить продукт",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "AI / IT",
+          "title": "Любой IT-продукт под ключ",
+          "body": "Боты, SaaS, приложения, API, корпоративный софт и нестандартные цифровые системы.",
+          "cta": "Обсудить продукт"
+        },
+        "back": {
+          "title": "Что создаём",
+          "items": [
+            "Web и SaaS",
+            "Боты, API и кабинеты",
+            "AI-функции и внутренние сервисы"
+          ],
+          "cta": "Обсудить продукт",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "digital",
+      "route": "/digital-agency/",
+      "label": "Digital под ключ",
+      "uiCopy": {
+        "eyebrow": "FULL DIGITAL",
+        "title": "Digital под ключ",
+        "body": "Разработка, реклама, маркетинг, софт, интеграции и сопровождение в одной команде.",
+        "cta": "Собрать решение",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "FULL DIGITAL",
+          "title": "Digital под ключ",
+          "body": "Разработка, реклама, маркетинг, софт, интеграции и сопровождение в одной команде.",
+          "cta": "Собрать решение"
+        },
+        "back": {
+          "title": "Одна команда",
+          "items": [
+            "Стратегия и разработка",
+            "Маркетинг и реклама",
+            "AI, интеграции и сопровождение"
+          ],
+          "cta": "Собрать решение",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "design",
+      "route": "/design-services/",
+      "label": "Дизайн",
+      "uiCopy": {
+        "eyebrow": "DESIGN",
+        "title": "Дизайн под ключ",
+        "body": "Брендинг, UI/UX, rebranding, digital-art и визуальные системы для продукта и бизнеса.",
+        "cta": "Заказать дизайн",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "DESIGN",
+          "title": "Дизайн под ключ",
+          "body": "Брендинг, UI/UX, rebranding, digital-art и визуальные системы для продукта и бизнеса.",
+          "cta": "Заказать дизайн"
+        },
+        "back": {
+          "title": "Что проектируем",
+          "items": [
+            "Брендинг и UI/UX",
+            "Digital-art и визуальные системы",
+            "Дизайн под продукт и продажи"
+          ],
+          "cta": "Обсудить дизайн",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "3d",
+      "route": "/3d-graphics/",
+      "label": "3D / WebGL",
+      "uiCopy": {
+        "eyebrow": "3D · WEBGL",
+        "title": "3D без плоских решений",
+        "body": "3D-графика, WebGL, Three.js, интерактивные сайты, моделирование и 3D-печать.",
+        "cta": "Создать 3D",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "3D · WEBGL",
+          "title": "3D без плоских решений",
+          "body": "3D-графика, WebGL, Three.js, интерактивные сайты, моделирование и 3D-печать.",
+          "cta": "Создать 3D"
+        },
+        "back": {
+          "title": "Что создаём",
+          "items": [
+            "Three.js и WebGL",
+            "3D-сайты и конфигураторы",
+            "Моделирование и визуализация"
+          ],
+          "cta": "Запустить 3D-проект",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "robotics",
+      "route": "/robotics/",
+      "label": "Робототехника",
+      "uiCopy": {
+        "eyebrow": "ROBOTICS",
+        "title": "Робототехника под ключ",
+        "body": "R&D, механика, электроника, Computer Vision, локальный AI и системная интеграция.",
+        "cta": "Обсудить робота",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "ROBOTICS",
+          "title": "Робототехника под ключ",
+          "body": "R&D, механика, электроника, Computer Vision, локальный AI и системная интеграция.",
+          "cta": "Обсудить робота"
+        },
+        "back": {
+          "title": "Что входит",
+          "items": [
+            "R&D и прототипирование",
+            "Механика, электроника и CV",
+            "Локальный AI и интеграция"
+          ],
+          "cta": "Обсудить R&D",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "invest",
+      "route": "/invest-robot-mvp/",
+      "label": "Инвестиции в Robotics",
+      "uiCopy": {
+        "eyebrow": "INVEST",
+        "title": "Инвестиции в Robotics",
+        "body": "MVP антропоморфной робототехнической платформы: технология, этапы и инвестиционная модель.",
+        "cta": "Открыть проект",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "INVEST",
+          "title": "Инвестиции в Robotics",
+          "body": "MVP антропоморфной робототехнической платформы: технология, этапы и инвестиционная модель.",
+          "cta": "Открыть проект"
+        },
+        "back": {
+          "title": "Что покажем",
+          "items": [
+            "MVP и технологическую архитектуру",
+            "Этапы разработки",
+            "Инвестиционную модель и риски"
+          ],
+          "cta": "Открыть материалы",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "knowledge",
+      "route": "/knowledge-base/",
+      "label": "База знаний",
+      "uiCopy": {
+        "eyebrow": "KNOWLEDGE",
+        "title": "База знаний AI ULTRA",
+        "body": "Практические материалы об AI, продажах, Digital, автоматизации, 3D и робототехнике.",
+        "cta": "Изучить материалы",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "KNOWLEDGE",
+          "title": "База знаний AI ULTRA",
+          "body": "Практические материалы об AI, продажах, Digital, автоматизации, 3D и робототехнике.",
+          "cta": "Изучить материалы"
+        },
+        "back": {
+          "title": "Для чего база",
+          "items": [
+            "Проверять решения до внедрения",
+            "Разбираться в AI, SEO и автоматизации",
+            "Сравнивать подходы без рекламного шума"
+          ],
+          "cta": "Открыть материалы",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    },
+    {
+      "cardId": "contact",
+      "route": "/contact/",
+      "label": "Контакты",
+      "uiCopy": {
+        "eyebrow": "AI ULTRA",
+        "title": "Соберём систему под вашу задачу",
+        "body": "Опишите результат — подберём технологии, этапы внедрения и формат работы.",
+        "cta": "Связаться",
+        "maxLines": {
+          "title": 3,
+          "body": 4
+        }
+      },
+      "cardLayout": "vertical-9x16",
+      "contactUrl": "https://t.me/ai_ultra_official",
+      "faces": {
+        "front": {
+          "eyebrow": "AI ULTRA",
+          "title": "Соберём систему под вашу задачу",
+          "body": "Опишите результат — подберём технологии, этапы внедрения и формат работы.",
+          "cta": "Связаться"
+        },
+        "back": {
+          "title": "Формат работы",
+          "items": [
+            "Полностью удалённо",
+            "Москва — приоритетный рынок",
+            "Россия и СНГ — без физической привязки"
+          ],
+          "cta": "Написать в Telegram",
+          "contactUrl": "https://t.me/ai_ultra_official"
+        }
+      },
+      "flip": {
+        "enabled": true,
+        "interaction": "tap-or-click",
+        "preserveRoute": true,
+        "ariaLabel": "Показать подробности"
+      }
+    }
+  ],
+  "contentPolicy": {
+    "visibleContentSurface": "cards-only",
+    "seoTextSource": "semantic-html",
+    "rasterPolicy": "raster is visual texture only; essential text remains live HTML/DOM",
+    "geo": "Remote service. Site region strategy: Russia; Moscow priority; CIS coverage. No fabricated local offices.",
+    "seoIndexing": "Only strong distinct-intent pages are production-indexable; thin pages stay noindex until expanded.",
+    "visualRuntimeMerged": false
+  }
+}

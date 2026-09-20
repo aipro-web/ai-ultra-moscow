@@ -1,0 +1,30 @@
+{
+  "version": "v101 SEO GOLD CORE",
+  "visual_runtime_scan": {
+    "three.js": [],
+    "threejs": [],
+    "gsap": [],
+    "webgl": [],
+    "carousel": [],
+    "asteroid": [],
+    "foreground": [],
+    "raster": [],
+    "canvas": []
+  },
+  "internal_links_checked": 868,
+  "missing_internal_targets": [],
+  "metadata": {
+    "html_pages": 39,
+    "description_missing": 0,
+    "title_missing": 0,
+    "canonical_missing": 0,
+    "jsonld_missing": 0,
+    "noindex": [
+      "privacy/index.html",
+      "blueprint/index.html",
+      "text-first/index.html",
+      "oferta/index.html"
+    ]
+  },
+  "domain_status": "Existing chatgpt.site canonical retained until production domain is explicitly chosen; do not invent domain."
+}
