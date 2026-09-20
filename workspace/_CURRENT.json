@@ -1,7 +1,10 @@
-{
+﻿{
   "bridgeVersion": "2.1.0",
   "branch": "drive-sync",
   "sourceFolder": "GITHUB-INBOX",
+  "lockRegistry": "PROJECT_LOCK.md",
+  "lockState": "workspace/_LOCKS.json",
+  "workflowPolicy": "PATCH_BY_DEFAULT",
   "current": {
     "seo": {
       "archive": "06_AI-ULTRA-v114-SEO-CAROUSEL-MERGE.zip",
