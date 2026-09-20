@@ -1,93 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru" translate="no">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="Content-Language" content="ru" />
-  <meta name="google" content="notranslate" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <meta name="robots" content="noindex,nofollow" data-seo-placeholder="replace-on-merge" />
-  <meta name="theme-color" content="#050607" />
-  <meta name="application-name" content="AI Ultra" />
-  <link rel="preconnect" href="https://esm.sh" crossorigin />
-  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
-  <!-- SEO integration contract: canonical, localized titles/descriptions, hreflang and page-specific JSON-LD are injected by the SEO layer later. -->
-  <title>AI ULTRA — V35.10.8 Orbital Free Slots + Flow Squares</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body { width:100%; height:100%; overflow:hidden; background:#050607; }
-    #canvas-container { position:fixed; inset:0; width:100vw; height:100vh; }
-    canvas { display:block; width:100%!important; height:100%!important; touch-action:none; }
-    .status { position:fixed; inset:16px auto auto 16px; z-index:10000; display:none; max-width:min(520px,calc(100vw - 32px)); color:#fff; background:#111d; padding:10px 12px; border-radius:10px; font:12px/1.4 system-ui,sans-serif; }
-    .status.show { display:block; }
-    /* Empty by default. Future SEO/DOM content is rendered here visibly above the canvas, never as hidden keyword text. */
-    #semantic-root { position:fixed; inset:0; z-index:4000; pointer-events:none; }
-    #semantic-root [data-interactive] { pointer-events:none; }
-    #semantic-root [data-interactive][data-enabled="true"] { pointer-events:auto; }
-    .card-number {
-      position:fixed; left:0; top:0; z-index:50; pointer-events:none;
-      min-width:30px; padding:5px 7px 6px; border-radius:8px;
-      background:rgba(5,6,7,.52); border:1px solid rgba(255,255,255,.14);
-      color:#fff7e8; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
-      font:800 clamp(20px,2vw,28px)/.95 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      letter-spacing:-.02em; text-align:center;
-      text-shadow:0 0 10px rgba(255,255,255,.32),0 1px 8px rgba(0,0,0,.9);
-      box-shadow:0 0 14px rgba(0,0,0,.22);
-      will-change:transform,opacity; opacity:.98; transform-origin:0 0;
-    }
-    .card-number.is-hero {
-      min-width:40px; padding:6px 9px 7px;
-      font-size:clamp(28px,3vw,38px);
-      color:#fff; background:rgba(3,5,8,.62);
-      border-color:rgba(255,239,207,.26);
-      text-shadow:0 0 14px rgba(255,248,232,.48),0 1px 10px rgba(0,0,0,.96);
-    }
-    .card-cta {
-      position:fixed; left:0; top:0; z-index:4600; display:block;
-      background:transparent!important; border:0!important; box-shadow:none!important;
-      color:transparent!important; text-decoration:none; opacity:0!important;
-      pointer-events:none; cursor:pointer; user-select:none; -webkit-user-select:none;
-      will-change:left,top,width,height;
-    }
-    .card-cta[data-visible="true"] { pointer-events:auto; }
-  </style>
-</head>
-<body>
-  <div id="canvas-container" aria-hidden="true"></div>
-  <main id="semantic-root" data-seo-root aria-label="AI Ultra">
-  </main>
-  <div id="status" class="status" role="status" aria-live="polite"></div>
-
-  <!-- SEO/content contract. V27 demo: card 1 owns a CTA that rides the same scene to card 8. -->
-  <script id="seo-content-manifest" type="application/json">{"version":3,"defaultCta":{"label":"ПЕРЕЙТИ","target":"next"},"cards":[{"sequence":8,"anchor":"#services"}]}</script>
-  <template id="seo-card-template">
-    <article data-seo-card>
-      <h2 data-seo-title></h2>
-      <p data-seo-description></p>
-      <a data-seo-link data-interactive></a>
-    </article>
-  </template>
-
-  <script>
-    // Runs before module resolution so dependency failures do not degrade into an unexplained black screen.
-    window.__AIULTRA_SHOW_FATAL__ = function(message){
-      var el=document.getElementById('status');
-      if(!el) return;
-      el.textContent=message;
-      el.classList.add('show');
-    };
-    window.addEventListener('error',function(event){
-      if(event && event.message) window.__AIULTRA_SHOW_FATAL__('Runtime error: '+event.message);
-    },true);
-    window.addEventListener('unhandledrejection',function(event){
-      var reason=event && event.reason;
-      window.__AIULTRA_SHOW_FATAL__('Runtime error: '+((reason&&reason.message)||String(reason||'unknown error')));
-    });
-  </script>
-  <script type="module">
-    import * as THREE from 'https://esm.sh/three@0.184.0';
+import * as THREE from 'https://esm.sh/three@0.184.0';
     import { EffectComposer } from 'https://esm.sh/three@0.184.0/addons/postprocessing/EffectComposer.js';
     import { RenderPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/RenderPass.js';
     import { UnrealBloomPass } from 'https://esm.sh/three@0.184.0/addons/postprocessing/UnrealBloomPass.js';
@@ -109,10 +20,9 @@
     // Desktop wheel response is the original continuous Pass 4 motion: every wheel impulse only retargets the visual camera.
     // Logical content order does not advance per wheel event; it advances once, only after the whole visual motion has settled.
     // Repeated impulses retarget the same power3.out camera tween, matching the original Pass 4 1.0s motion feel.
-    // Programmatic CTA/hash navigation remains independent and may target any mapped card in-scene.
-    // Every active card owns a projected glass CTA whose width, height, typography and radius follow that card's
-    // actual projected on-screen size. Hero remains visual layer one; support CTAs hide only when occluded by hero.
-    // Production flow, 1..5 active-card model, ring seam 500 <-> 1, glass and SEO bridge remain intact.
+    // Pure Carousel Core: only visual mechanics and UI-control hooks remain.
+    // Only visual mechanics remain: Pass 4 flow, card geometry, numbering, hover/drag/scroll and blue UI satellites.
+    // Production flow, 1..7 active-card model, ring seam 500 <-> 1 and glass mechanics remain intact.
 
     const PATH_URL='https://raw.githubusercontent.com/gaspoorf/curve-gallery/main/public/paths/path4.json';
 
@@ -163,13 +73,13 @@
     const ORBITAL_SQUARE_RADIUS_Y_NDC=.46;
     const ORBITAL_SQUARE_SCREEN_SIZE=.145; // V35.10.8: 2.5x larger than V35.10.7
     const ORBITAL_SQUARE_ROTATION_SPEED=2.65;
-    const ORBITAL_SQUARE_SETTLE_SPEED=8.0;
     const ORBITAL_SQUARE_CARD_CLEARANCE_NDC=.035;
     const ORBITAL_SQUARE_EDGE_MARGIN_NDC=.035;
     const ORBITAL_SQUARE_SEARCH_STEP=Math.PI/24;
-    const ORBITAL_SQUARE_SEARCH_STEPS=48;
-    const ORBITAL_SQUARE_RADIAL_LEVELS=[1,1.14,1.30,1.48,1.68,1.90];
+    const ORBITAL_SQUARE_SEARCH_STEPS=72;
+    const ORBITAL_SQUARE_RADIAL_LEVELS=[1,1.14,1.30,1.48,1.68,1.90,2.15,2.40];
     const ORBITAL_FLOW_SQUARE_COUNT=180;
+    const TINY_ORBITAL_FLOW_ENABLED=false; // V114.2: remove tiny blue square particles
     const ORBITAL_FLOW_SQUARE_SIZE_MIN=.105;
     const ORBITAL_FLOW_SQUARE_SIZE_MAX=.235;
     const GROUP_GESTURE_GAP_MS=230;
@@ -194,14 +104,14 @@
     const ACTIVE_REVEAL_THRESHOLDS=[8,18,30,50];
     const ACTIVE_REVEAL_EVENT_CAP=180;
     const HERO_SCREEN_HEIGHT=.80;
-    const MIN_ACTIVE_SCREEN_HEIGHT=.255;
+    const MIN_ACTIVE_SCREEN_HEIGHT=.38;
     const ACTIVE_FOCUS_RADIUS_CARDS=2.15;
     const ACTIVE_RECYCLE_FADE_START=3.18;
     const ACTIVE_RECYCLE_FADE_END=3.48;
     const ACTIVE_LATERAL_MAX=1.08;
     const ACTIVE_DEPTH_MAX=.42;
-    const SIDE_LANE_X_NDC=.305;
-    const SIDE_LANE_X_FAR_NDC=.455;
+    const SIDE_LANE_X_NDC=.34;
+    const SIDE_LANE_X_FAR_NDC=.50;
     const SIDE_LANE_Y_NDC=.105;
     const SIDE_LANE_Y_FAR_NDC=.245;
     const SIDE_LANE_DEPTH=.22;
@@ -222,10 +132,6 @@
     const GRAB_VIEWPORT_MARGIN_NDC=.035;
     const CARD_NUMBER_PAD_X=.055;
     const CARD_NUMBER_PAD_Y=.060;
-    const CTA_SIDE_INSET=CARD_WIDTH*.055;
-    const CTA_BOTTOM_INSET=.040;
-    const CTA_LOCAL_HEIGHT=.135;
-    const CTA_HIDE_FLIP_RADIANS=.08;
     const NAVIGATION_ARRIVAL_EPSILON=.0025;
     const MANUAL_GESTURE_ARRIVAL_EPSILON=.0025;
 
@@ -294,11 +200,14 @@
     const bloomEdgeSupportMaterial=makeBloomEdgeMaterial(1.02);
 
     function makeGlassMaterial(depthTest=true,dynamicFlow=false){
-      const flowUniforms=dynamicFlow?{
-        uCurveT:{value:0},uCameraPos:{value:new THREE.Vector3()},uFocusTGate:{value:.02},
-        uFocusDist:{value:FOCUS_DIST},uZGate:{value:Z_GATE},uMaxScale:{value:FLOW_MAX_SCALE},
-        uOrbitAngle:{value:0},uOrbitPivot:{value:new THREE.Vector2()}
-      }:{};
+      const flowUniforms={uDenseGlass:{value:dynamicFlow?0:1}};
+      if(dynamicFlow){
+        Object.assign(flowUniforms,{
+          uCurveT:{value:0},uCameraPos:{value:new THREE.Vector3()},uFocusTGate:{value:.02},
+          uFocusDist:{value:FOCUS_DIST},uZGate:{value:Z_GATE},uMaxScale:{value:FLOW_MAX_SCALE},
+          uOrbitAngle:{value:0},uOrbitPivot:{value:new THREE.Vector2()}
+        });
+      }
       return new THREE.ShaderMaterial({
         transparent:true,depthWrite:false,depthTest,side:THREE.DoubleSide,blending:THREE.NormalBlending,
         uniforms:flowUniforms,
@@ -348,6 +257,7 @@
           }`,
         fragmentShader:`
           varying vec2 vLocal; varying float vDepth;
+          uniform float uDenseGlass;
           void main(){
             vec2 uv=vec2(vLocal.x/${CARD_WIDTH.toFixed(8)}+.5,vLocal.y/${CARD_HEIGHT.toFixed(8)}+.5);
             float edge=min(min(uv.x,1.-uv.x),min(uv.y,1.-uv.y));
@@ -373,7 +283,11 @@
             vec3 color=base
               + sideColor*(sideLed*.22*sideFalloff + sideCore*.16)
               + ledWarm*corner*.12;
-            float alpha=(.094+.046*top+.050*rim+.018*sideShape + sideLed*.070 + sideCore*.045 + corner*.018)*1.18*fade;
+            float lightAlpha=(.094+.046*top+.050*rim+.018*sideShape + sideLed*.070 + sideCore*.045 + corner*.018)*1.18*fade;
+            vec3 smoked=vec3(.045,.060,.082);
+            color=mix(color,smoked,uDenseGlass*.70);
+            float denseAlpha=(.78+.08*rim+.045*sideLed+.025*corner)*fade;
+            float alpha=mix(lightAlpha,denseAlpha,uDenseGlass);
             gl_FragColor=vec4(color,alpha);
           }`
       });
@@ -482,29 +396,13 @@
           gl_FragColor=vec4(c,.86);
         }`
     });
-    const rasterMaterials=new Map();
-    const rasterTexturePaths=[null,'./assets/card-1.jpg','./assets/card-2.jpg','./assets/card-3.jpg','./assets/card-4.jpg','./assets/card-5.jpg'];
-    async function loadRasterMaterials(){
-      const loader=new THREE.TextureLoader();
-      await Promise.all(rasterTexturePaths.slice(1).map((url,index)=>new Promise((resolve,reject)=>{
-        loader.load(url,texture=>{
-          texture.colorSpace=THREE.SRGBColorSpace;
-          texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
-          texture.wrapS=texture.wrapT=THREE.ClampToEdgeWrapping;
-          texture.needsUpdate=true;
-          rasterMaterials.set(index+1,new THREE.MeshBasicMaterial({
-            map:texture,transparent:false,depthWrite:false,depthTest:false,side:THREE.FrontSide,toneMapped:false
-          }));
-          resolve();
-        },undefined,reject);
-      })));
-    }
+    // V114.1: foreground cards are deliberately raster-free.
+    // New artwork can be plugged in later without changing the carousel motion core.
 
     window.addEventListener('error',e=>{console.error(e.error||e.message);showError('Runtime error: '+(e.message||'unknown error'))});
     window.addEventListener('unhandledrejection',e=>{console.error(e.reason);showError('Runtime error: '+(e.reason?.message||String(e.reason||'unknown error')))});
 
     async function init(){
-      try{ await loadRasterMaterials(); }catch(error){ console.error(error); showError('Не удалось загрузить тестовые растровые карточки.'); return; }
       let raw;
       try{
         const r=await fetch(PATH_URL,{mode:'cors',cache:'no-store'});
@@ -516,6 +414,7 @@
         return;
       }
 
+      document.body.classList.add('scene-ready');
       const curve=buildCurve(raw);
       const orbitBounds=new THREE.Box2();
       for(const [x,y] of raw) orbitBounds.expandByPoint(new THREE.Vector2(x*SCALE,y*SCALE));
@@ -598,7 +497,7 @@
       }
       updateOrbitalFlowSquares(0);
       orbitalFlowSquareMaterial.uniforms.uFocusTGate.value=(FOCUS_DIST*1.5)/curve.getLength();
-      scene.add(orbitalFlowSquares);
+      if(TINY_ORBITAL_FLOW_ENABLED) scene.add(orbitalFlowSquares);
 
       // Five interactive cards. Their identity is a real unbounded sequence step;
       // wrapping only changes the displayed number / curve sample, never the direction logic.
@@ -609,30 +508,67 @@
         const edgeGlow=new THREE.LineSegments(edgeGeometry,bloomEdgeSupportMaterial); edgeGlow.position.z=.0032; card.add(edgeGlow);
         const backFace=new THREE.Mesh(baseGeometry,backGlass); backFace.position.z=-.002; card.add(backFace);
         const label=document.createElement('div'); label.className='card-number'; document.body.appendChild(label);
-        const ctaNode=document.createElement('a');
-        ctaNode.className='card-cta'; ctaNode.dataset.interactive=''; ctaNode.dataset.visible='false'; ctaNode.dataset.enabled='false'; ctaNode.hidden=true;
-        document.getElementById('semantic-root').appendChild(ctaNode);
         card.userData={
-          sequenceStep:null,sequenceNumber:0,hoverMix:0,grabMix:0,label,backFace,edgeGlow,ctaNode,
+          sequenceStep:null,sequenceNumber:0,hoverMix:0,grabMix:0,label,backFace,edgeGlow,
           basePosition:new THREE.Vector3(),baseScale:1,presence:1,visibilityMix:0,
           laneX:0,laneY:0,laneZ:0,laneInitialized:false
         };
         card.visible=true; activeCards.push(card); scene.add(card);
       }
 
-      // V35.10.8: exactly 10 enlarged orbital squares, dynamically assigned to free screen-space around the readable cards.
-      // They are separate UI satellites and do NOT count toward the 4..7 readable carousel cards.
+      // Exactly 10 large blue UI satellites. They are pure carousel controls, not site content.
       const orbitalSquares=[];
-      const orbitalSquareSizeFactors=[.78,.94,.72,1.08,.84,.76,.92,.70,.88,.80];
+      const orbitalSquareSizeFactors=[.96,1.04,1.00,1.10,1.02,.98,1.06,.94,1.08,1.00];
+      const orbitalButtonActions=['search','menu','music-off',null,null,null,null,null,null,null];
+      const orbitalVectorIconMaterial=new THREE.LineBasicMaterial({
+        color:0xffffff,transparent:true,opacity:.96,depthTest:false,depthWrite:false,toneMapped:false
+      });
+      function orbitalVectorLine(points,loop=false){
+        const geometry=new THREE.BufferGeometry().setFromPoints(points.map(([x,y])=>new THREE.Vector3(x,y,.018)));
+        const line=loop?new THREE.LineLoop(geometry,orbitalVectorIconMaterial):new THREE.Line(geometry,orbitalVectorIconMaterial);
+        line.renderOrder=50003;
+        return line;
+      }
+      function buildOrbitalVectorIcon(type){
+        const icon=new THREE.Group(); icon.position.z=.018;
+        if(type==='search'){
+          const ring=[];
+          for(let i=0;i<28;i++){const a=(i/28)*Math.PI*2;ring.push([-.055+Math.cos(a)*.18,.055+Math.sin(a)*.18]);}
+          icon.add(orbitalVectorLine(ring,true));
+          icon.add(orbitalVectorLine([[.075,-.075],[.29,-.29]]));
+        }else if(type==='menu'){
+          icon.add(orbitalVectorLine([[-.27,.19],[.27,.19]]));
+          icon.add(orbitalVectorLine([[-.27,0],[.27,0]]));
+          icon.add(orbitalVectorLine([[-.27,-.19],[.27,-.19]]));
+        }else if(type==='music-off'){
+          icon.add(orbitalVectorLine([[-.28,-.11],[-.12,-.11],[.02,-.25],[.02,.25],[-.12,.11],[-.28,.11]],true));
+          icon.add(orbitalVectorLine([[-.29,-.29],[.29,.29]]));
+        }
+        return icon;
+      }
       for(let i=0;i<ORBITAL_SQUARE_COUNT;i++){
         const group=new THREE.Group();
         const fill=new THREE.Mesh(orbitalSquareGeometry,orbitalSquareGlassMaterial);
         const edge=new THREE.LineSegments(orbitalSquareEdgeGeometry,orbitalSquareEdgeMaterial);
         edge.position.z=.002;
-        fill.renderOrder=4200;
-        edge.renderOrder=4201;
-        group.add(fill,edge);
+        fill.renderOrder=50000; edge.renderOrder=50001;
+        const action=orbitalButtonActions[i]||null;
+        const icon=action?buildOrbitalVectorIcon(action):null;
+        const hitMaterial=new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthTest:false,depthWrite:false});
+        const hit=new THREE.Mesh(orbitalSquareGeometry,hitMaterial);
+        hit.scale.setScalar(1.34); hit.position.z=.03; hit.renderOrder=50002;
+        group.renderOrder=49999;
+        group.add(fill,edge,hit); if(icon) group.add(icon);
+        fill.userData.orbitalSquareOwner=group;
+        edge.userData.orbitalSquareOwner=group;
+        hit.userData.orbitalSquareOwner=group;
+        group.userData.hitTarget=hit;
         group.userData.orbitIndex=i;
+        group.userData.action=action;
+        group.userData.buttonId=action||`future-button-${i+1}`;
+        group.userData.hoverMix=0;
+        group.userData.pressUntil=0;
+        group.userData.baseScale=1;
         group.userData.sizeFactor=orbitalSquareSizeFactors[i];
         group.userData.baseAngle=(-Math.PI*.96)+(Math.PI*2)*(i/ORBITAL_SQUARE_COUNT);
         group.userData.angleOffset=0;
@@ -642,12 +578,12 @@
         scene.add(group);
       }
       let orbitalPhase=0;
-      let orbitalSettleTarget=0;
       let orbitalWasMoving=false;
+      let orbitalLayoutInitialized=false;
 
       const raycaster=new THREE.Raycaster();
       const pointerNdc=new THREE.Vector2(2,2);
-      let pointerActive=false,hoveredCard=null,heroCard=null;
+      let pointerActive=false,hoveredCard=null,hoveredSquare=null,heroCard=null;
       let grabbedCard=null,grabPointerId=null,grabMoved=false,suppressNextClick=false;
       const grabStartClient=new THREE.Vector2();
       const grabPlane=new THREE.Plane(new THREE.Vector3(0,0,1),0);
@@ -709,7 +645,7 @@
           e.preventDefault();
         }
       },{passive:false});
-      addEventListener('pointerleave',()=>{if(!grabbedCard){pointerActive=false;hoveredCard=null;renderer.domElement.style.cursor='default'}});
+      addEventListener('pointerleave',()=>{if(!grabbedCard){pointerActive=false;hoveredCard=null;hoveredSquare=null;renderer.domElement.style.cursor='default'}});
 
       const camProxy={t:0};
       const setCamT=gsap.quickTo(camProxy,'t',{duration:1,ease:'power3.out'});
@@ -724,40 +660,19 @@
       }
       let targetT=0;
 
-      // SEO/content bridge: inert until the future SEO layer supplies real content.
-      // Keeping it event-based prevents semantic markup changes from touching the Three.js motion core.
-      const semanticRoot=document.getElementById('semantic-root');
-      const manifestNode=document.getElementById('seo-content-manifest');
-      let seoManifest={version:1,cards:[]};
-      try{seoManifest=JSON.parse(manifestNode?.textContent||'{"version":1,"cards":[]}')}catch(error){console.warn('SEO manifest parse failed',error)}
-      const seoBySequence=new Map((seoManifest.cards||[]).map(item=>[Number(item.sequence),item]));
-      const seoByAnchor=new Map();
-      for(const item of (seoManifest.cards||[])){
-        if(item && item.anchor) seoByAnchor.set(String(item.anchor),Number(item.sequence));
-      }
+      // Pure sequence state for the standalone carousel.
       function normalizedSequenceNumber(sequenceNumber){
         return THREE.MathUtils.clamp(Math.round(Number(sequenceNumber)||1),1,ORIGINAL_SEQUENCE_TOTAL);
       }
-      function defaultCtaForSequence(sequenceNumber){
-        const n=normalizedSequenceNumber(sequenceNumber);
-        const next=n>=ORIGINAL_SEQUENCE_TOTAL?1:n+1;
-        const targetEntry=seoBySequence.get(next)||null;
-        return {label:String(seoManifest?.defaultCta?.label||'ПЕРЕЙТИ'),targetSequence:next,targetAnchor:targetEntry?.anchor||null};
+      function contentSequenceFor(sequenceNumber){
+        return normalizedSequenceNumber(sequenceNumber);
       }
-      function getCardContent(sequenceNumber){
-        const n=normalizedSequenceNumber(sequenceNumber);
-        const base=seoBySequence.get(n)||{sequence:n};
-        const cta=(base.cta && base.cta.label && base.cta.targetSequence)?base.cta:defaultCtaForSequence(n);
-        return {...base,sequence:n,cta};
-      }
-
       function nearestUnwrappedStepForSequence(sequenceNumber){
-        const n=THREE.MathUtils.clamp(Math.round(Number(sequenceNumber)||1),1,ORIGINAL_SEQUENCE_TOTAL);
+        const n=normalizedSequenceNumber(sequenceNumber);
         const base=n-1;
         const coord=currentSequenceCoord();
         return base+Math.round((coord-base)/ORIGINAL_SEQUENCE_TOTAL)*ORIGINAL_SEQUENCE_TOTAL;
       }
-
       function buildPublicSceneState(){
         const visible=activeCards
           .filter(card=>card.visible && (card.userData.presence??0)>.08)
@@ -766,11 +681,10 @@
             sequenceNumber:card.userData.sequenceNumber,
             sequenceStep:card.userData.sequenceStep,
             isHero:card===heroCard,
-            layer:card===heroCard?1:(card.renderOrder>=SUPPORT_SECOND_RENDER_ORDER?2:3),
-            content:getCardContent(card.userData.sequenceNumber)
+            layer:card===heroCard?1:(card.renderOrder>=SUPPORT_SECOND_RENDER_ORDER?2:3)
           }));
         return {
-          version:'35.10.7',
+          version:'carousel-core-pure-1',
           activeSequence:heroCard?.userData.sequenceNumber||1,
           activeSequenceStep:heroCard?.userData.sequenceStep||0,
           visibleActiveCount:visible.length,
@@ -778,44 +692,28 @@
           heroFlipped:heroFlipTarget>Math.PI*.5,
           inputActive:performance.now()-lastInputAt<=SETTLE_DELAY_MS,
           navigationActive,
-          navigationTargetSequence,
-          navigationTargetAnchor,
           logicalGroupStart,
           logicalGroupSize,
           logicalGroupDirection,
           visible
         };
       }
-
       function publishSceneState(){
         const detail=buildPublicSceneState();
-        const signature=[detail.activeSequence,detail.visibleActiveCount,detail.sequenceDirection,detail.heroFlipped,detail.inputActive,detail.navigationActive,detail.navigationTargetSequence,detail.navigationTargetAnchor].join('|');
+        const signature=[
+          detail.activeSequence,detail.visibleActiveCount,detail.sequenceDirection,
+          detail.heroFlipped,detail.inputActive,detail.navigationActive
+        ].join('|');
         if(signature===lastPublishedStateSignature) return;
         lastPublishedStateSignature=signature;
-        semanticRoot.dataset.activeSequence=String(detail.activeSequence);
-        semanticRoot.dataset.visibleActiveCount=String(detail.visibleActiveCount);
-        semanticRoot.setAttribute('aria-busy',detail.navigationActive?'true':'false');
         window.dispatchEvent(new CustomEvent('aiultra:scene-state',{detail}));
       }
-
-      function resolveHashTarget(hash){
-        const value=String(hash||'').trim();
-        if(!value) return null;
-        if(seoByAnchor.has(value)) return {sequenceNumber:seoByAnchor.get(value),anchor:value};
-        const match=value.match(/^#card-(\d{1,3})$/i);
-        if(match){
-          const n=THREE.MathUtils.clamp(Number(match[1]),1,ORIGINAL_SEQUENCE_TOTAL);
-          return {sequenceNumber:n,anchor:value};
-        }
-        return null;
-      }
-
       window.AIUltraScene=Object.freeze({
-        version:'35.10.7',
+        version:'carousel-core-pure-1',
         getState:()=>buildPublicSceneState(),
-        getContent:(sequenceNumber)=>getCardContent(sequenceNumber),
-        goToSequence:(sequenceNumber,options={})=>navigateToSequence(sequenceNumber,{anchor:options.anchor||null,source:options.source||'api',updateHistory:options.updateHistory!==false}),
-        goToAnchor:(anchor,options={})=>{const target=resolveHashTarget(anchor);return target?navigateToSequence(target.sequenceNumber,{anchor:target.anchor,source:options.source||'api',updateHistory:options.updateHistory!==false}):false},
+        goToSequence:(sequenceNumber,options={})=>navigateToSequence(
+          sequenceNumber,{source:options.source||'api'}
+        ),
         eventName:'aiultra:scene-state',
         navigationStartEvent:'aiultra:navigation-start',
         navigationEndEvent:'aiultra:navigation-end'
@@ -1023,9 +921,8 @@
         for(const card of activeCards){
           if(!card.visible) continue;
           const step=card.userData.sequenceStep;
-          const rasterMaterial=rasterMaterials.get(card.userData.sequenceNumber)||null;
-          const isRaster=!!rasterMaterial;
-          if(card.material!==(rasterMaterial||overlayGlass)) card.material=rasterMaterial||overlayGlass;
+          // Raster removed: every interactive foreground card uses the native glass material.
+          if(card.material!==overlayGlass) card.material=overlayGlass;
           if(card.children[0]) card.children[0].visible=true;
           if(card.userData.edgeGlow){
             card.userData.edgeGlow.visible=true;
@@ -1162,20 +1059,16 @@
         }
 
         const TAU=Math.PI*2;
+        // V114.1 motion lock: satellites move only while the carousel itself moves.
+        // No post-scroll settle arc, no extra lap, no jump after wheel/touch release.
         if(motionActive){
           orbitalPhase+=ORBITAL_SQUARE_ROTATION_SPEED*dt;
-          orbitalSettleTarget=orbitalPhase;
           orbitalWasMoving=true;
         }else{
-          if(orbitalWasMoving){
-            const modPhase=mod(orbitalPhase,TAU);
-            orbitalSettleTarget=orbitalPhase+(TAU-modPhase);
-            if(TAU-modPhase<.0001) orbitalSettleTarget=orbitalPhase;
-            orbitalWasMoving=false;
-          }
-          if(orbitalPhase<orbitalSettleTarget){
-            orbitalPhase=Math.min(orbitalSettleTarget,orbitalPhase+ORBITAL_SQUARE_SETTLE_SPEED*dt);
-          }
+          orbitalWasMoving=false;
+          // Freeze the exact last rendered transform once the carousel has stopped.
+          // We still allow one initial layout before the first gesture.
+          if(orbitalLayoutInitialized) return;
         }
 
         const heroPos=heroCard.position;
@@ -1203,7 +1096,7 @@
             for(const radialScale of ORBITAL_SQUARE_RADIAL_LEVELS){
               const x=heroPos.x+Math.cos(angle)*(visibleW*.5*ORBITAL_SQUARE_RADIUS_X_NDC*radialScale);
               const y=heroPos.y+Math.sin(angle)*(visibleH*.5*ORBITAL_SQUARE_RADIUS_Y_NDC*radialScale);
-              const z=heroPos.z+.055;
+              const z=heroPos.z+.90; // V114.2 future buttons stay in front of glass
               orbitalCandidateWorld.set(x,y,z);
               orbitalCandidateNdc.copy(orbitalCandidateWorld).project(camera);
               if(!Number.isFinite(orbitalCandidateNdc.x)||!Number.isFinite(orbitalCandidateNdc.y)) continue;
@@ -1237,15 +1130,41 @@
           sq.userData.radialScale=slot.radialScale;
           sq.position.set(slot.x,slot.y,slot.z);
           sq.rotation.set(0,0,0);
+          sq.userData.baseScale=s;
           sq.scale.setScalar(s);
           sq.visible=true;
           occupiedRects.push(slot.rect);
         }
+        orbitalLayoutInitialized=true;
       }
 
+      function pickTopOrbitalSquare(){
+        if(!pointerActive) return null;
+        raycaster.setFromCamera(pointerNdc,camera);
+        const targets=[];
+        for(const sq of orbitalSquares){
+          if(!sq.visible) continue;
+          const hit=sq.userData.hitTarget||sq.children?.[0];
+          if(hit) targets.push(hit);
+        }
+        const hits=raycaster.intersectObjects(targets,false);
+        return hits.length?(hits[0].object.userData.orbitalSquareOwner||hits[0].object.parent||null):null;
+      }
+      function applyOrbitalSquareHover(dt){
+        const a=1-Math.exp(-13.5*dt);
+        for(const sq of orbitalSquares){
+          const target=sq===hoveredSquare?1:0;
+          sq.userData.hoverMix=THREE.MathUtils.lerp(sq.userData.hoverMix||0,target,a);
+          const base=sq.userData.baseScale||sq.scale.x||1;
+          const pressed=performance.now()<(sq.userData.pressUntil||0);
+          sq.scale.setScalar(base*(1+sq.userData.hoverMix*.22)*(pressed?.92:1));
+        }
+      }
       function updateHoverSelection(){
-        if(grabbedCard){hoveredCard=null;renderer.domElement.style.cursor='grabbing';return}
-        if(!pointerActive || manualGestureActive || navigationActive || performance.now()-lastInputAt<SETTLE_DELAY_MS){hoveredCard=null;renderer.domElement.style.cursor='default';return}
+        if(grabbedCard){hoveredCard=null;hoveredSquare=null;renderer.domElement.style.cursor='grabbing';return}
+        if(!pointerActive || manualGestureActive || navigationActive || performance.now()-lastInputAt<SETTLE_DELAY_MS){hoveredCard=null;hoveredSquare=null;renderer.domElement.style.cursor='default';return}
+        hoveredSquare=pickTopOrbitalSquare();
+        if(hoveredSquare){hoveredCard=null;renderer.domElement.style.cursor='pointer';return}
         hoveredCard=pickTopVisibleCard();
         renderer.domElement.style.cursor=hoveredCard?'grab':'default';
       }
@@ -1343,93 +1262,24 @@
         labelLocal.set(localX,CARD_HEIGHT*.5-CARD_NUMBER_PAD_Y,.004);
         card.updateMatrixWorld(true); labelPoint.copy(labelLocal); card.localToWorld(labelPoint); labelPoint.project(camera);
         if(labelPoint.z<-1||labelPoint.z>1){label.style.display='none';return}
-        if(card!==heroCard && heroNdcBounds.valid &&
-           labelPoint.x>=heroNdcBounds.minX && labelPoint.x<=heroNdcBounds.maxX &&
-           labelPoint.y>=heroNdcBounds.minY && labelPoint.y<=heroNdcBounds.maxY){
-          label.style.display='none';return;
-        }
-        label.textContent=String(card.userData.sequenceNumber); label.style.display='block';
+        // Every visible card keeps its own visible number, even during overlap.
+        label.textContent=String(contentSequenceFor(card.userData.sequenceNumber)); label.style.display='block';
         label.classList.toggle('is-hero',card===heroCard);
-        label.style.zIndex=String(card===heroCard?350:(card.renderOrder>=SUPPORT_SECOND_RENDER_ORDER?250:150));
+        label.style.zIndex=String(card===heroCard?8300:(card.renderOrder>=SUPPORT_SECOND_RENDER_ORDER?8200:8100));
         label.style.transform=`translate(${Math.round((labelPoint.x*.5+.5)*innerWidth)}px,${Math.round((-labelPoint.y*.5+.5)*innerHeight)}px)`;
-      }
-
-      const ctaLocalCorners=[
-        new THREE.Vector3(-CARD_WIDTH*.5+CTA_SIDE_INSET,-CARD_HEIGHT*.5+CTA_BOTTOM_INSET,0.006),
-        new THREE.Vector3( CARD_WIDTH*.5-CTA_SIDE_INSET,-CARD_HEIGHT*.5+CTA_BOTTOM_INSET,0.006),
-        new THREE.Vector3( CARD_WIDTH*.5-CTA_SIDE_INSET,-CARD_HEIGHT*.5+CTA_BOTTOM_INSET+CTA_LOCAL_HEIGHT,0.006),
-        new THREE.Vector3(-CARD_WIDTH*.5+CTA_SIDE_INSET,-CARD_HEIGHT*.5+CTA_BOTTOM_INSET+CTA_LOCAL_HEIGHT,0.006)
-      ];
-      const ctaWorldPoint=new THREE.Vector3();
-      function hideCardCta(card){
-        const node=card?.userData?.ctaNode;
-        if(!node) return;
-        node.dataset.visible='false';
-        node.dataset.enabled='false';
-        node.hidden=true;
-      }
-      function updateCardCta(card,inputActive){
-        const node=card?.userData?.ctaNode;
-        if(!node || !card.visible || (card.userData.presence??0)<.08 || navigationActive || grabbedCard){hideCardCta(card);return}
-        if(card===heroCard && Math.abs(heroFlipCurrent)>CTA_HIDE_FLIP_RADIANS){hideCardCta(card);return}
-        if(card.userData.sequenceNumber<1 || card.userData.sequenceNumber>5){hideCardCta(card);return}
-        const content=getCardContent(card.userData.sequenceNumber);
-        const cta=content?.cta||null;
-        if(!cta || !cta.targetSequence){hideCardCta(card);return}
-        card.updateMatrixWorld(true);
-        let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity,visible=true;
-        let ndcMinX=Infinity,ndcMaxX=-Infinity,ndcMinY=Infinity,ndcMaxY=-Infinity;
-        for(const local of ctaLocalCorners){
-          ctaWorldPoint.copy(local);card.localToWorld(ctaWorldPoint);ctaWorldPoint.project(camera);
-          if(ctaWorldPoint.z<-1||ctaWorldPoint.z>1) visible=false;
-          ndcMinX=Math.min(ndcMinX,ctaWorldPoint.x);ndcMaxX=Math.max(ndcMaxX,ctaWorldPoint.x);
-          ndcMinY=Math.min(ndcMinY,ctaWorldPoint.y);ndcMaxY=Math.max(ndcMaxY,ctaWorldPoint.y);
-          const sx=(ctaWorldPoint.x*.5+.5)*innerWidth;
-          const sy=(-ctaWorldPoint.y*.5+.5)*innerHeight;
-          minX=Math.min(minX,sx);maxX=Math.max(maxX,sx);minY=Math.min(minY,sy);maxY=Math.max(maxY,sy);
-        }
-        const w=maxX-minX,h=maxY-minY;
-        if(card!==heroCard && heroNdcBounds.valid){
-          const overlapsHero=!(ndcMaxX<heroNdcBounds.minX || ndcMinX>heroNdcBounds.maxX || ndcMaxY<heroNdcBounds.minY || ndcMinY>heroNdcBounds.maxY);
-          if(overlapsHero){hideCardCta(card);return}
-        }
-        if(!visible || w<34 || h<10){hideCardCta(card);return}
-        node.hidden=false;
-        node.textContent='';
-        node.href=cta.targetAnchor||`#card-${cta.targetSequence}`;
-        node.setAttribute('aria-label','Перейти к следующей карточке');
-        node.dataset.sequence=String(card.userData.sequenceNumber);
-        node.dataset.targetSequence=String(cta.targetSequence);
-        node.style.left=`${minX}px`;node.style.top=`${minY}px`;node.style.width=`${w}px`;node.style.height=`${h}px`;
-        node.style.zIndex=String(card===heroCard?4650:(card.renderOrder>=SUPPORT_SECOND_RENDER_ORDER?4550:4450));
-        node.dataset.enabled=inputActive?'false':'true';
-        node.dataset.visible='true';
-      }
-      function updateAllCardCtas(inputActive){
-        for(const card of activeCards) updateCardCta(card,inputActive);
-      }
-      for(const card of activeCards){
-        const node=card.userData.ctaNode;
-        node?.addEventListener('click',event=>{
-          event.preventDefault();event.stopPropagation();
-          if(navigationActive || node.dataset.enabled!=='true') return;
-          const cta=getCardContent(card.userData.sequenceNumber)?.cta||null;
-          if(!cta) return;
-          navigateToSequence(cta.targetSequence,{anchor:cta.targetAnchor||null,source:'cta',updateHistory:true});
-        });
       }
 
       function moveCameraToStep(step){
         cancelManualGesture();
-        heroFlipTarget=0; hoveredCard=null;
+        heroFlipTarget=0; hoveredCard=null; hoveredSquare=null;
         targetT=-step/ORIGINAL_SEQUENCE_TOTAL;
         lastInputAt=performance.now(); settleSnapDone=true;
         tweenCamT(targetT,MANUAL_STEP_DURATION);
       }
 
-      function navigateToSequence(sequenceNumber,{anchor=null,source='api',updateHistory=true}={}){
+      function navigateToSequence(sequenceNumber,{source='api'}={}){
         cancelManualGesture();
-        const normalized=THREE.MathUtils.clamp(Math.round(Number(sequenceNumber)||1),1,ORIGINAL_SEQUENCE_TOTAL);
+        const normalized=normalizedSequenceNumber(sequenceNumber);
         logicalGroupStart=normalized;
         const step=nearestUnwrappedStepForSequence(normalized);
         sequenceDirection=step>=currentSequenceCoord()?1:-1;
@@ -1437,25 +1287,19 @@
         navigationActive=true;
         navigationTargetStep=step;
         navigationTargetSequence=normalized;
-        navigationTargetAnchor=anchor||null;
+        navigationTargetAnchor=null;
         navigationSource=source;
         navigationStartedAt=performance.now();
-        semanticRoot.dataset.navigation='travel';
         heroFlipTarget=0;heroFlipCurrent=0;flipOwnerSequenceStep=null;hoveredCard=null;
-        for(const card of activeCards) hideCardCta(card);
         targetT=-step/ORIGINAL_SEQUENCE_TOTAL;
         lastInputAt=performance.now();
         settleSnapDone=true;
         navigationExpectedDuration=programmaticDurationForStep(step);
         tweenCamT(targetT,navigationExpectedDuration);
-        window.dispatchEvent(new CustomEvent('aiultra:navigation-start',{detail:{sequenceNumber:normalized,sequenceStep:step,anchor:navigationTargetAnchor,source}}));
-        navigationUpdateHistory=updateHistory;
+        window.dispatchEvent(new CustomEvent('aiultra:navigation-start',{
+          detail:{sequenceNumber:normalized,sequenceStep:step,source}
+        }));
         return true;
-      }
-
-      function findAnchorNode(anchor){
-        if(!anchor || anchor[0]!=='#') return null;
-        try{return document.getElementById(decodeURIComponent(anchor.slice(1)))||null}catch(_){return null}
       }
 
       function finishNavigation(){
@@ -1464,21 +1308,12 @@
         targetT=camProxy.t;
         lastInputAt=performance.now()-SETTLE_DELAY_MS-1;
         settleSnapDone=true;
-        const detail={sequenceNumber:navigationTargetSequence,sequenceStep:navigationTargetStep,anchor:navigationTargetAnchor,source:navigationSource};
-        const shouldUpdateHistory=navigationUpdateHistory!==false;
+        const detail={
+          sequenceNumber:navigationTargetSequence,
+          sequenceStep:navigationTargetStep,
+          source:navigationSource
+        };
         navigationActive=false;
-        semanticRoot.dataset.navigation='idle';
-        if(shouldUpdateHistory){
-          const hash=navigationTargetAnchor||`#card-${navigationTargetSequence}`;
-          if(location.hash!==hash) history.pushState({aiUltraSequence:navigationTargetSequence},'',hash);
-        }
-        if(navigationTargetAnchor){
-          const anchorNode=findAnchorNode(navigationTargetAnchor);
-          if(anchorNode){
-            document.querySelectorAll('[data-scene-active="true"]').forEach(node=>node.removeAttribute('data-scene-active'));
-            anchorNode.setAttribute('data-scene-active','true');
-          }
-        }
         window.dispatchEvent(new CustomEvent('aiultra:navigation-end',{detail}));
         navigationTargetStep=null;navigationTargetSequence=null;navigationTargetAnchor=null;navigationSource=null;
       }
@@ -1523,7 +1358,23 @@
 
       renderer.domElement.addEventListener('click',event=>{
         if(suppressNextClick){suppressNextClick=false;event.preventDefault();return;}
-        setPointerFromEvent(event);
+        setPointerFromEvent(event);pointerActive=true;
+        const square=pickTopOrbitalSquare();
+        if(square){
+          square.userData.pressUntil=performance.now()+140;
+          const action=square.userData.action||null;
+          if(action==='search') window.dispatchEvent(new CustomEvent('aiultra:search-request'));
+          else if(action==='menu') window.dispatchEvent(new CustomEvent('aiultra:menu-request'));
+          else if(action==='music-off'){
+            const muted=document.body.dataset.musicMuted!=='true';
+            document.body.dataset.musicMuted=String(muted);
+            window.dispatchEvent(new CustomEvent('aiultra:music-toggle',{detail:{muted}}));
+          }
+          window.dispatchEvent(new CustomEvent('aiultra:satellite-click',{
+            detail:{buttonId:square.userData.buttonId,action,index:square.userData.orbitIndex+1}
+          }));
+          return;
+        }
         const card=pickTopVisibleCard();
         if(!card) return;
         if(card===heroCard){
@@ -1543,7 +1394,7 @@
         onChange:self=>{
           if(navigationActive || grabbedCard) return;
           if(Math.abs(self.deltaY)<.01) return;
-          heroFlipTarget=0; hoveredCard=null;
+          heroFlipTarget=0; hoveredCard=null; hoveredSquare=null;
           const inputNow=performance.now();
           lastInputAt=inputNow;
           sequenceDirection=self.deltaY>=0?1:-1;
@@ -1564,7 +1415,9 @@
         const dt=Math.min((now-previousFrame)/1000,.05); previousFrame=now;
         const flowOffsetT=wrap01(now*0.001*FLOW_CLOCKWISE_SPEED);
         updateFlowInstances(flowOffsetT);
-        updateOrbitalFlowSquares(flowOffsetT);
+        // Blue flow squares are scroll-coupled, not clock-coupled: when cards stop, squares stop too.
+        const orbitalFlowOffsetT=wrap01(camProxy.t);
+        if(TINY_ORBITAL_FLOW_ENABLED) updateOrbitalFlowSquares(orbitalFlowOffsetT);
         flowMaterial.uniforms.uOrbitAngle.value=0;
 
         const t=wrap01(1-camProxy.t);
@@ -1636,8 +1489,8 @@
         // Satellites resolve their slots only after every visible card has reached its final frame pose,
         // so the blue squares never disappear behind hero/support cards and always occupy free screen-space.
         updateOrbitalSquares(dt,carouselMotionActive);
+        applyOrbitalSquareHover(dt);
         updateHeroNdcBounds();
-        updateAllCardCtas(inputActive);
         for(const card of activeCards) updateNumberLabel(card);
         scene.userData.activeLogicalCard=heroCard?.userData.sequenceNumber||1;
         scene.userData.activeSequenceStep=heroCard?.userData.sequenceStep||0;
@@ -1655,20 +1508,7 @@
       // The completed gesture may change only the visible group size (1..7); it never changes how many logical cards are advanced.
       ensureAssignments(0);
       animate();
-      requestAnimationFrame(()=>{
-        const initialTarget=resolveHashTarget(location.hash);
-        if(initialTarget && initialTarget.sequenceNumber!==1){
-          navigateToSequence(initialTarget.sequenceNumber,{anchor:initialTarget.anchor,source:'initial-hash',updateHistory:false});
-        }
-      });
-      addEventListener('popstate',()=>{
-        const target=resolveHashTarget(location.hash);
-        if(target) navigateToSequence(target.sequenceNumber,{anchor:target.anchor,source:'history',updateHistory:false});
-      });
     }
 
     init();
     addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight)});
-  </script>
-</body>
-</html>
