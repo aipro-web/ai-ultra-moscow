@@ -100,6 +100,12 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 .core-card-content.is-home-hero .core-card-title{line-height:.98;}
 .core-card-content.is-home-hero .core-card-body{line-height:1.26;max-width:94%;}
 .core-card-content.is-home-hero .core-card-actions{position:relative;z-index:6;text-shadow:none;}
+
+/* v1.5.9.24 TEXT-DOWN ONLY — home hero mini-block moved to blouse level. Physics untouched. */
+.core-card-lead{display:none}
+.core-card-content.is-home-hero .core-card-copy{overflow:visible}
+.core-card-content.is-home-hero .core-card-lead{display:-webkit-box;position:relative;z-index:5;max-width:94%;color:#fffaf0;font:700 calc(var(--body-size,12px) * 1.16)/1.16 system-ui;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.core-card-content.is-home-hero .core-card-body{position:relative;z-index:5;transform:translateY(var(--hero-body-shift,140px))}
 </style>
 </head>
 <body data-carousel-core="pure">
@@ -123,7 +129,7 @@ window.addEventListener('unhandledrejection',event=>{
 <script>
 // Edit only content/labels/URLs here. No carousel physics live in this file.
 window.AIULTRA_CONTENT = Object.freeze([
-    {meta:'AI ULTRA',eyebrow:'',title:'AI-сотрудники для взлёта ваших продаж',body:'ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса — Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.',primary:'Запустить проект',secondary:'Смотреть решения'},
+    {meta:'AI ULTRA',eyebrow:'',title:'AI-сотрудники для взлёта ваших продаж',lead:'ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса',body:'Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.',primary:'Запустить проект',secondary:'Смотреть решения'},
     {meta:'GROWTH 02',eyebrow:'',title:'AI-агенты для бизнеса',body:'ИИ / AI-сотрудники под задачи компании — Продажи, CRM, поддержка, документы и бизнес-процессы. Интеграции, тестирование и сопровождение.',primary:'Рассчитать AI-агента',secondary:'Возможности'},
     {meta:'AUTOMATION 03',eyebrow:'',title:'Автоматизация процессов',body:'ИИ + AI-агенты + CRM + 1С + API — Автоматизируем продажи, документы, поддержку, закупки и аналитику в единой системе.',primary:'Найти процессы',secondary:'Как внедряем'},
     {meta:'SALES 04',eyebrow:'',title:'AI для продаж',body:'Обработка лидов и квалификация 24/7 — AI-продавец ведёт диалог, фиксирует данные в CRM и передаёт менеджеру готовый контекст.',primary:'Рассчитать AI-продавца',secondary:'Сценарии'},
@@ -145,7 +151,7 @@ window.AIULTRA_CONTENT = Object.freeze([
   const demoContent = Array.isArray(window.AIULTRA_CONTENT) && window.AIULTRA_CONTENT.length
     ? window.AIULTRA_CONTENT
     : [
-    {meta:'AI ULTRA',eyebrow:'',title:'AI-сотрудники для взлёта ваших продаж',body:'ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса — Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.',primary:'Запустить проект',secondary:'Смотреть решения'},
+    {meta:'AI ULTRA',eyebrow:'',title:'AI-сотрудники для взлёта ваших продаж',lead:'ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса',body:'Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.',primary:'Запустить проект',secondary:'Смотреть решения'},
     {meta:'GROWTH 02',eyebrow:'',title:'AI-агенты для бизнеса',body:'ИИ / AI-сотрудники под задачи компании — Продажи, CRM, поддержка, документы и бизнес-процессы. Интеграции, тестирование и сопровождение.',primary:'Рассчитать AI-агента',secondary:'Возможности'},
     {meta:'AUTOMATION 03',eyebrow:'',title:'Автоматизация процессов',body:'ИИ + AI-агенты + CRM + 1С + API — Автоматизируем продажи, документы, поддержку, закупки и аналитику в единой системе.',primary:'Найти процессы',secondary:'Как внедряем'},
     {meta:'SALES 04',eyebrow:'',title:'AI для продаж',body:'Обработка лидов и квалификация 24/7 — AI-продавец ведёт диалог, фиксирует данные в CRM и передаёт менеджеру готовый контекст.',primary:'Рассчитать AI-продавца',secondary:'Сценарии'},
@@ -203,6 +209,7 @@ window.AIULTRA_CONTENT = Object.freeze([
       <div class="core-card-copy">
         <span class="core-card-eyebrow"></span>
         <h2 class="core-card-title"></h2>
+        <div class="core-card-lead"></div>
         <p class="core-card-body"></p>
       </div>
       <div class="core-card-actions">
@@ -399,6 +406,8 @@ window.AIULTRA_CONTENT = Object.freeze([
   function applyOverlayContent(node, item, bounds, { isHero, sequence, renderOrder = 0 }) {
     node.querySelector('.core-card-eyebrow').textContent = item.eyebrow;
     node.querySelector('.core-card-title').textContent = item.title;
+    const leadNode=node.querySelector('.core-card-lead');
+    if(leadNode){ leadNode.textContent=item.lead||''; leadNode.style.display=item.lead?'':'none'; }
     node.querySelector('.core-card-body').textContent = item.body;
     node.querySelector('.core-card-button-primary').textContent = item.primary;
     node.querySelector('.core-card-button-secondary').textContent = item.secondary;
@@ -427,6 +436,8 @@ window.AIULTRA_CONTENT = Object.freeze([
     node.style.setProperty('--logo-size', `${logoSize.toFixed(1)}px`);
     node.style.setProperty('--logo-inset', `${logoInset.toFixed(1)}px`);
     node.style.setProperty('--copy-clearance', `${copyClearance.toFixed(1)}px`);
+    const heroBodyShift=isHomeHero?Math.max(105,Math.min(bounds.height*.23,155)):0;
+    node.style.setProperty('--hero-body-shift', `${heroBodyShift.toFixed(1)}px`);
     node.style.zIndex = String(8400 + Math.max(0, Math.round(renderOrder)));
     node.dataset.mode=mode;
 
