@@ -8,16 +8,31 @@
 .preview-card-copy{padding-top:118px}
 .preview-card h2{font-size:clamp(28px,7.1vw,34px);margin-bottom:12px}
 @media(max-width:760px){.dev-panel{display:none}.preview-stage{padding:20px 16px 74px}.preview-card{width:min(360px,86vw)}}
+
+/* v1.5.9.20 LANDING HERO + NEW TOKEN LOGO */
+.preview-card{overflow:hidden}
+.preview-logo{width:25%;max-width:100px;aspect-ratio:1/1;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,.28)) drop-shadow(0 0 12px rgba(239,185,70,.10))}
+.preview-meta{font-size:11px;letter-spacing:.15em}
+.preview-meta.is-brand{font-size:15px;letter-spacing:.12em;color:#fff4d4}
+.preview-card-copy{padding-top:132px;overflow:hidden;min-height:0}
+.preview-card h2{white-space:normal;font-size:clamp(25px,6.2vw,34px);line-height:1.02;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;word-break:normal}
+.preview-card-copy .preview-lead{font-size:clamp(14px,3.4vw,17px);line-height:1.20;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.preview-card-copy .preview-body{font-size:clamp(11.5px,2.7vw,13px);line-height:1.42;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.preview-card.is-dense h2{font-size:clamp(23px,5.7vw,31px)}
+.preview-card.is-dense .preview-lead{font-size:clamp(13px,3.1vw,15.5px)}
+.preview-card.is-dense .preview-body{font-size:clamp(11px,2.55vw,12.25px);line-height:1.38}
+.preview-actions{position:relative;z-index:3}
+.preview-actions button{padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
 </style></head><body>
 <main class="preview-stage">
   <section class="preview-card" id="seo-card">
-    <div class="preview-topline"><div class="preview-meta" id="seo-meta">01</div><img class="preview-logo" src="./assets/ai-ultra-logo.png" alt="AI ULTRA"></div>
+    <div class="preview-topline"><div class="preview-meta is-brand" id="seo-meta">AI ULTRA</div><img class="preview-logo" src="./assets/ai-ultra-logo.png" alt="AI Ultra"></div>
     <div class="preview-card-copy">
-      <h2 id="seo-title">ИИ для бизнеса</h2>
-      <div class="preview-lead" id="seo-lead">AI-агенты и автоматизация под ключ</div>
-      <p class="preview-body" id="seo-body">Внедряем AI-агентов и автоматизируем продажи, бухгалтерию, закупки, тендеры и другие бизнес-процессы. Интеграции с CRM, 1С и сервисами компании.</p>
+      <h2 id="seo-title">AI-сотрудники для взлёта ваших продаж</h2>
+      <div class="preview-lead" id="seo-lead">ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса</div>
+      <p class="preview-body" id="seo-body">Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.</p>
     </div>
-    <div class="preview-actions"><button type="button" id="seo-primary">Подобрать AI-решение</button><button type="button" id="seo-secondary">Смотреть решения</button></div>
+    <div class="preview-actions"><button type="button" id="seo-primary">Запустить проект</button><button type="button" id="seo-secondary">Смотреть решения</button></div>
   </section>
 </main>
 <nav class="preview-sections" aria-label="Первые SEO-карточки">
@@ -26,17 +41,17 @@
 <aside class="dev-panel"><h1>HOME SEO PREVIEW</h1><p>Первые карточки разложены по структуре главной страницы из MASTER SEO v2: Hero → AI-агенты → Автоматизация → Продажи → Отрасли → Интеграции → Кейсы → Стоимость → FAQ. Карточка 01 нужна как визуальный эталон для будущего растрового слоя.</p><a class="dev-link" href="./">← DEV меню</a></aside>
 <script>
 const cards=[
- {meta:'01',title:'ИИ для бизнеса',lead:'AI-агенты и автоматизация под ключ',body:'Внедряем AI-агентов и автоматизируем продажи, бухгалтерию, закупки, тендеры и другие бизнес-процессы. Интеграции с CRM, 1С и сервисами компании.',p:'Подобрать AI-решение',s:'Смотреть решения'},
- {meta:'AI-АГЕНТЫ 02',title:'AI-агенты для бизнеса',lead:'Создание и внедрение под задачи компании',body:'Продажи, CRM, поддержка, документы и бизнес-процессы. Интеграции, тестирование и сопровождение.',p:'Рассчитать AI-агента',s:'Возможности'},
- {meta:'АВТОМАТИЗАЦИЯ 03',title:'Автоматизация процессов',lead:'AI-агенты + CRM + 1С + API',body:'Продажи, документы, поддержка, закупки и аналитика — в единой автоматизированной системе.',p:'Найти процессы',s:'Как внедряем'},
- {meta:'ПРОДАЖИ 04',title:'AI для продаж',lead:'Обработка лидов и квалификация 24/7',body:'AI-продавец ведёт диалог, фиксирует данные в CRM и передаёт менеджеру готовый контекст.',p:'Рассчитать AI-продавца',s:'Сценарии'},
- {meta:'ОТРАСЛИ 05',title:'ИИ для отраслей',lead:'Сценарии под конкретный бизнес',body:'Бухгалтерия, строительство, закупки, тендеры и другие направления с отдельной логикой автоматизации.',p:'Выбрать отрасль',s:'Все решения'},
- {meta:'ИНТЕГРАЦИИ 06',title:'CRM, 1С и API',lead:'AI внутри существующей инфраструктуры',body:'CRM, телефония, сайт, Telegram, 1С, email и API — связываем данные и автоматические действия.',p:'Проверить интеграцию',s:'Системы'},
- {meta:'КЕЙСЫ 07',title:'Кейсы внедрения',lead:'Реальные процессы и измеримый эффект',body:'Показываем, как AI работает вместе с командой и какие изменения получает бизнес после внедрения.',p:'Смотреть кейсы',s:'Результаты'},
- {meta:'СТОИМОСТЬ 08',title:'Стоимость внедрения',lead:'Расчёт под задачу и архитектуру',body:'Цена зависит от сценария, интеграций, каналов и уровня автономности. Сначала считаем ожидаемый эффект.',p:'Получить расчёт',s:'Этапы'},
- {meta:'FAQ 09',title:'Вопросы и ответы',lead:'Как запускается AI в компании',body:'Что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый AI-сценарий.',p:'Задать вопрос',s:'FAQ'}
+ {meta:'AI ULTRA',title:'AI-сотрудники для взлёта ваших продаж',lead:'ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса',body:'Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.',p:'Запустить проект',s:'Смотреть решения'},
+ {meta:'GROWTH 02',title:'AI-агенты для бизнеса',lead:'ИИ / AI-сотрудники под задачи компании',body:'Продажи, CRM, поддержка, документы и бизнес-процессы. Интеграции, тестирование и сопровождение.',p:'Рассчитать AI-агента',s:'Возможности'},
+ {meta:'AUTOMATION 03',title:'Автоматизация процессов',lead:'ИИ + AI-агенты + CRM + 1С + API',body:'Автоматизируем продажи, документы, поддержку, закупки и аналитику в единой системе.',p:'Найти процессы',s:'Как внедряем'},
+ {meta:'SALES 04',title:'AI для продаж',lead:'Обработка лидов и квалификация 24/7',body:'AI-продавец ведёт диалог, фиксирует данные в CRM и передаёт менеджеру готовый контекст.',p:'Рассчитать AI-продавца',s:'Сценарии'},
+ {meta:'INDUSTRIES 05',title:'ИИ для отраслей',lead:'AI-сценарии под конкретный бизнес',body:'Бухгалтерия, строительство, закупки, тендеры и другие направления с отдельной логикой автоматизации.',p:'Выбрать отрасль',s:'Все решения'},
+ {meta:'INTEGRATIONS 06',title:'CRM, 1С и API',lead:'AI внутри существующей инфраструктуры',body:'CRM, телефония, сайт, Telegram, 1С, email и API — связываем данные и автоматические действия.',p:'Проверить интеграцию',s:'Системы'},
+ {meta:'CASES 07',title:'Кейсы внедрения',lead:'Реальные процессы и измеримый эффект',body:'Показываем, как ИИ и AI работают вместе с командой и какие изменения получает бизнес после внедрения.',p:'Смотреть кейсы',s:'Результаты'},
+ {meta:'PRICING 08',title:'Стоимость внедрения',lead:'Расчёт под задачу, интеграции и архитектуру',body:'Цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',p:'Получить расчёт',s:'Этапы'},
+ {meta:'FAQ 09',title:'Вопросы и ответы',lead:'Как запускается ИИ / AI в компании',body:'Что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый AI-сценарий.',p:'Задать вопрос',s:'FAQ'},
 ];
 const q=s=>document.querySelector(s); const qa=s=>[...document.querySelectorAll(s)];
-function show(i){const c=cards[i];q('#seo-meta').textContent=c.meta;q('#seo-title').textContent=c.title;q('#seo-lead').textContent=c.lead;q('#seo-body').textContent=c.body;q('#seo-primary').textContent=c.p;q('#seo-secondary').textContent=c.s;qa('.preview-sections button').forEach((b,n)=>b.classList.toggle('is-active',n===i));}
+function show(i){const c=cards[i];const card=q('#seo-card');const meta=q('#seo-meta');meta.textContent=c.meta;meta.classList.toggle('is-brand',i===0);card.classList.toggle('is-dense',[1,2,7].includes(i));card.dataset.cardIndex=String(i);q('#seo-title').textContent=c.title;q('#seo-lead').textContent=c.lead;q('#seo-body').textContent=c.body;q('#seo-primary').textContent=c.p;q('#seo-secondary').textContent=c.s;qa('.preview-sections button').forEach((b,n)=>b.classList.toggle('is-active',n===i));}
 qa('.preview-sections button').forEach(b=>b.addEventListener('click',()=>show(Number(b.dataset.i))));
 </script></body></html>
