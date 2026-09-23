@@ -90,13 +90,16 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 .core-card-logo{position:absolute;right:var(--logo-inset,18px);top:var(--logo-inset,18px);width:var(--logo-size,72px);height:var(--logo-size,72px);object-fit:contain;z-index:4;pointer-events:none;user-select:none;filter:drop-shadow(0 4px 14px rgba(0,0,0,.30)) drop-shadow(0 0 12px rgba(236,177,58,.10))}
 .core-card-title{overflow-wrap:normal;word-break:normal}
 
-/* v1.5.9.21 S — HERO RASTER MERGE. Physics untouched. */
-.core-card-hero-raster{display:none;position:absolute;left:50%;bottom:9%;width:80%;height:auto;max-height:70%;object-fit:contain;object-position:center bottom;transform:translateX(-50%);z-index:1;pointer-events:none;user-select:none;opacity:.98;filter:drop-shadow(0 14px 22px rgba(0,0,0,.32)) drop-shadow(0 0 14px rgba(234,176,59,.12));}
-.core-card-content.is-home-hero .core-card-hero-raster{display:block;}
-.core-card-content.is-home-hero .core-card-copy{position:relative;z-index:4;max-height:56%;}
+/* v1.5.9.22 S — HERO RASTER AS CARD BACKGROUND. Physics untouched. */
+.core-card-hero-raster{display:none;position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center center;transform:none;z-index:1;pointer-events:none;user-select:none;opacity:1;filter:saturate(1.03) contrast(1.02) drop-shadow(0 0 14px rgba(234,176,59,.08));}
+.core-card-hero-shade{display:none;position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(5,5,6,.78) 0%,rgba(5,5,6,.63) 18%,rgba(5,5,6,.26) 37%,rgba(5,5,6,.04) 56%,rgba(5,5,6,.13) 72%,rgba(5,5,6,.62) 100%),linear-gradient(90deg,rgba(5,5,6,.34) 0%,rgba(5,5,6,.13) 58%,rgba(5,5,6,.03) 100%);}
+.core-card-content.is-home-hero .core-card-hero-raster,.core-card-content.is-home-hero .core-card-hero-shade{display:block;}
+.core-card-content.is-home-hero .core-card-logo{z-index:6;}
+.core-card-content.is-home-hero .core-card-copy{position:relative;z-index:5;max-height:50%;text-shadow:0 2px 14px rgba(0,0,0,.82),0 1px 3px rgba(0,0,0,.94);}
+.core-card-content.is-home-hero.is-hero .core-card-copy{transform:translateY(-8px);}
 .core-card-content.is-home-hero .core-card-title{line-height:.98;}
-.core-card-content.is-home-hero .core-card-body{line-height:1.28;max-width:96%;}
-.core-card-content.is-home-hero .core-card-actions{position:relative;z-index:5;}
+.core-card-content.is-home-hero .core-card-body{line-height:1.26;max-width:94%;}
+.core-card-content.is-home-hero .core-card-actions{position:relative;z-index:6;text-shadow:none;}
 </style>
 </head>
 <body data-carousel-core="pure">
@@ -196,6 +199,7 @@ window.AIULTRA_CONTENT = Object.freeze([
     card.innerHTML = `
       <img class="core-card-logo" src="./assets/ai-ultra-logo.png" alt="AI Ultra">
       <img class="core-card-hero-raster" alt="AI-команда и роботы" aria-hidden="true">
+      <div class="core-card-hero-shade" aria-hidden="true"></div>
       <div class="core-card-copy">
         <span class="core-card-eyebrow"></span>
         <h2 class="core-card-title"></h2>
