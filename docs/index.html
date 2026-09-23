@@ -80,6 +80,15 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 
 
 
+
+/* v1.5.9.20 SEO hero / logo overlay. Carousel physics untouched. */
+.card-number{max-width:42%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase}
+.card-number.is-brand{font-size:clamp(13px,1.2vw,17px);letter-spacing:.12em;color:#fff3cf;min-width:auto}
+.core-card-content{overflow:hidden}
+.core-card-copy{padding-top:var(--copy-clearance,0px);overflow:hidden;max-height:calc(100% - 96px)}
+.core-card-eyebrow:empty{display:none}
+.core-card-logo{position:absolute;right:var(--logo-inset,18px);top:var(--logo-inset,18px);width:var(--logo-size,72px);height:var(--logo-size,72px);object-fit:contain;z-index:4;pointer-events:none;user-select:none;filter:drop-shadow(0 4px 14px rgba(0,0,0,.30)) drop-shadow(0 0 12px rgba(236,177,58,.10))}
+.core-card-title{overflow-wrap:normal;word-break:normal}
 </style>
 </head>
 <body data-carousel-core="pure">
@@ -103,11 +112,15 @@ window.addEventListener('unhandledrejection',event=>{
 <script>
 // Edit only content/labels/URLs here. No carousel physics live in this file.
 window.AIULTRA_CONTENT = Object.freeze([
-    {eyebrow:'AI ULTRA',title:'AI-сотрудники',body:'Тестовый контент для проверки композиции в чёрно-бело-золотой версии.',primary:'Открыть блок',secondary:'Подробнее'},
-    {eyebrow:'SYSTEM',title:'Продажи и CRM',body:'Проверяем как контент живёт внутри стекла и не выходит за строгую разметку.',primary:'Перейти',secondary:'Описание'},
-    {eyebrow:'AUTOMATION',title:'Автоматизация',body:'Переход остаётся внутри той же 3D-сцены. Карусель мягко продолжает движение.',primary:'Загрузить',secondary:'Детали'},
-    {eyebrow:'DIGITAL',title:'Маркетинг',body:'Во время условной загрузки сцена остаётся живой и плавно докручивается вперёд.',primary:'Следующий',secondary:'Открыть'},
-    {eyebrow:'WEBGL',title:'Интерактивный сайт',body:'Соседние карточки тоже показывают свой контент, но в строгих безопасных рамках.',primary:'Продолжить',secondary:'Обзор'}
+    {meta:'AI ULTRA',eyebrow:'',title:'AI-сотрудники для взлёта ваших продаж',body:'ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса — Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.',primary:'Запустить проект',secondary:'Смотреть решения'},
+    {meta:'GROWTH 02',eyebrow:'',title:'AI-агенты для бизнеса',body:'ИИ / AI-сотрудники под задачи компании — Продажи, CRM, поддержка, документы и бизнес-процессы. Интеграции, тестирование и сопровождение.',primary:'Рассчитать AI-агента',secondary:'Возможности'},
+    {meta:'AUTOMATION 03',eyebrow:'',title:'Автоматизация процессов',body:'ИИ + AI-агенты + CRM + 1С + API — Автоматизируем продажи, документы, поддержку, закупки и аналитику в единой системе.',primary:'Найти процессы',secondary:'Как внедряем'},
+    {meta:'SALES 04',eyebrow:'',title:'AI для продаж',body:'Обработка лидов и квалификация 24/7 — AI-продавец ведёт диалог, фиксирует данные в CRM и передаёт менеджеру готовый контекст.',primary:'Рассчитать AI-продавца',secondary:'Сценарии'},
+    {meta:'INDUSTRIES 05',eyebrow:'',title:'ИИ для отраслей',body:'AI-сценарии под конкретный бизнес — Бухгалтерия, строительство, закупки, тендеры и другие направления с отдельной логикой автоматизации.',primary:'Выбрать отрасль',secondary:'Все решения'},
+    {meta:'INTEGRATIONS 06',eyebrow:'',title:'CRM, 1С и API',body:'AI внутри существующей инфраструктуры — CRM, телефония, сайт, Telegram, 1С, email и API — связываем данные и автоматические действия.',primary:'Проверить интеграцию',secondary:'Системы'},
+    {meta:'CASES 07',eyebrow:'',title:'Кейсы внедрения',body:'Реальные процессы и измеримый эффект — Показываем, как ИИ и AI работают вместе с командой и какие изменения получает бизнес после внедрения.',primary:'Смотреть кейсы',secondary:'Результаты'},
+    {meta:'PRICING 08',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — Цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',primary:'Получить расчёт',secondary:'Этапы'},
+    {meta:'FAQ 09',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ / AI в компании — Что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый AI-сценарий.',primary:'Задать вопрос',secondary:'FAQ'},
 ]);
 
 </script>
@@ -121,11 +134,15 @@ window.AIULTRA_CONTENT = Object.freeze([
   const demoContent = Array.isArray(window.AIULTRA_CONTENT) && window.AIULTRA_CONTENT.length
     ? window.AIULTRA_CONTENT
     : [
-    {eyebrow:'AI ULTRA',title:'AI-сотрудники',body:'Тестовый контент для проверки композиции в чёрно-бело-золотой версии.',primary:'Открыть блок',secondary:'Подробнее'},
-    {eyebrow:'SYSTEM',title:'Продажи и CRM',body:'Проверяем как контент живёт внутри стекла и не выходит за строгую разметку.',primary:'Перейти',secondary:'Описание'},
-    {eyebrow:'AUTOMATION',title:'Автоматизация',body:'Переход остаётся внутри той же 3D-сцены. Карусель мягко продолжает движение.',primary:'Загрузить',secondary:'Детали'},
-    {eyebrow:'DIGITAL',title:'Маркетинг',body:'Во время условной загрузки сцена остаётся живой и плавно докручивается вперёд.',primary:'Следующий',secondary:'Открыть'},
-    {eyebrow:'WEBGL',title:'Интерактивный сайт',body:'Соседние карточки тоже показывают свой контент, но в строгих безопасных рамках.',primary:'Продолжить',secondary:'Обзор'}
+    {meta:'AI ULTRA',eyebrow:'',title:'AI-сотрудники для взлёта ваших продаж',body:'ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса — Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.',primary:'Запустить проект',secondary:'Смотреть решения'},
+    {meta:'GROWTH 02',eyebrow:'',title:'AI-агенты для бизнеса',body:'ИИ / AI-сотрудники под задачи компании — Продажи, CRM, поддержка, документы и бизнес-процессы. Интеграции, тестирование и сопровождение.',primary:'Рассчитать AI-агента',secondary:'Возможности'},
+    {meta:'AUTOMATION 03',eyebrow:'',title:'Автоматизация процессов',body:'ИИ + AI-агенты + CRM + 1С + API — Автоматизируем продажи, документы, поддержку, закупки и аналитику в единой системе.',primary:'Найти процессы',secondary:'Как внедряем'},
+    {meta:'SALES 04',eyebrow:'',title:'AI для продаж',body:'Обработка лидов и квалификация 24/7 — AI-продавец ведёт диалог, фиксирует данные в CRM и передаёт менеджеру готовый контекст.',primary:'Рассчитать AI-продавца',secondary:'Сценарии'},
+    {meta:'INDUSTRIES 05',eyebrow:'',title:'ИИ для отраслей',body:'AI-сценарии под конкретный бизнес — Бухгалтерия, строительство, закупки, тендеры и другие направления с отдельной логикой автоматизации.',primary:'Выбрать отрасль',secondary:'Все решения'},
+    {meta:'INTEGRATIONS 06',eyebrow:'',title:'CRM, 1С и API',body:'AI внутри существующей инфраструктуры — CRM, телефония, сайт, Telegram, 1С, email и API — связываем данные и автоматические действия.',primary:'Проверить интеграцию',secondary:'Системы'},
+    {meta:'CASES 07',eyebrow:'',title:'Кейсы внедрения',body:'Реальные процессы и измеримый эффект — Показываем, как ИИ и AI работают вместе с командой и какие изменения получает бизнес после внедрения.',primary:'Смотреть кейсы',secondary:'Результаты'},
+    {meta:'PRICING 08',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — Цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',primary:'Получить расчёт',secondary:'Этапы'},
+    {meta:'FAQ 09',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ / AI в компании — Что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый AI-сценарий.',primary:'Задать вопрос',secondary:'FAQ'},
       ];
 
   const layer = document.createElement('div');
@@ -137,6 +154,7 @@ window.AIULTRA_CONTENT = Object.freeze([
     card.className = 'core-card-content';
     card.dataset.overlayIndex = String(index);
     card.innerHTML = `
+      <img class="core-card-logo" src="./assets/ai-ultra-logo.png" alt="AI Ultra">
       <div class="core-card-copy">
         <span class="core-card-eyebrow"></span>
         <h2 class="core-card-title"></h2>
@@ -309,9 +327,9 @@ window.AIULTRA_CONTENT = Object.freeze([
     const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 
     const presets={
-      hero:{padX:.078,padTop:.12,padBottom:.064,title:[25,36],body:[11.5,13],eyebrow:[9,11],copyGap:[7,11],titleLines:2,bodyLines:4},
-      medium:{padX:.082,padTop:.115,padBottom:.060,title:[21,31],body:[10.5,12.2],eyebrow:[8.5,10],copyGap:[6,9],titleLines:2,bodyLines:4},
-      small:{padX:.088,padTop:.090,padBottom:.045,title:[15,23],body:[8.8,10.5],eyebrow:[7.4,8.9],copyGap:[4,7],titleLines:2,bodyLines:3},
+      hero:{padX:.078,padTop:.105,padBottom:.064,title:[24,34],body:[11.2,12.6],eyebrow:[9,11],copyGap:[7,10],titleLines:3,bodyLines:3},
+      medium:{padX:.082,padTop:.10,padBottom:.060,title:[20,29],body:[10.2,11.7],eyebrow:[8.5,10],copyGap:[6,8],titleLines:3,bodyLines:3},
+      small:{padX:.088,padTop:.082,padBottom:.045,title:[14.5,21.5],body:[8.5,9.9],eyebrow:[7.4,8.9],copyGap:[4,6],titleLines:2,bodyLines:2},
       micro:{padX:.095,padTop:.075,padBottom:.035,title:[12,18],body:[7.8,9.3],eyebrow:[6.8,8.0],copyGap:[3,5],titleLines:2,bodyLines:2}
     };
     const p=presets[mode];
@@ -354,6 +372,12 @@ window.AIULTRA_CONTENT = Object.freeze([
     node.style.setProperty('--copy-gap', `${m.copyGap.toFixed(2)}px`);
     node.style.setProperty('--title-lines', String(m.titleLines));
     node.style.setProperty('--body-lines', String(m.bodyLines));
+    const logoSize=Math.max(22,Math.min(bounds.width*.24,isHero?98:72));
+    const logoInset=Math.max(9,Math.min(bounds.width*.065,24));
+    const copyClearance=Math.max(22,Math.min(bounds.height*(isHero ? .14 : .10),isHero?92:58));
+    node.style.setProperty('--logo-size', `${logoSize.toFixed(1)}px`);
+    node.style.setProperty('--logo-inset', `${logoInset.toFixed(1)}px`);
+    node.style.setProperty('--copy-clearance', `${copyClearance.toFixed(1)}px`);
     node.style.zIndex = String(8400 + Math.max(0, Math.round(renderOrder)));
     node.dataset.mode=mode;
 
@@ -1931,8 +1955,12 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
         labelLocal.set(localX,CARD_HEIGHT*.5-CARD_NUMBER_PAD_Y,.004);
         card.updateMatrixWorld(true); labelPoint.copy(labelLocal); card.localToWorld(labelPoint); labelPoint.project(camera);
         if(labelPoint.z<-1||labelPoint.z>1){label.style.display='none';return}
-        // Every visible card keeps its own visible number, even during overlap.
-        label.textContent=String(contentSequenceFor(card.userData.sequenceNumber)); label.style.display='block';
+        // SEO header label follows the same top-left system as Cards Only.
+        const logical=contentSequenceFor(card.userData.sequenceNumber);
+        const source=Array.isArray(window.AIULTRA_CONTENT)&&window.AIULTRA_CONTENT.length?window.AIULTRA_CONTENT:null;
+        const meta=source?source[(logical-1)%source.length]?.meta:null;
+        label.textContent=meta||String(logical).padStart(2,'0'); label.style.display='block';
+        label.classList.toggle('is-brand',logical===1);
         label.classList.toggle('is-hero',card===heroCard);
         label.style.zIndex=String(card===heroCard?8300:(card.renderOrder>=SUPPORT_SECOND_RENDER_ORDER?8200:8100));
         label.style.transform=`translate(${Math.round((labelPoint.x*.5+.5)*innerWidth)}px,${Math.round((-labelPoint.y*.5+.5)*innerHeight)}px)`;
