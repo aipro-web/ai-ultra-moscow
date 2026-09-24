@@ -106,6 +106,14 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 .core-card-content.is-home-hero .core-card-copy{overflow:visible}
 .core-card-content.is-home-hero .core-card-lead{display:-webkit-box;position:relative;z-index:5;max-width:94%;color:#fffaf0;font:700 calc(var(--body-size,12px) * 1.16)/1.16 system-ui;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .core-card-content.is-home-hero .core-card-body{position:relative;z-index:5;transform:translateY(var(--hero-body-shift,140px))}
+
+/* v1.5.9.25 FIRST-SEVEN — readable seven-card intro. Carousel physics untouched. */
+.core-card-content.is-service-intro.is-support .core-card-title{line-height:1.01;font-weight:850}
+.core-card-content.is-service-intro.is-support .core-card-body{color:rgba(255,250,240,.92);font-weight:680;line-height:1.24}
+.core-card-content.is-service-intro.is-support .core-card-actions{gap:0}
+.core-card-content.is-home-hero.is-hero .core-card-lead{font-size:calc(var(--body-size,12px) * 1.28);font-weight:760;line-height:1.16;max-width:94%;color:#fff}
+.core-card-content.is-home-hero.is-hero .core-card-body{font-size:calc(var(--body-size,12px) * 1.16);font-weight:690;line-height:1.25;max-width:94%;color:rgba(255,250,240,.96)}
+.core-card-content.is-home-hero.is-support .core-card-body{transform:none}
 </style>
 </head>
 <body data-carousel-core="pure">
@@ -129,15 +137,15 @@ window.addEventListener('unhandledrejection',event=>{
 <script>
 // Edit only content/labels/URLs here. No carousel physics live in this file.
 window.AIULTRA_CONTENT = Object.freeze([
-    {meta:'AI ULTRA',eyebrow:'',title:'AI-сотрудники для взлёта ваших продаж',lead:'ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса',body:'Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.',primary:'Запустить проект',secondary:'Смотреть решения'},
-    {meta:'GROWTH 02',eyebrow:'',title:'AI-агенты для бизнеса',body:'ИИ / AI-сотрудники под задачи компании — Продажи, CRM, поддержка, документы и бизнес-процессы. Интеграции, тестирование и сопровождение.',primary:'Рассчитать AI-агента',secondary:'Возможности'},
-    {meta:'AUTOMATION 03',eyebrow:'',title:'Автоматизация процессов',body:'ИИ + AI-агенты + CRM + 1С + API — Автоматизируем продажи, документы, поддержку, закупки и аналитику в единой системе.',primary:'Найти процессы',secondary:'Как внедряем'},
-    {meta:'SALES 04',eyebrow:'',title:'AI для продаж',body:'Обработка лидов и квалификация 24/7 — AI-продавец ведёт диалог, фиксирует данные в CRM и передаёт менеджеру готовый контекст.',primary:'Рассчитать AI-продавца',secondary:'Сценарии'},
-    {meta:'INDUSTRIES 05',eyebrow:'',title:'ИИ для отраслей',body:'AI-сценарии под конкретный бизнес — Бухгалтерия, строительство, закупки, тендеры и другие направления с отдельной логикой автоматизации.',primary:'Выбрать отрасль',secondary:'Все решения'},
-    {meta:'INTEGRATIONS 06',eyebrow:'',title:'CRM, 1С и API',body:'AI внутри существующей инфраструктуры — CRM, телефония, сайт, Telegram, 1С, email и API — связываем данные и автоматические действия.',primary:'Проверить интеграцию',secondary:'Системы'},
-    {meta:'CASES 07',eyebrow:'',title:'Кейсы внедрения',body:'Реальные процессы и измеримый эффект — Показываем, как ИИ и AI работают вместе с командой и какие изменения получает бизнес после внедрения.',primary:'Смотреть кейсы',secondary:'Результаты'},
-    {meta:'PRICING 08',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — Цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',primary:'Получить расчёт',secondary:'Этапы'},
-    {meta:'FAQ 09',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ / AI в компании — Что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый AI-сценарий.',primary:'Задать вопрос',secondary:'FAQ'},
+    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи и подключаем CRM.',body:'Постоянная аналитика, обновляемый маркетинг, экосистема ИИ/AI-Агентов и многое другое — объединяем в одну систему роста для вашего бизнеса.',sideBody:'ИИ/AI-Решения под ключ для роста продаж и бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'СОТРУДНИКИ 02',eyebrow:'',title:'ИИ/AI-Сотрудники',body:'Цифровые сотрудники работают 24/7, берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',sideBody:'Работают 24/7 и усиливают вашу команду.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'АГЕНТЫ 03',eyebrow:'',title:'ИИ/AI-Агенты',body:'Самостоятельно выполняют цепочки задач, работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',sideBody:'Автономно выполняют цепочки бизнес-задач.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'ПРОДАЖНИКИ 04',eyebrow:'',title:'ИИ/AI-Продажники',body:'Обрабатывают лиды, квалифицируют клиентов, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',sideBody:'Лиды, квалификация, диалоги и CRM 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'ЗВОНКИ 05',eyebrow:'',title:'ИИ/AI-Звонки',body:'Входящие и исходящие звонки, первичная квалификация, напоминания, сопровождение клиента и автоматическая фиксация результата разговора.',sideBody:'Входящие и исходящие звонки без потери лидов.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'АНАЛИЗ 06',eyebrow:'',title:'ИИ/AI-Анализ звонков',body:'Постоянно анализируем разговоры: ошибки менеджеров, возражения клиентов, качество коммуникации, конверсию и точки роста отдела продаж.',sideBody:'Ошибки, возражения и точки роста продаж.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'АВТОМАТИЗАЦИЯ 07',eyebrow:'',title:'ИИ/AI-Автоматизация бизнес-процессов',body:'Связываем CRM, 1С, документы, продажи, поддержку, закупки, аналитику и другие процессы в единую автоматизированную экосистему.',sideBody:'Автоматизация любых бизнес-процессов в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'PRICING 08',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',sideBody:'Расчёт стоимости под задачу и архитектуру.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'FAQ 09',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ/AI в компании: что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый ИИ/AI-Сценарий.',sideBody:'Как запускается ИИ/AI в вашей компании.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
 ]);
 
 </script>
@@ -151,15 +159,15 @@ window.AIULTRA_CONTENT = Object.freeze([
   const demoContent = Array.isArray(window.AIULTRA_CONTENT) && window.AIULTRA_CONTENT.length
     ? window.AIULTRA_CONTENT
     : [
-    {meta:'AI ULTRA',eyebrow:'',title:'AI-сотрудники для взлёта ваших продаж',lead:'ИИ / AI-агенты для продаж, маркетинга, CRM и автоматизации бизнеса',body:'Внедряем ИИ и AI-решения под ключ: автоматизируем процессы, усиливаем продажи и подключаем CRM, аналитику и маркетинг в единую систему роста.',primary:'Запустить проект',secondary:'Смотреть решения'},
-    {meta:'GROWTH 02',eyebrow:'',title:'AI-агенты для бизнеса',body:'ИИ / AI-сотрудники под задачи компании — Продажи, CRM, поддержка, документы и бизнес-процессы. Интеграции, тестирование и сопровождение.',primary:'Рассчитать AI-агента',secondary:'Возможности'},
-    {meta:'AUTOMATION 03',eyebrow:'',title:'Автоматизация процессов',body:'ИИ + AI-агенты + CRM + 1С + API — Автоматизируем продажи, документы, поддержку, закупки и аналитику в единой системе.',primary:'Найти процессы',secondary:'Как внедряем'},
-    {meta:'SALES 04',eyebrow:'',title:'AI для продаж',body:'Обработка лидов и квалификация 24/7 — AI-продавец ведёт диалог, фиксирует данные в CRM и передаёт менеджеру готовый контекст.',primary:'Рассчитать AI-продавца',secondary:'Сценарии'},
-    {meta:'INDUSTRIES 05',eyebrow:'',title:'ИИ для отраслей',body:'AI-сценарии под конкретный бизнес — Бухгалтерия, строительство, закупки, тендеры и другие направления с отдельной логикой автоматизации.',primary:'Выбрать отрасль',secondary:'Все решения'},
-    {meta:'INTEGRATIONS 06',eyebrow:'',title:'CRM, 1С и API',body:'AI внутри существующей инфраструктуры — CRM, телефония, сайт, Telegram, 1С, email и API — связываем данные и автоматические действия.',primary:'Проверить интеграцию',secondary:'Системы'},
-    {meta:'CASES 07',eyebrow:'',title:'Кейсы внедрения',body:'Реальные процессы и измеримый эффект — Показываем, как ИИ и AI работают вместе с командой и какие изменения получает бизнес после внедрения.',primary:'Смотреть кейсы',secondary:'Результаты'},
-    {meta:'PRICING 08',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — Цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',primary:'Получить расчёт',secondary:'Этапы'},
-    {meta:'FAQ 09',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ / AI в компании — Что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый AI-сценарий.',primary:'Задать вопрос',secondary:'FAQ'},
+    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи и подключаем CRM.',body:'Постоянная аналитика, обновляемый маркетинг, экосистема ИИ/AI-Агентов и многое другое — объединяем в одну систему роста для вашего бизнеса.',sideBody:'ИИ/AI-Решения под ключ для роста продаж и бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'СОТРУДНИКИ 02',eyebrow:'',title:'ИИ/AI-Сотрудники',body:'Цифровые сотрудники работают 24/7, берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',sideBody:'Работают 24/7 и усиливают вашу команду.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'АГЕНТЫ 03',eyebrow:'',title:'ИИ/AI-Агенты',body:'Самостоятельно выполняют цепочки задач, работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',sideBody:'Автономно выполняют цепочки бизнес-задач.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'ПРОДАЖНИКИ 04',eyebrow:'',title:'ИИ/AI-Продажники',body:'Обрабатывают лиды, квалифицируют клиентов, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',sideBody:'Лиды, квалификация, диалоги и CRM 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'ЗВОНКИ 05',eyebrow:'',title:'ИИ/AI-Звонки',body:'Входящие и исходящие звонки, первичная квалификация, напоминания, сопровождение клиента и автоматическая фиксация результата разговора.',sideBody:'Входящие и исходящие звонки без потери лидов.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'АНАЛИЗ 06',eyebrow:'',title:'ИИ/AI-Анализ звонков',body:'Постоянно анализируем разговоры: ошибки менеджеров, возражения клиентов, качество коммуникации, конверсию и точки роста отдела продаж.',sideBody:'Ошибки, возражения и точки роста продаж.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'АВТОМАТИЗАЦИЯ 07',eyebrow:'',title:'ИИ/AI-Автоматизация бизнес-процессов',body:'Связываем CRM, 1С, документы, продажи, поддержку, закупки, аналитику и другие процессы в единую автоматизированную экосистему.',sideBody:'Автоматизация любых бизнес-процессов в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'PRICING 08',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',sideBody:'Расчёт стоимости под задачу и архитектуру.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'FAQ 09',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ/AI в компании: что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый ИИ/AI-Сценарий.',sideBody:'Как запускается ИИ/AI в вашей компании.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
       ];
 
 
@@ -404,11 +412,18 @@ window.AIULTRA_CONTENT = Object.freeze([
   }
 
   function applyOverlayContent(node, item, bounds, { isHero, sequence, renderOrder = 0 }) {
+    const logical=contentSequenceFor(sequence);
+    const isServiceIntro=logical>=1 && logical<=7;
+    const displayBody=(!isHero && item.sideBody) ? item.sideBody : item.body;
     node.querySelector('.core-card-eyebrow').textContent = item.eyebrow;
     node.querySelector('.core-card-title').textContent = item.title;
     const leadNode=node.querySelector('.core-card-lead');
-    if(leadNode){ leadNode.textContent=item.lead||''; leadNode.style.display=item.lead?'':'none'; }
-    node.querySelector('.core-card-body').textContent = item.body;
+    if(leadNode){
+      const showLead=isHero && !!item.lead;
+      leadNode.textContent=showLead ? item.lead : '';
+      leadNode.style.display=showLead ? '' : 'none';
+    }
+    node.querySelector('.core-card-body').textContent = displayBody;
     node.querySelector('.core-card-button-primary').textContent = item.primary;
     node.querySelector('.core-card-button-secondary').textContent = item.secondary;
 
@@ -422,11 +437,13 @@ window.AIULTRA_CONTENT = Object.freeze([
     node.style.padding = `${Math.round(m.padTop)}px ${Math.round(m.padX)}px ${Math.round(m.padBottom)}px`;
     node.style.setProperty('--card-radius', `${m.radius.toFixed(1)}px`);
     node.style.setProperty('--eyebrow-size', `${m.eyebrow.toFixed(2)}px`);
-    node.style.setProperty('--title-size', `${m.title.toFixed(2)}px`);
-    node.style.setProperty('--body-size', `${m.body.toFixed(2)}px`);
+    const supportTitle=isServiceIntro && !isHero ? m.title*1.06 : m.title;
+    const supportBody=isServiceIntro && !isHero ? m.body*1.12 : m.body;
+    node.style.setProperty('--title-size', `${supportTitle.toFixed(2)}px`);
+    node.style.setProperty('--body-size', `${supportBody.toFixed(2)}px`);
     node.style.setProperty('--copy-gap', `${m.copyGap.toFixed(2)}px`);
-    node.style.setProperty('--title-lines', String(m.titleLines));
-    node.style.setProperty('--body-lines', String(m.bodyLines));
+    node.style.setProperty('--title-lines', String(isServiceIntro && !isHero ? 3 : m.titleLines));
+    node.style.setProperty('--body-lines', String(isServiceIntro && !isHero ? 2 : m.bodyLines));
     const logoSize=Math.max(22,Math.min(bounds.width*.24,isHero?98:72));
     const logoInset=Math.max(9,Math.min(bounds.width*.065,24));
     const isHomeHero=contentSequenceFor(sequence)===1;
@@ -444,6 +461,7 @@ window.AIULTRA_CONTENT = Object.freeze([
     node.classList.toggle('is-hero', isHero);
     node.classList.toggle('is-support', !isHero);
     node.classList.toggle('is-home-hero', isHomeHero);
+    node.classList.toggle('is-service-intro', isServiceIntro);
     const heroRaster=node.querySelector('.core-card-hero-raster');
     if(heroRaster && !heroRaster.src) heroRaster.src=AI_ULTRA_HERO_RASTER_READY;
     node.classList.toggle('is-loading', routeLoading && routeTarget === sequence);
@@ -452,7 +470,7 @@ window.AIULTRA_CONTENT = Object.freeze([
     // adapt to the actual projected card bounds.
     node.querySelector('.core-card-body').style.display = '';
     node.querySelector('.core-card-button-primary').style.display = '';
-    node.querySelector('.core-card-button-secondary').style.display = '';
+    node.querySelector('.core-card-button-secondary').style.display = isHero ? '' : 'none';
 
     node.dataset.primaryTarget = String(isHero ? targetAfter(sequence, 4) : sequence);
     node.dataset.secondaryTarget = String(targetAfter(sequence, 1));
@@ -461,7 +479,7 @@ window.AIULTRA_CONTENT = Object.freeze([
 
   function hideUnusedOverlays(startIndex = 0) {
     for (let i = startIndex; i < overlayPool.length; i++) {
-      overlayPool[i].classList.remove('is-visible', 'is-loading', 'is-hero', 'is-support', 'is-compact', 'is-home-hero');
+      overlayPool[i].classList.remove('is-visible', 'is-loading', 'is-hero', 'is-support', 'is-compact', 'is-home-hero', 'is-service-intro');
       delete overlayPool[i].dataset.mode;
     }
   }
