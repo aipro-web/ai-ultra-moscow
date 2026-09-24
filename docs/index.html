@@ -114,6 +114,12 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 .core-card-content.is-home-hero.is-hero .core-card-lead{font-size:calc(var(--body-size,12px) * 1.28);font-weight:760;line-height:1.16;max-width:94%;color:#fff}
 .core-card-content.is-home-hero.is-hero .core-card-body{font-size:calc(var(--body-size,12px) * 1.16);font-weight:690;line-height:1.25;max-width:94%;color:rgba(255,250,240,.96)}
 .core-card-content.is-home-hero.is-support .core-card-body{transform:none}
+
+/* v1.5.9.26 CTA SYSTEM + CONTINUATION MARK. Physics untouched. */
+:root{--ai-cta-border:conic-gradient(from 215deg,#fff8df 0deg,#d99a27 46deg,#fff1bc 92deg,#b96f12 138deg,#ffe5a1 184deg,#fff8dd 230deg,#cf8b20 276deg,#fff0b5 322deg,#fff8df 360deg)}
+.core-card-button-primary{border:1px solid transparent;background:linear-gradient(rgba(7,7,9,.18),rgba(7,7,9,.18)) padding-box,var(--ai-cta-border) border-box;color:#fff7e4;text-shadow:0 1px 8px rgba(0,0,0,.60);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 14px rgba(213,157,49,.12),0 8px 22px rgba(0,0,0,.22)}
+.core-card-button-secondary{border:1px solid transparent;background:linear-gradient(145deg,rgba(30,25,17,.88),rgba(8,8,9,.90) 48%,rgba(96,58,8,.62)) padding-box,var(--ai-cta-border) border-box;color:#fff1ca;text-shadow:0 1px 8px rgba(0,0,0,.62);box-shadow:inset 0 0 22px rgba(255,220,138,.10),0 0 22px rgba(213,157,49,.20),0 10px 26px rgba(0,0,0,.30)}
+.core-card-button-primary:hover,.core-card-button-secondary:hover{border-color:transparent;box-shadow:inset 0 0 24px rgba(255,225,153,.11),0 0 28px rgba(226,173,62,.28),0 12px 30px rgba(0,0,0,.30)}
 </style>
 </head>
 <body data-carousel-core="pure">
@@ -137,7 +143,7 @@ window.addEventListener('unhandledrejection',event=>{
 <script>
 // Edit only content/labels/URLs here. No carousel physics live in this file.
 window.AIULTRA_CONTENT = Object.freeze([
-    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи и подключаем CRM.',body:'Постоянная аналитика, обновляемый маркетинг, экосистема ИИ/AI-Агентов и многое другое — объединяем в одну систему роста для вашего бизнеса.',sideBody:'ИИ/AI-Решения под ключ для роста продаж и бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи и подключаем CRM.',body:'… Постоянная аналитика, обновляемый маркетинг, экосистема ИИ/AI-Агентов и многое другое — объединяем в одну систему роста для вашего бизнеса.',sideBody:'ИИ/AI-Решения под ключ для роста продаж и бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
     {meta:'СОТРУДНИКИ 02',eyebrow:'',title:'ИИ/AI-Сотрудники',body:'Цифровые сотрудники работают 24/7, берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',sideBody:'Работают 24/7 и усиливают вашу команду.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
     {meta:'АГЕНТЫ 03',eyebrow:'',title:'ИИ/AI-Агенты',body:'Самостоятельно выполняют цепочки задач, работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',sideBody:'Автономно выполняют цепочки бизнес-задач.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
     {meta:'ПРОДАЖНИКИ 04',eyebrow:'',title:'ИИ/AI-Продажники',body:'Обрабатывают лиды, квалифицируют клиентов, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',sideBody:'Лиды, квалификация, диалоги и CRM 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
@@ -159,7 +165,7 @@ window.AIULTRA_CONTENT = Object.freeze([
   const demoContent = Array.isArray(window.AIULTRA_CONTENT) && window.AIULTRA_CONTENT.length
     ? window.AIULTRA_CONTENT
     : [
-    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи и подключаем CRM.',body:'Постоянная аналитика, обновляемый маркетинг, экосистема ИИ/AI-Агентов и многое другое — объединяем в одну систему роста для вашего бизнеса.',sideBody:'ИИ/AI-Решения под ключ для роста продаж и бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи и подключаем CRM.',body:'… Постоянная аналитика, обновляемый маркетинг, экосистема ИИ/AI-Агентов и многое другое — объединяем в одну систему роста для вашего бизнеса.',sideBody:'ИИ/AI-Решения под ключ для роста продаж и бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
     {meta:'СОТРУДНИКИ 02',eyebrow:'',title:'ИИ/AI-Сотрудники',body:'Цифровые сотрудники работают 24/7, берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',sideBody:'Работают 24/7 и усиливают вашу команду.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
     {meta:'АГЕНТЫ 03',eyebrow:'',title:'ИИ/AI-Агенты',body:'Самостоятельно выполняют цепочки задач, работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',sideBody:'Автономно выполняют цепочки бизнес-задач.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
     {meta:'ПРОДАЖНИКИ 04',eyebrow:'',title:'ИИ/AI-Продажники',body:'Обрабатывают лиды, квалифицируют клиентов, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',sideBody:'Лиды, квалификация, диалоги и CRM 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
