@@ -49,6 +49,10 @@
 :root{--ai-cta-border:conic-gradient(from 215deg,#fff8df 0deg,#d99a27 46deg,#fff1bc 92deg,#b96f12 138deg,#ffe5a1 184deg,#fff8dd 230deg,#cf8b20 276deg,#fff0b5 322deg,#fff8df 360deg)}
 .preview-actions button:first-child{border:1px solid rgba(255,255,255,.30);background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.065));color:#fffaf0;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 0 18px rgba(255,255,255,.035),0 8px 22px rgba(0,0,0,.22);backdrop-filter:blur(14px) saturate(.80);-webkit-backdrop-filter:blur(14px) saturate(.80)}
 .preview-actions button:last-child{border:1px solid rgba(255,236,191,.78);background:linear-gradient(135deg,#fff0bd 0%,#e3b455 34%,#a96712 68%,#f2cf76 100%);color:#1b1205;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -8px 18px rgba(104,56,4,.18),0 0 22px rgba(226,173,62,.34),0 10px 26px rgba(0,0,0,.30)}
+
+/* v1.5.9.28 RASTER CORNER HARD-CLIP — no square raster corners. */
+.preview-card[data-card-index="0"]{overflow:hidden}
+.preview-card[data-card-index="0"] .preview-hero-raster,.preview-card[data-card-index="0"] .preview-hero-shade{border-radius:42px;clip-path:inset(0 round 42px)}
 </style></head><body>
 <main class="preview-stage">
   <section class="preview-card" id="seo-card" data-card-index="0">
