@@ -91,8 +91,8 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 .core-card-title{overflow-wrap:normal;word-break:normal}
 
 /* v1.5.9.22 S — HERO RASTER AS CARD BACKGROUND. Physics untouched. */
-.core-card-hero-raster{display:none;position:absolute;inset:2px;width:calc(100% - 4px);height:calc(100% - 4px);max-height:none;object-fit:cover;object-position:center center;transform:none;z-index:1;pointer-events:none;user-select:none;opacity:1;border-radius:42px;clip-path:inset(0 round 42px);filter:saturate(1.03) contrast(1.02) drop-shadow(0 0 14px rgba(234,176,59,.08));}
-.core-card-hero-shade{display:none;position:absolute;inset:2px;z-index:2;pointer-events:none;border-radius:42px;clip-path:inset(0 round 42px);background:linear-gradient(180deg,rgba(5,5,6,.78) 0%,rgba(5,5,6,.63) 18%,rgba(5,5,6,.26) 37%,rgba(5,5,6,.04) 56%,rgba(5,5,6,.13) 72%,rgba(5,5,6,.62) 100%),linear-gradient(90deg,rgba(5,5,6,.34) 0%,rgba(5,5,6,.13) 58%,rgba(5,5,6,.03) 100%);}
+.core-card-hero-raster{display:none;position:absolute;inset:2px;width:calc(100% - 4px);height:calc(100% - 4px);max-height:none;object-fit:cover;object-position:center center;transform:none;z-index:1;pointer-events:none;user-select:none;opacity:1;border-radius:calc(var(--card-radius,42px) - 2px);clip-path:inset(0 round calc(var(--card-radius,42px) - 2px));filter:saturate(1.03) contrast(1.02) drop-shadow(0 0 14px rgba(234,176,59,.08));}
+.core-card-hero-shade{display:none;position:absolute;inset:2px;z-index:2;pointer-events:none;border-radius:calc(var(--card-radius,42px) - 2px);clip-path:inset(0 round calc(var(--card-radius,42px) - 2px));background:linear-gradient(180deg,rgba(5,5,6,.78) 0%,rgba(5,5,6,.63) 18%,rgba(5,5,6,.26) 37%,rgba(5,5,6,.04) 56%,rgba(5,5,6,.13) 72%,rgba(5,5,6,.62) 100%),linear-gradient(90deg,rgba(5,5,6,.34) 0%,rgba(5,5,6,.13) 58%,rgba(5,5,6,.03) 100%);}
 .core-card-content.is-home-hero .core-card-hero-raster,.core-card-content.is-home-hero .core-card-hero-shade{display:block;}
 .core-card-content.is-home-hero .core-card-logo{z-index:6;}
 .core-card-content.is-home-hero .core-card-copy{position:relative;z-index:5;max-height:50%;text-shadow:0 2px 14px rgba(0,0,0,.82),0 1px 3px rgba(0,0,0,.94);}
@@ -121,6 +121,9 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 .core-card-button-secondary{border:1px solid rgba(255,236,191,.78);background:linear-gradient(135deg,#fff0bd 0%,#e3b455 34%,#a96712 68%,#f2cf76 100%);color:#1b1205;text-shadow:0 1px 0 rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -8px 18px rgba(104,56,4,.18),0 0 22px rgba(226,173,62,.34),0 10px 26px rgba(0,0,0,.30)}
 .core-card-button-primary:hover{border-color:rgba(255,255,255,.42);background:linear-gradient(180deg,rgba(255,255,255,.21),rgba(255,255,255,.09));box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 0 20px rgba(255,255,255,.08),0 10px 26px rgba(0,0,0,.28)}
 .core-card-button-secondary:hover{border-color:rgba(255,246,215,.95);box-shadow:inset 0 1px 0 rgba(255,255,255,.68),0 0 30px rgba(226,173,62,.50),0 12px 30px rgba(0,0,0,.30)}
+
+/* v1.5.9.28 RUNTIME HOTFIX — scoped overlay mapping + raster corner hard-clip. */
+.core-card-content.is-home-hero{overflow:hidden}
 </style>
 </head>
 <body data-carousel-core="pure">
@@ -336,6 +339,12 @@ window.AIULTRA_CONTENT = Object.freeze([
     return demoContent[(Math.max(1, Number(sequence) || 1) - 1) % demoContent.length];
   }
 
+  // v1.5.9.28 RUNTIME HOTFIX — overlay script must not call the module-scoped
+  // contentSequenceFor(). Keep an equivalent local mapping for DOM overlays.
+  function overlayContentSequenceFor(sequence) {
+    return Math.max(1, Math.min(500, Math.round(Number(sequence) || 1)));
+  }
+
   function targetAfter(sequence, amount = 1) {
     const n = Math.max(1, Math.round(Number(sequence) || 1));
     return ((n - 1 + amount) % 500) + 1;
@@ -419,7 +428,7 @@ window.AIULTRA_CONTENT = Object.freeze([
   }
 
   function applyOverlayContent(node, item, bounds, { isHero, sequence, renderOrder = 0 }) {
-    const logical=contentSequenceFor(sequence);
+    const logical=overlayContentSequenceFor(sequence);
     const isServiceIntro=logical>=1 && logical<=7;
     const displayBody=(!isHero && item.sideBody) ? item.sideBody : item.body;
     node.querySelector('.core-card-eyebrow').textContent = item.eyebrow;
@@ -453,7 +462,7 @@ window.AIULTRA_CONTENT = Object.freeze([
     node.style.setProperty('--body-lines', String(isServiceIntro && !isHero ? 2 : m.bodyLines));
     const logoSize=Math.max(22,Math.min(bounds.width*.24,isHero?98:72));
     const logoInset=Math.max(9,Math.min(bounds.width*.065,24));
-    const isHomeHero=contentSequenceFor(sequence)===1;
+    const isHomeHero=overlayContentSequenceFor(sequence)===1;
     const copyClearance=isHomeHero
       ? Math.max(14,Math.min(bounds.height*(isHero ? .065 : .055),isHero?48:32))
       : Math.max(22,Math.min(bounds.height*(isHero ? .14 : .10),isHero?92:58));
