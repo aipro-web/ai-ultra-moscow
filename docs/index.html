@@ -869,6 +869,32 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
     }
     const edgeGeometry=new THREE.EdgesGeometry(baseGeometry,24);
 
+    // v1.5.9.31 — exact Cards Only 2px LED contour as a real mesh band.
+    // Only the physical outline changes here; the carousel bloom/light layer stays untouched.
+    const LED_BORDER_WIDTH=CARD_WIDTH*(2/360);
+    function roundedRectHolePathCW(w,h,r){
+      const x=-w/2,y=-h/2; r=Math.min(r,w/2,h/2);
+      const p=new THREE.Path();
+      p.moveTo(x+w-r,y);
+      p.lineTo(x+r,y);
+      p.quadraticCurveTo(x,y,x,y+r);
+      p.lineTo(x,y+h-r);
+      p.quadraticCurveTo(x,y+h,x+r,y+h);
+      p.lineTo(x+w-r,y+h);
+      p.quadraticCurveTo(x+w,y+h,x+w,y+h-r);
+      p.lineTo(x+w,y+r);
+      p.quadraticCurveTo(x+w,y,x+w-r,y);
+      p.closePath();
+      return p;
+    }
+    const ledPerimeterShape=roundedRectShape(CARD_WIDTH,CARD_HEIGHT,CARD_RADIUS);
+    ledPerimeterShape.holes.push(roundedRectHolePathCW(
+      CARD_WIDTH-LED_BORDER_WIDTH*2,
+      CARD_HEIGHT-LED_BORDER_WIDTH*2,
+      Math.max(.001,CARD_RADIUS-LED_BORDER_WIDTH)
+    ));
+    const ledPerimeterGeometry=new THREE.ShapeGeometry(ledPerimeterShape,16);
+
     // v1.5.9.30 — split visual outline from emitted light.
     // The bloom/glow below is restored to the original carousel material so the amount and character
     // of light emitted into the scene stay unchanged. A separate non-bloom line carries ONLY the
@@ -912,6 +938,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
         transparent:true,
         depthWrite:false,
         depthTest:false,
+        side:THREE.DoubleSide,
         blending:THREE.NormalBlending,
         toneMapped:false,
         vertexShader:`
@@ -923,25 +950,33 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
           }`,
         fragmentShader:`
           varying vec2 vEdgeLocal;
-          vec3 aiPalette(float t){
-            float s=clamp(t,0.,.999999)*8.;
-            if(s<1.) return mix(vec3(1.000,.973,.875),vec3(.851,.604,.153),s);
-            if(s<2.) return mix(vec3(.851,.604,.153),vec3(1.000,.945,.737),s-1.);
-            if(s<3.) return mix(vec3(1.000,.945,.737),vec3(.725,.435,.071),s-2.);
-            if(s<4.) return mix(vec3(.725,.435,.071),vec3(1.000,.898,.631),s-3.);
-            if(s<5.) return mix(vec3(1.000,.898,.631),vec3(1.000,.973,.867),s-4.);
-            if(s<6.) return mix(vec3(1.000,.973,.867),vec3(.812,.545,.125),s-5.);
-            if(s<7.) return mix(vec3(.812,.545,.125),vec3(1.000,.941,.710),s-6.);
-            return mix(vec3(1.000,.941,.710),vec3(1.000,.973,.875),s-7.);
+          vec3 c0=vec3(1.000000,.972549,.874510); // #fff8df
+          vec3 c1=vec3(.850980,.603922,.152941); // #d99a27
+          vec3 c2=vec3(1.000000,.945098,.737255); // #fff1bc
+          vec3 c3=vec3(.725490,.435294,.070588); // #b96f12
+          vec3 c4=vec3(1.000000,.898039,.631373); // #ffe5a1
+          vec3 c5=vec3(1.000000,.972549,.866667); // #fff8dd
+          vec3 c6=vec3(.811765,.545098,.125490); // #cf8b20
+          vec3 c7=vec3(1.000000,.941176,.709804); // #fff0b5
+          vec3 aiPaletteDeg(float d){
+            d=mod(d+360.0,360.0);
+            if(d<46.0)  return mix(c0,c1,d/46.0);
+            if(d<92.0)  return mix(c1,c2,(d-46.0)/46.0);
+            if(d<138.0) return mix(c2,c3,(d-92.0)/46.0);
+            if(d<184.0) return mix(c3,c4,(d-138.0)/46.0);
+            if(d<230.0) return mix(c4,c5,(d-184.0)/46.0);
+            if(d<276.0) return mix(c5,c6,(d-230.0)/46.0);
+            if(d<322.0) return mix(c6,c7,(d-276.0)/46.0);
+            return mix(c7,c0,(d-322.0)/38.0);
           }
           void main(){
-            float nx=clamp(vEdgeLocal.x/${(9/16/2).toFixed(8)},-1.,1.);
-            float ny=clamp(vEdgeLocal.y/${(1/2).toFixed(8)},-1.,1.);
-            float a=atan(ny,nx)/6.28318530718;
-            float t=fract(a-(215.0/360.0)+1.0);
-            vec3 grad=aiPalette(t);
-            // Keep RGB at/below 1.0 so UnrealBloomPass does not treat this line as a new light source.
-            gl_FragColor=vec4(grad,.98);
+            float nx=vEdgeLocal.x/${(9/16/2).toFixed(8)};
+            float ny=vEdgeLocal.y/${(1/2).toFixed(8)};
+            // CSS conic-gradient: 0deg = top, positive rotation = clockwise.
+            float cssDeg=degrees(1.57079632679-atan(ny,nx));
+            float gradientDeg=mod(cssDeg-215.0+360.0,360.0);
+            vec3 grad=aiPaletteDeg(gradientDeg);
+            gl_FragColor=vec4(grad,1.0);
           }`
       });
     }
@@ -1271,7 +1306,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
       const activeCards=[];
       for(let i=0;i<ACTIVE_CARD_COUNT;i++){
         const card=new THREE.Mesh(baseGeometry,overlayGlass);
-        const border=new THREE.LineSegments(edgeGeometry,overlayEdge); border.position.z=.0046; border.renderOrder=5002; card.add(border);
+        const border=new THREE.Mesh(ledPerimeterGeometry,overlayEdge); border.position.z=.0046; border.renderOrder=5002; card.add(border);
         const edgeGlow=new THREE.LineSegments(edgeGeometry,bloomEdgeSupportMaterial); edgeGlow.position.z=.0032; edgeGlow.renderOrder=5001; card.add(edgeGlow);
         const backFace=new THREE.Mesh(baseGeometry,backGlass); backFace.position.z=-.002; card.add(backFace);
         const label=document.createElement('div'); label.className='card-number'; document.body.appendChild(label);
