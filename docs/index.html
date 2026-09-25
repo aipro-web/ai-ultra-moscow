@@ -125,6 +125,22 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 /* v1.5.9.28 RUNTIME HOTFIX — scoped overlay mapping + raster corner hard-clip. */
 .core-card-content.is-home-hero{overflow:hidden}
 
+/* v1.5.9.32 — VISIBLE Cards Only LED on the actual DOM card surface.
+   Exact Cards Only conic palette; no shadow/bloom added here. Native carousel light emission stays untouched. */
+.core-card-content::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:30;
+  pointer-events:none;
+  border-radius:var(--card-radius,28px);
+  padding:2px;
+  background:conic-gradient(from 215deg,#fff8df 0deg,#d99a27 46deg,#fff1bc 92deg,#b96f12 138deg,#ffe5a1 184deg,#fff8dd 230deg,#cf8b20 276deg,#fff0b5 322deg,#fff8df 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+}
 /* v1.5.9.30 — outline-only Cards Only gradient; carousel bloom/light emission preserved. */
 /* v1.5.9.29 — seven-card progressive disclosure + Cards Only labels. */
 .card-number,.card-number.is-hero,.card-number.is-brand{
@@ -1306,7 +1322,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
       const activeCards=[];
       for(let i=0;i<ACTIVE_CARD_COUNT;i++){
         const card=new THREE.Mesh(baseGeometry,overlayGlass);
-        const border=new THREE.Mesh(ledPerimeterGeometry,overlayEdge); border.position.z=.0046; border.renderOrder=5002; card.add(border);
+        const border=new THREE.Mesh(ledPerimeterGeometry,overlayEdge); border.position.z=.0046; border.renderOrder=5002; border.visible=false; card.add(border);
         const edgeGlow=new THREE.LineSegments(edgeGeometry,bloomEdgeSupportMaterial); edgeGlow.position.z=.0032; edgeGlow.renderOrder=5001; card.add(edgeGlow);
         const backFace=new THREE.Mesh(baseGeometry,backGlass); backFace.position.z=-.002; card.add(backFace);
         const label=document.createElement('div'); label.className='card-number'; document.body.appendChild(label);
@@ -1780,7 +1796,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
           const step=card.userData.sequenceStep;
           // Native 3D glass remains the physical card; the hero raster is clipped inside the DOM content layer.
           if(card.material!==overlayGlass) card.material=overlayGlass;
-          if(card.children[0]) card.children[0].visible=true;
+          if(card.children[0]) card.children[0].visible=false;
           if(card.userData.edgeGlow){
             card.userData.edgeGlow.visible=true;
             card.userData.edgeGlow.material=card===heroCard?bloomEdgeHeroMaterial:bloomEdgeSupportMaterial;
