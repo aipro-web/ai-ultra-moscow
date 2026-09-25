@@ -125,6 +125,12 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 /* v1.5.9.28 RUNTIME HOTFIX — scoped overlay mapping + raster corner hard-clip. */
 .core-card-content.is-home-hero{overflow:hidden}
 
+/* v1.5.9.34 — SCROLL GHOST CLEANUP ONLY.
+   Fixes the bright “old card” outline remnants seen in the supplied screen recording:
+   native WebGL glow now respects each card's own stack order, and distant/recycling rims
+   are suppressed only while the carousel is actively moving.
+   LED contour, glow material/intensity, card layout, content, physics and Route Travel are unchanged. */
+
 /* v1.5.9.33 — GHOST-RIM FIX ONLY.
    Recycled/non-displayed physical slots no longer keep a full-strength WebGL glow outline while scrolling.
    Cards Only LED contour and native glow of the actually displayed cards are unchanged. */
@@ -1738,7 +1744,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
         // side-line glow as the hero, even when another card partially overlaps it.
         if(card.children[0]) card.children[0].renderOrder=8800;
         if(card.userData.backFace) card.userData.backFace.renderOrder=8700;
-        if(card.userData.edgeGlow) card.userData.edgeGlow.renderOrder=8900;
+        if(card.userData.edgeGlow) card.userData.edgeGlow.renderOrder=order+1;
       }
 
       function pickTopVisibleCard(){
@@ -1880,7 +1886,9 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
           // Native bloom stays unchanged for cards in the displayed group.
           // Recycled physical slots must not leave bright old-card outlines behind.
           if(card.userData.edgeGlow){
-            card.userData.edgeGlow.visible=belongsToDisplayedGroup && presence>.025;
+            const glowBelongs=belongsToDisplayedGroup && presence>.08;
+            const glowStableDuringMotion=!inputActive || card===heroCard || distCards<1.45;
+            card.userData.edgeGlow.visible=glowBelongs && glowStableDuringMotion;
           }
           const screenH=belongsToDisplayedGroup
             ?Math.max(THIRD_CARD_REFERENCE_SCREEN_HEIGHT,naturalScreenH)
