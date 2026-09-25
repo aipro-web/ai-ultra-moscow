@@ -125,13 +125,19 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 /* v1.5.9.28 RUNTIME HOTFIX — scoped overlay mapping + raster corner hard-clip. */
 .core-card-content.is-home-hero{overflow:hidden}
 
-/* v1.5.9.29 FIRST-SCREEN STATES + CARDSONLY EDGE. Physics untouched. */
-.card-number{background:linear-gradient(180deg,rgba(30,21,8,.78),rgba(5,5,6,.76));border-color:rgba(255,220,145,.38);color:#ffe8b3;letter-spacing:.08em}
-.card-number.is-brand{letter-spacing:.14em;color:#fff4d4}
+/* v1.5.9.29 — seven-card progressive disclosure + Cards Only labels. */
+.card-number,.card-number.is-hero,.card-number.is-brand{
+  min-width:0!important;max-width:62%!important;padding:0!important;border:0!important;border-radius:0!important;
+  background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  color:#f0d69b!important;font:800 clamp(9px,.84vw,13px)/1 system-ui!important;letter-spacing:.14em!important;
+  text-shadow:0 2px 12px rgba(0,0,0,.88),0 0 10px rgba(218,162,56,.18)!important;
+}
+.card-number.is-brand{font-size:clamp(12px,1.08vw,16px)!important;color:#fff4d4!important;letter-spacing:.12em!important}
 .core-card-content.is-support .core-card-actions{display:none!important}
-.core-card-content.is-support .core-card-copy{max-height:66%}
-.core-card-content.is-support[data-mode="small"] .core-card-body,.core-card-content.is-support[data-mode="micro"] .core-card-body{display:none!important}
-.core-card-content.is-home-hero.is-hero .core-card-body:empty{display:none!important}
+.core-card-content.is-far-support .core-card-body{display:none!important}
+.core-card-content.is-far-support .core-card-copy{max-height:48%!important}
+.core-card-content.is-near-support .core-card-body{color:rgba(255,250,240,.92);font-weight:700}
+.core-card-content.is-home-hero.is-hero .core-card-body{display:none!important}
 </style>
 </head>
 <body data-carousel-core="pure">
@@ -155,15 +161,15 @@ window.addEventListener('unhandledrejection',event=>{
 <script>
 // Edit only content/labels/URLs here. No carousel physics live in this file.
 window.AIULTRA_CONTENT = Object.freeze([
-    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы и заряжаем продажи.',body:'',sideBody:'ИИ/AI-Решения под ключ для роста продаж и бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'ECOSYSTEM 02',eyebrow:'',title:'ИИ/AI-Экосистема роста',body:'Постоянная аналитика, обновляемый маркетинг, CRM, экосистема ИИ/AI-Агентов и другие решения объединяются в одну систему роста вашего бизнеса.',sideBody:'Аналитика, маркетинг, CRM и ИИ/AI-Агенты в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'EMPLOYEES 03',eyebrow:'',title:'ИИ/AI-Сотрудники',body:'Цифровые сотрудники работают 24/7, берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',sideBody:'Работают 24/7 и усиливают вашу команду.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'AGENTS 04',eyebrow:'',title:'ИИ/AI-Агенты',body:'Самостоятельно выполняют цепочки задач, работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',sideBody:'Автономно выполняют цепочки бизнес-задач.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'SALES 05',eyebrow:'',title:'ИИ/AI-Продажники',body:'Обрабатывают лиды, квалифицируют клиентов, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',sideBody:'Лиды, квалификация, диалоги и CRM 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'CALLS 06',eyebrow:'',title:'ИИ/AI-Звонки и анализ',body:'Входящие и исходящие звонки, квалификация и сопровождение клиентов дополняются постоянным анализом разговоров, возражений, ошибок менеджеров и точек роста продаж.',sideBody:'ИИ/AI-Звонки + анализ каждого разговора.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'AUTOMATION 07',eyebrow:'',title:'ИИ/AI-Автоматизация бизнес-процессов',body:'Связываем CRM, 1С, документы, продажи, поддержку, закупки, аналитику и другие процессы в единую автоматизированную экосистему.',sideBody:'Автоматизация любых бизнес-процессов в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'PRICING 08',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',sideBody:'Расчёт стоимости под задачу и архитектуру.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'FAQ 09',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ/AI в компании: что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый ИИ/AI-Сценарий.',sideBody:'Как запускается ИИ/AI в вашей компании.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи…',body:'',sideBody:'ИИ/AI-Решения под ключ для роста вашего бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'02 ECOSYSTEM',eyebrow:'',title:'ИИ/AI-Экосистема роста',body:'Постоянная аналитика, обновляемый маркетинг, CRM, экосистема ИИ/AI-Агентов и другие решения объединяются в одну систему роста вашего бизнеса.',sideBody:'Аналитика, маркетинг, CRM и ИИ/AI-Агенты в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'03 EMPLOYEES',eyebrow:'',title:'ИИ/AI-Сотрудники',body:'Цифровые сотрудники работают 24/7, берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',sideBody:'Работают 24/7 и усиливают вашу команду.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'04 AGENTS',eyebrow:'',title:'ИИ/AI-Агенты',body:'Самостоятельно выполняют цепочки задач, работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',sideBody:'Автономно выполняют цепочки бизнес-задач.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'05 SALES',eyebrow:'',title:'ИИ/AI-Продажники',body:'Обрабатывают лиды, квалифицируют клиентов, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',sideBody:'Лиды, квалификация, диалоги и CRM 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'06 CALLS',eyebrow:'',title:'ИИ/AI-Звонки и анализ',body:'Входящие и исходящие звонки, квалификация и сопровождение клиента — плюс постоянный анализ разговоров, возражений, ошибок менеджеров и точек роста продаж.',sideBody:'Звонки, квалификация и анализ разговоров 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'07 AUTOMATION',eyebrow:'',title:'ИИ/AI-Автоматизация бизнес-процессов',body:'Связываем CRM, 1С, документы, продажи, поддержку, закупки, аналитику и другие процессы в единую автоматизированную экосистему.',sideBody:'Автоматизация любых бизнес-процессов в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'08 PRICING',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',sideBody:'Расчёт стоимости под задачу и архитектуру.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'09 FAQ',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ/AI в компании: что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый ИИ/AI-Сценарий.',sideBody:'Как запускается ИИ/AI в вашей компании.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
 ]);
 
 </script>
@@ -177,15 +183,15 @@ window.AIULTRA_CONTENT = Object.freeze([
   const demoContent = Array.isArray(window.AIULTRA_CONTENT) && window.AIULTRA_CONTENT.length
     ? window.AIULTRA_CONTENT
     : [
-    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы и заряжаем продажи.',body:'',sideBody:'ИИ/AI-Решения под ключ для роста продаж и бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'ECOSYSTEM 02',eyebrow:'',title:'ИИ/AI-Экосистема роста',body:'Постоянная аналитика, обновляемый маркетинг, CRM, экосистема ИИ/AI-Агентов и другие решения объединяются в одну систему роста вашего бизнеса.',sideBody:'Аналитика, маркетинг, CRM и ИИ/AI-Агенты в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'EMPLOYEES 03',eyebrow:'',title:'ИИ/AI-Сотрудники',body:'Цифровые сотрудники работают 24/7, берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',sideBody:'Работают 24/7 и усиливают вашу команду.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'AGENTS 04',eyebrow:'',title:'ИИ/AI-Агенты',body:'Самостоятельно выполняют цепочки задач, работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',sideBody:'Автономно выполняют цепочки бизнес-задач.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'SALES 05',eyebrow:'',title:'ИИ/AI-Продажники',body:'Обрабатывают лиды, квалифицируют клиентов, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',sideBody:'Лиды, квалификация, диалоги и CRM 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'CALLS 06',eyebrow:'',title:'ИИ/AI-Звонки и анализ',body:'Входящие и исходящие звонки, квалификация и сопровождение клиентов дополняются постоянным анализом разговоров, возражений, ошибок менеджеров и точек роста продаж.',sideBody:'ИИ/AI-Звонки + анализ каждого разговора.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'AUTOMATION 07',eyebrow:'',title:'ИИ/AI-Автоматизация бизнес-процессов',body:'Связываем CRM, 1С, документы, продажи, поддержку, закупки, аналитику и другие процессы в единую автоматизированную экосистему.',sideBody:'Автоматизация любых бизнес-процессов в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'PRICING 08',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',sideBody:'Расчёт стоимости под задачу и архитектуру.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
-    {meta:'FAQ 09',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ/AI в компании: что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый ИИ/AI-Сценарий.',sideBody:'Как запускается ИИ/AI в вашей компании.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'AI ULTRA',eyebrow:'',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи…',body:'',sideBody:'ИИ/AI-Решения под ключ для роста вашего бизнеса.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'02 ECOSYSTEM',eyebrow:'',title:'ИИ/AI-Экосистема роста',body:'Постоянная аналитика, обновляемый маркетинг, CRM, экосистема ИИ/AI-Агентов и другие решения объединяются в одну систему роста вашего бизнеса.',sideBody:'Аналитика, маркетинг, CRM и ИИ/AI-Агенты в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'03 EMPLOYEES',eyebrow:'',title:'ИИ/AI-Сотрудники',body:'Цифровые сотрудники работают 24/7, берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',sideBody:'Работают 24/7 и усиливают вашу команду.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'04 AGENTS',eyebrow:'',title:'ИИ/AI-Агенты',body:'Самостоятельно выполняют цепочки задач, работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',sideBody:'Автономно выполняют цепочки бизнес-задач.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'05 SALES',eyebrow:'',title:'ИИ/AI-Продажники',body:'Обрабатывают лиды, квалифицируют клиентов, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',sideBody:'Лиды, квалификация, диалоги и CRM 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'06 CALLS',eyebrow:'',title:'ИИ/AI-Звонки и анализ',body:'Входящие и исходящие звонки, квалификация и сопровождение клиента — плюс постоянный анализ разговоров, возражений, ошибок менеджеров и точек роста продаж.',sideBody:'Звонки, квалификация и анализ разговоров 24/7.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'07 AUTOMATION',eyebrow:'',title:'ИИ/AI-Автоматизация бизнес-процессов',body:'Связываем CRM, 1С, документы, продажи, поддержку, закупки, аналитику и другие процессы в единую автоматизированную экосистему.',sideBody:'Автоматизация любых бизнес-процессов в одной системе.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'08 PRICING',eyebrow:'',title:'Стоимость внедрения',body:'Расчёт под задачу, интеграции и архитектуру — цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',sideBody:'Расчёт стоимости под задачу и архитектуру.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
+    {meta:'09 FAQ',eyebrow:'',title:'Вопросы и ответы',body:'Как запускается ИИ/AI в компании: что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый ИИ/AI-Сценарий.',sideBody:'Как запускается ИИ/AI в вашей компании.',primary:'Подробнее',secondary:'СВЯЖИТЕСЬ С НАМИ'},
       ];
 
 
@@ -435,10 +441,12 @@ window.AIULTRA_CONTENT = Object.freeze([
     };
   }
 
-  function applyOverlayContent(node, item, bounds, { isHero, sequence, renderOrder = 0 }) {
+  function applyOverlayContent(node, item, bounds, { isHero, sequence, renderOrder = 0, layer = 3 }) {
     const logical=overlayContentSequenceFor(sequence);
     const isServiceIntro=logical>=1 && logical<=7;
-    const displayBody=(!isHero && item.sideBody) ? item.sideBody : item.body;
+    const isNearSupport=!isHero && layer===2;
+    const isFarSupport=!isHero && layer!==2;
+    const displayBody=isHero ? (item.body||'') : (isNearSupport ? (item.sideBody||'') : '');
     node.querySelector('.core-card-eyebrow').textContent = item.eyebrow;
     node.querySelector('.core-card-title').textContent = item.title;
     const leadNode=node.querySelector('.core-card-lead');
@@ -461,7 +469,7 @@ window.AIULTRA_CONTENT = Object.freeze([
     node.style.padding = `${Math.round(m.padTop)}px ${Math.round(m.padX)}px ${Math.round(m.padBottom)}px`;
     node.style.setProperty('--card-radius', `${m.radius.toFixed(1)}px`);
     node.style.setProperty('--eyebrow-size', `${m.eyebrow.toFixed(2)}px`);
-    const supportTitle=isServiceIntro && !isHero ? m.title*1.12 : m.title;
+    const supportTitle=isServiceIntro && !isHero ? m.title*1.06 : m.title;
     const supportBody=isServiceIntro && !isHero ? m.body*1.12 : m.body;
     node.style.setProperty('--title-size', `${supportTitle.toFixed(2)}px`);
     node.style.setProperty('--body-size', `${supportBody.toFixed(2)}px`);
@@ -486,15 +494,16 @@ window.AIULTRA_CONTENT = Object.freeze([
     node.classList.toggle('is-support', !isHero);
     node.classList.toggle('is-home-hero', isHomeHero);
     node.classList.toggle('is-service-intro', isServiceIntro);
+    node.classList.toggle('is-near-support', isNearSupport);
+    node.classList.toggle('is-far-support', isFarSupport);
     const heroRaster=node.querySelector('.core-card-hero-raster');
     if(heroRaster && !heroRaster.src) heroRaster.src=AI_ULTRA_HERO_RASTER_READY;
     node.classList.toggle('is-loading', routeLoading && routeTarget === sequence);
 
-    // v1.5.9.29: content states are positional, not squeezed typography.
-    // Hero = full readable content + both CTAs. Supports = preview only, with no buttons.
+    // Progressive disclosure: only the centered card gets CTAs/full copy.
+    // Nearest supports get one short explanatory line; far supports are title-only.
     const bodyNode=node.querySelector('.core-card-body');
-    const showSupportBody=!isHero && (mode==='hero' || mode==='medium');
-    bodyNode.style.display = isHero ? (displayBody ? '' : 'none') : (showSupportBody && displayBody ? '' : 'none');
+    bodyNode.style.display = displayBody ? '' : 'none';
     node.querySelector('.core-card-button-primary').style.display = isHero ? '' : 'none';
     node.querySelector('.core-card-button-secondary').style.display = isHero ? '' : 'none';
 
@@ -505,7 +514,7 @@ window.AIULTRA_CONTENT = Object.freeze([
 
   function hideUnusedOverlays(startIndex = 0) {
     for (let i = startIndex; i < overlayPool.length; i++) {
-      overlayPool[i].classList.remove('is-visible', 'is-loading', 'is-hero', 'is-support', 'is-compact', 'is-home-hero', 'is-service-intro');
+      overlayPool[i].classList.remove('is-visible', 'is-loading', 'is-hero', 'is-support', 'is-compact', 'is-home-hero', 'is-service-intro', 'is-near-support', 'is-far-support');
       delete overlayPool[i].dataset.mode;
     }
   }
@@ -531,7 +540,8 @@ window.AIULTRA_CONTENT = Object.freeze([
       applyOverlayContent(overlayPool[index], item, entry.bounds, {
         isHero: entry.isHero,
         sequence: entry.sequenceNumber,
-        renderOrder: entry.renderOrder || 0
+        renderOrder: entry.renderOrder || 0,
+        layer: entry.layer || 3
       });
     });
     hideUnusedOverlays(visible.length);
@@ -755,7 +765,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
     const ACTIVE_CARD_COUNT=7;
     const MIN_VISIBLE_ACTIVE=4;
     const MAX_VISIBLE_ACTIVE=7;
-    const INITIAL_GROUP_SIZE=7;
+    const INITIAL_GROUP_SIZE=5;
     const ORBITAL_SQUARE_COUNT=0; // controls are fixed DOM HUD: independent from the 3D glass
     const ORBITAL_SQUARE_RADIUS_X_NDC=.66;
     const ORBITAL_SQUARE_RADIUS_Y_NDC=.52;
@@ -858,9 +868,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
     }
     const edgeGeometry=new THREE.EdgesGeometry(baseGeometry,24);
 
-    // CodePen-inspired LED edge layer: HDR-bright line color is fed into UnrealBloomPass.
-    // The fragment mask keeps the long left/right sides luminous and concentrates extra energy at corners;
-    // top/bottom remain deliberately restrained so the result reads as glass, not a CSS outline.
+    // v1.5.9.29 — Cards Only perimeter lighting: same conic gold/pearl gradient on every carousel card.
     function makeBloomEdgeMaterial(intensity=1){
       return new THREE.ShaderMaterial({
         transparent:true,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending,
@@ -876,44 +884,33 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
         fragmentShader:`
           varying vec2 vEdgeLocal;
           uniform float uIntensity;
+          vec3 aiPalette(float t){
+            float s=clamp(t,0.,.999999)*8.;
+            if(s<1.) return mix(vec3(1.000,.973,.875),vec3(.851,.604,.153),s);
+            if(s<2.) return mix(vec3(.851,.604,.153),vec3(1.000,.945,.737),s-1.);
+            if(s<3.) return mix(vec3(1.000,.945,.737),vec3(.725,.435,.071),s-2.);
+            if(s<4.) return mix(vec3(.725,.435,.071),vec3(1.000,.898,.631),s-3.);
+            if(s<5.) return mix(vec3(1.000,.898,.631),vec3(1.000,.973,.867),s-4.);
+            if(s<6.) return mix(vec3(1.000,.973,.867),vec3(.812,.545,.125),s-5.);
+            if(s<7.) return mix(vec3(.812,.545,.125),vec3(1.000,.941,.710),s-6.);
+            return mix(vec3(1.000,.941,.710),vec3(1.000,.973,.875),s-7.);
+          }
           void main(){
-            float nx=clamp(abs(vEdgeLocal.x)/${(9/16/2).toFixed(8)},0.,1.);
-            float ny=clamp(abs(vEdgeLocal.y)/${(1/2).toFixed(8)},0.,1.);
-            float vertical=smoothstep(.76,.985,nx);
-            float corner=vertical*smoothstep(.66,.985,ny);
-            float horizontal=smoothstep(.88,.996,ny)*(1.-smoothstep(.48,.92,nx));
-            float perimeter=max(vertical*.92,horizontal*.78);
-            float energy=perimeter*(1.34+corner*1.10)+vertical*.46+horizontal*.36;
-            // Cards Only conic palette mapped around the real 3D rounded perimeter.
-            float a=atan(vEdgeLocal.y/0.50000000,vEdgeLocal.x/0.28125000);
-            float t=fract((a+3.14159265)/6.28318530+.08);
-            vec3 c0=vec3(1.000,.973,.875); // #fff8df
-            vec3 c1=vec3(.851,.604,.153);  // #d99a27
-            vec3 c2=vec3(1.000,.945,.737);  // #fff1bc
-            vec3 c3=vec3(.725,.435,.071);  // #b96f12
-            vec3 c4=vec3(1.000,.898,.631);  // #ffe5a1
-            vec3 c5=vec3(1.000,.973,.867);  // #fff8dd
-            vec3 c6=vec3(.812,.545,.125);  // #cf8b20
-            vec3 c7=vec3(1.000,.941,.710);  // #fff0b5
-            float seg=t*8.;
-            vec3 grad;
-            if(seg<1.) grad=mix(c0,c1,seg);
-            else if(seg<2.) grad=mix(c1,c2,seg-1.);
-            else if(seg<3.) grad=mix(c2,c3,seg-2.);
-            else if(seg<4.) grad=mix(c3,c4,seg-3.);
-            else if(seg<5.) grad=mix(c4,c5,seg-4.);
-            else if(seg<6.) grad=mix(c5,c6,seg-5.);
-            else if(seg<7.) grad=mix(c6,c7,seg-6.);
-            else grad=mix(c7,c0,seg-7.);
-            float sideBoost=mix(.86,1.28,vertical);
-            vec3 color=grad*(1.42+corner*.86)*energy*uIntensity*sideBoost;
-            float alpha=clamp((perimeter*.88+corner*.58+vertical*.20)*uIntensity,0.,1.);
+            float nx=clamp(vEdgeLocal.x/${(9/16/2).toFixed(8)},-1.,1.);
+            float ny=clamp(vEdgeLocal.y/${(1/2).toFixed(8)},-1.,1.);
+            float a=atan(ny,nx)/6.28318530718;
+            float t=fract(a-(215.0/360.0)+1.0);
+            float corner=smoothstep(.74,.99,abs(nx))*smoothstep(.74,.99,abs(ny));
+            vec3 grad=aiPalette(t);
+            float energy=(1.30+corner*.72)*uIntensity;
+            vec3 color=grad*energy*1.42;
+            float alpha=clamp((.72+corner*.24)*uIntensity,0.,1.);
             gl_FragColor=vec4(color,alpha);
           }`
       });
     }
-    const bloomEdgeHeroMaterial=makeBloomEdgeMaterial(1.62);
-    const bloomEdgeSupportMaterial=makeBloomEdgeMaterial(1.62);
+    const bloomEdgeHeroMaterial=makeBloomEdgeMaterial(1.34);
+    const bloomEdgeSupportMaterial=makeBloomEdgeMaterial(1.34);
 
     function makeGlassMaterial(depthTest=true,dynamicFlow=false){
       const flowUniforms={uDenseGlass:{value:dynamicFlow?0:1}};
@@ -1058,7 +1055,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
       side:THREE.DoubleSide,
       toneMapped:true
     });
-    const overlayEdge=new THREE.LineBasicMaterial({color:0xffdf91,transparent:true,opacity:.44,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending});
+    const overlayEdge=makeBloomEdgeMaterial(.48);
     const backGlass=new THREE.MeshBasicMaterial({color:0x020202,transparent:true,opacity:.74,depthWrite:false,depthTest:false,side:THREE.BackSide,blending:THREE.NormalBlending});
 
     const orbitalSquareGeometry=new THREE.ShapeGeometry(roundedRectShape(1,1,.22),6);
@@ -1711,7 +1708,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
         for(const card of activeCards){
           if(!card.visible) continue;
           const step=card.userData.sequenceStep;
-          // Raster removed: every interactive foreground card uses the native glass material.
+          // Native 3D glass remains the physical card; the hero raster is clipped inside the DOM content layer.
           if(card.material!==overlayGlass) card.material=overlayGlass;
           if(card.children[0]) card.children[0].visible=true;
           if(card.userData.edgeGlow){
