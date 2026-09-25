@@ -125,6 +125,11 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 /* v1.5.9.28 RUNTIME HOTFIX — scoped overlay mapping + raster corner hard-clip. */
 .core-card-content.is-home-hero{overflow:hidden}
 
+/* v1.5.9.35 — MOBILE SINGLE-CARD CLEANUP ONLY.
+   Desktop 7-card composition is unchanged. On mobile, only the active card remains at rest;
+   during a swipe only current + incoming card may coexist, and recycled slots are killed immediately.
+   LED contour, native bloom, content, physics and Route Travel are otherwise untouched. */
+
 /* v1.5.9.34 — SCROLL GHOST CLEANUP ONLY.
    Fixes the bright “old card” outline remnants seen in the supplied screen recording:
    native WebGL glow now respects each card's own stack order, and distant/recycling rims
@@ -1802,8 +1807,13 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
         const heroStep=Math.round(coord);
         heroCard=activeCards.find(card=>card.visible && card.userData.sequenceStep===heroStep)||null;
 
-        // Logical group count is frozen for the whole visual scroll and changes only after full stop.
-        const visibleCount=THREE.MathUtils.clamp(logicalGroupSize,MIN_VISIBLE_ACTIVE,MAX_VISIBLE_ACTIVE);
+        // v1.5.9.35 MOBILE SINGLE-CARD CLEANUP ONLY:
+        // Desktop keeps the existing multi-card group unchanged.
+        // On mobile, one card remains at rest; during an active swipe only the current + incoming card may coexist.
+        const mobileSingleCard=window.innerWidth<=700;
+        const visibleCount=mobileSingleCard
+          ?(inputActive?2:1)
+          :THREE.MathUtils.clamp(logicalGroupSize,MIN_VISIBLE_ACTIVE,MAX_VISIBLE_ACTIVE);
         const ranked=[...activeCards].sort((a,b)=>{
           const da=Math.abs(a.userData.sequenceStep-coord),db=Math.abs(b.userData.sequenceStep-coord);
           if(Math.abs(da-db)>1e-7) return da-db;
@@ -1896,7 +1906,12 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
           const recyclePresence=1-THREE.MathUtils.smoothstep(distCards,ACTIVE_RECYCLE_FADE_START,ACTIVE_RECYCLE_FADE_END);
           const visibilityTarget=(card===heroCard || activeSet.has(card))?1:0;
           const visibilityA=1-Math.exp(-ACTIVE_VISIBILITY_DAMP*dt);
-          card.userData.visibilityMix=THREE.MathUtils.lerp(card.userData.visibilityMix,visibilityTarget,visibilityA);
+          if(mobileSingleCard && visibilityTarget===0){
+            // Kill recycled mobile slots immediately so no old card outline can linger behind the active card.
+            card.userData.visibilityMix=0;
+          }else{
+            card.userData.visibilityMix=THREE.MathUtils.lerp(card.userData.visibilityMix,visibilityTarget,visibilityA);
+          }
           if(card===heroCard) card.userData.visibilityMix=1;
           const presence=recyclePresence*card.userData.visibilityMix;
           const naturalScreenH=(MIN_ACTIVE_SCREEN_HEIGHT+(HERO_SCREEN_HEIGHT-MIN_ACTIVE_SCREEN_HEIGHT)*Math.pow(focus,1.35))*presence;
