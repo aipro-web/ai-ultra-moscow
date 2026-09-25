@@ -53,14 +53,18 @@
 /* v1.5.9.28 RASTER CORNER HARD-CLIP — no square raster corners. */
 .preview-card[data-card-index="0"]{overflow:hidden}
 .preview-card[data-card-index="0"] .preview-hero-raster,.preview-card[data-card-index="0"] .preview-hero-shade{border-radius:42px;clip-path:inset(0 round 42px)}
+
+/* v1.5.9.29 — first screen parity with main carousel. */
+.preview-card[data-card-index="0"] .preview-body{display:none!important}
+.preview-meta{color:#f0d69b;font-weight:800;letter-spacing:.14em}
 </style></head><body>
 <main class="preview-stage">
   <section class="preview-card" id="seo-card" data-card-index="0">
     <div class="preview-topline"><div class="preview-meta is-brand" id="seo-meta">AI ULTRA</div><img class="preview-logo" src="./assets/ai-ultra-logo.png" alt="AI Ultra"></div>
     <div class="preview-card-copy">
       <h2 id="seo-title">ИИ/AI-Сотрудники для взлёта ваших продаж</h2>
-      <div class="preview-lead" id="seo-lead">Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи, …</div>
-      <p class="preview-body" id="seo-body">постоянная аналитика, обновляемый маркетинг, экосистема ИИ/AI-Агентов и многое другое — объединяем в одну систему роста для вашего бизнеса.</p>
+      <div class="preview-lead" id="seo-lead">Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи…</div>
+      <p class="preview-body" id="seo-body"></p>
     </div>
 
     <div class="preview-hero-shade" aria-hidden="true"></div>
@@ -101,17 +105,17 @@ const AI_ULTRA_HERO_RASTER_SOURCE=document.getElementById('hero-raster').src;
 aiUltraPrepareTransparentRaster(AI_ULTRA_HERO_RASTER_SOURCE,src=>{const img=document.getElementById('hero-raster');if(img)img.src=src;});
 
 const cards=[
- {meta:'AI ULTRA',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи, …',body:'постоянная аналитика, обновляемый маркетинг, экосистема ИИ/AI-Агентов и многое другое — объединяем в одну систему роста для вашего бизнеса.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
- {meta:'СОТРУДНИКИ 02',title:'ИИ/AI-Сотрудники',lead:'Работают 24/7 и усиливают вашу команду',body:'Цифровые сотрудники берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
- {meta:'АГЕНТЫ 03',title:'ИИ/AI-Агенты',lead:'Автономно выполняют цепочки бизнес-задач',body:'Работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
- {meta:'ПРОДАЖНИКИ 04',title:'ИИ/AI-Продажники',lead:'Лиды, квалификация, диалоги и CRM 24/7',body:'Обрабатывают лиды, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
- {meta:'ЗВОНКИ 05',title:'ИИ/AI-Звонки',lead:'Входящие и исходящие звонки без потери лидов',body:'Первичная квалификация, напоминания, сопровождение клиента и автоматическая фиксация результата разговора.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
- {meta:'АНАЛИЗ 06',title:'ИИ/AI-Анализ звонков',lead:'Ошибки, возражения и точки роста продаж',body:'Постоянно анализируем разговоры, качество коммуникации, конверсию и работу отдела продаж.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
- {meta:'АВТОМАТИЗАЦИЯ 07',title:'ИИ/AI-Автоматизация бизнес-процессов',lead:'Автоматизация любых бизнес-процессов в одной системе',body:'Связываем CRM, 1С, документы, продажи, поддержку, закупки, аналитику и другие процессы в единую экосистему.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
- {meta:'PRICING 08',title:'Стоимость внедрения',lead:'Расчёт под задачу, интеграции и архитектуру',body:'Цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
- {meta:'FAQ 09',title:'Вопросы и ответы',lead:'Как запускается ИИ/AI в компании',body:'Что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый ИИ/AI-Сценарий.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
+ {meta:'AI ULTRA',title:'ИИ/AI-Сотрудники для взлёта ваших продаж',lead:'Внедряем ИИ/AI-Решения под ключ: автоматизируем любые бизнес-процессы, заряжаем продажи…',body:'',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
+ {meta:'02 ECOSYSTEM',title:'ИИ/AI-Экосистема роста',lead:'Аналитика, маркетинг, CRM и ИИ/AI-Агенты в одной системе',body:'Постоянная аналитика, обновляемый маркетинг, CRM, экосистема ИИ/AI-Агентов и другие решения объединяются в одну систему роста вашего бизнеса.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
+ {meta:'03 EMPLOYEES',title:'ИИ/AI-Сотрудники',lead:'Работают 24/7 и усиливают вашу команду',body:'Цифровые сотрудники берут на себя повторяющиеся задачи, общаются с клиентами, ведут данные и помогают команде продавать больше.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
+ {meta:'04 AGENTS',title:'ИИ/AI-Агенты',lead:'Автономно выполняют цепочки бизнес-задач',body:'Работают с CRM, документами, данными и сервисами компании, передавая человеку результат там, где он нужен.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
+ {meta:'05 SALES',title:'ИИ/AI-Продажники',lead:'Лиды, квалификация, диалоги и CRM 24/7',body:'Обрабатывают лиды, ведут диалог, фиксируют контекст в CRM и передают менеджеру клиента, готового к следующему шагу.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
+ {meta:'06 CALLS',title:'ИИ/AI-Звонки и анализ',lead:'Звонки, квалификация и анализ разговоров 24/7',body:'Входящие и исходящие звонки, квалификация и сопровождение клиента — плюс постоянный анализ разговоров, возражений, ошибок менеджеров и точек роста продаж.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
+ {meta:'07 AUTOMATION',title:'ИИ/AI-Автоматизация бизнес-процессов',lead:'Автоматизация любых бизнес-процессов в одной системе',body:'Связываем CRM, 1С, документы, продажи, поддержку, закупки, аналитику и другие процессы в единую экосистему.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
+ {meta:'08 PRICING',title:'Стоимость внедрения',lead:'Расчёт под задачу, интеграции и архитектуру',body:'Цена зависит от сценария, каналов и уровня автономности. Сначала считаем ожидаемый эффект и формат запуска.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
+ {meta:'09 FAQ',title:'Вопросы и ответы',lead:'Как запускается ИИ/AI в компании',body:'Что автоматизировать, как подключить CRM и 1С, где нужен человек и как стартует первый ИИ/AI-Сценарий.',p:'Подробнее',s:'СВЯЖИТЕСЬ С НАМИ'},
 ];
 const q=s=>document.querySelector(s); const qa=s=>[...document.querySelectorAll(s)];
-function show(i){const c=cards[i];const card=q('#seo-card');const meta=q('#seo-meta');meta.textContent=c.meta;meta.classList.toggle('is-brand',i===0);card.classList.toggle('is-dense',[1,2,7].includes(i));card.dataset.cardIndex=String(i);q('#seo-title').textContent=c.title;q('#seo-lead').textContent=c.lead;q('#seo-body').textContent=c.body;q('#seo-primary').textContent=c.p;q('#seo-secondary').textContent=c.s;qa('.preview-sections button').forEach((b,n)=>b.classList.toggle('is-active',n===i));}
+function show(i){const c=cards[i];const card=q('#seo-card');const meta=q('#seo-meta');meta.textContent=c.meta;meta.classList.toggle('is-brand',i===0);card.classList.toggle('is-dense',[1,2,7].includes(i));card.dataset.cardIndex=String(i);q('#seo-title').textContent=c.title;const lead=q('#seo-lead');lead.textContent=c.lead||'';lead.style.display=c.lead?'':'none';const body=q('#seo-body');body.textContent=c.body||'';body.style.display=c.body?'':'none';q('#seo-primary').textContent=c.p;q('#seo-secondary').textContent=c.s;qa('.preview-sections button').forEach((b,n)=>b.classList.toggle('is-active',n===i));}
 qa('.preview-sections button').forEach(b=>b.addEventListener('click',()=>show(Number(b.dataset.i))));
 </script></body></html>
