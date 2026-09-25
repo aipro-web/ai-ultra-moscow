@@ -125,6 +125,10 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 /* v1.5.9.28 RUNTIME HOTFIX — scoped overlay mapping + raster corner hard-clip. */
 .core-card-content.is-home-hero{overflow:hidden}
 
+/* v1.5.9.33 — GHOST-RIM FIX ONLY.
+   Recycled/non-displayed physical slots no longer keep a full-strength WebGL glow outline while scrolling.
+   Cards Only LED contour and native glow of the actually displayed cards are unchanged. */
+
 /* v1.5.9.32 — VISIBLE Cards Only LED on the actual DOM card surface.
    Exact Cards Only conic palette; no shadow/bloom added here. Native carousel light emission stays untouched. */
 .core-card-content::before{
@@ -1798,7 +1802,6 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
           if(card.material!==overlayGlass) card.material=overlayGlass;
           if(card.children[0]) card.children[0].visible=false;
           if(card.userData.edgeGlow){
-            card.userData.edgeGlow.visible=true;
             card.userData.edgeGlow.material=card===heroCard?bloomEdgeHeroMaterial:bloomEdgeSupportMaterial;
           }
           const distCards=Math.abs(step-coord);
@@ -1873,6 +1876,12 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
           // render smaller than the old resting #3 card. Cards leaving the group may still
           // shrink away so recycling remains smooth.
           const belongsToDisplayedGroup=(card===heroCard || activeSet.has(card));
+          // v1.5.9.33 GHOST-RIM FIX:
+          // Native bloom stays unchanged for cards in the displayed group.
+          // Recycled physical slots must not leave bright old-card outlines behind.
+          if(card.userData.edgeGlow){
+            card.userData.edgeGlow.visible=belongsToDisplayedGroup && presence>.025;
+          }
           const screenH=belongsToDisplayedGroup
             ?Math.max(THIRD_CARD_REFERENCE_SCREEN_HEIGHT,naturalScreenH)
             :naturalScreenH;
