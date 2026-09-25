@@ -125,6 +125,7 @@ body.core-route-loading .core-hud{opacity:0!important;visibility:hidden!importan
 /* v1.5.9.28 RUNTIME HOTFIX — scoped overlay mapping + raster corner hard-clip. */
 .core-card-content.is-home-hero{overflow:hidden}
 
+/* v1.5.9.30 — outline-only Cards Only gradient; carousel bloom/light emission preserved. */
 /* v1.5.9.29 — seven-card progressive disclosure + Cards Only labels. */
 .card-number,.card-number.is-hero,.card-number.is-brand{
   min-width:0!important;max-width:62%!important;padding:0!important;border:0!important;border-radius:0!important;
@@ -868,7 +869,10 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
     }
     const edgeGeometry=new THREE.EdgesGeometry(baseGeometry,24);
 
-    // v1.5.9.29 — Cards Only perimeter lighting: same conic gold/pearl gradient on every carousel card.
+    // v1.5.9.30 — split visual outline from emitted light.
+    // The bloom/glow below is restored to the original carousel material so the amount and character
+    // of light emitted into the scene stay unchanged. A separate non-bloom line carries ONLY the
+    // Cards Only gold/pearl conic gradient around the physical card perimeter.
     function makeBloomEdgeMaterial(intensity=1){
       return new THREE.ShaderMaterial({
         transparent:true,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending,
@@ -884,6 +888,41 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
         fragmentShader:`
           varying vec2 vEdgeLocal;
           uniform float uIntensity;
+          void main(){
+            float nx=clamp(abs(vEdgeLocal.x)/${(9/16/2).toFixed(8)},0.,1.);
+            float ny=clamp(abs(vEdgeLocal.y)/${(1/2).toFixed(8)},0.,1.);
+            float vertical=smoothstep(.76,.985,nx);
+            float corner=vertical*smoothstep(.66,.985,ny);
+            float horizontal=smoothstep(.88,.996,ny)*(1.-smoothstep(.48,.92,nx));
+            float perimeter=max(vertical*.92,horizontal*.78);
+            float energy=perimeter*(1.34+corner*1.10)+vertical*.46+horizontal*.36;
+            vec3 warm=vec3(1.40,1.10,.55);
+            vec3 hot=vec3(2.10,1.58,.72);
+            vec3 color=mix(warm,hot,clamp(.30+corner*.70+horizontal*.18,0.,1.))*energy*uIntensity;
+            float alpha=clamp((perimeter*.82+corner*.54+horizontal*.22)*uIntensity,0.,1.);
+            gl_FragColor=vec4(color,alpha);
+          }`
+      });
+    }
+    const bloomEdgeHeroMaterial=makeBloomEdgeMaterial(1.62);
+    const bloomEdgeSupportMaterial=makeBloomEdgeMaterial(1.62);
+
+    function makeCardsOnlyPerimeterMaterial(){
+      return new THREE.ShaderMaterial({
+        transparent:true,
+        depthWrite:false,
+        depthTest:false,
+        blending:THREE.NormalBlending,
+        toneMapped:false,
+        vertexShader:`
+          varying vec2 vEdgeLocal;
+          void main(){
+            vEdgeLocal=position.xy;
+            vec4 mv=modelViewMatrix*vec4(position,1.);
+            gl_Position=projectionMatrix*mv;
+          }`,
+        fragmentShader:`
+          varying vec2 vEdgeLocal;
           vec3 aiPalette(float t){
             float s=clamp(t,0.,.999999)*8.;
             if(s<1.) return mix(vec3(1.000,.973,.875),vec3(.851,.604,.153),s);
@@ -900,17 +939,13 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
             float ny=clamp(vEdgeLocal.y/${(1/2).toFixed(8)},-1.,1.);
             float a=atan(ny,nx)/6.28318530718;
             float t=fract(a-(215.0/360.0)+1.0);
-            float corner=smoothstep(.74,.99,abs(nx))*smoothstep(.74,.99,abs(ny));
             vec3 grad=aiPalette(t);
-            float energy=(1.30+corner*.72)*uIntensity;
-            vec3 color=grad*energy*1.42;
-            float alpha=clamp((.72+corner*.24)*uIntensity,0.,1.);
-            gl_FragColor=vec4(color,alpha);
+            // Keep RGB at/below 1.0 so UnrealBloomPass does not treat this line as a new light source.
+            gl_FragColor=vec4(grad,.98);
           }`
       });
     }
-    const bloomEdgeHeroMaterial=makeBloomEdgeMaterial(1.34);
-    const bloomEdgeSupportMaterial=makeBloomEdgeMaterial(1.34);
+    const cardsOnlyPerimeterMaterial=makeCardsOnlyPerimeterMaterial();
 
     function makeGlassMaterial(depthTest=true,dynamicFlow=false){
       const flowUniforms={uDenseGlass:{value:dynamicFlow?0:1}};
@@ -1055,7 +1090,7 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
       side:THREE.DoubleSide,
       toneMapped:true
     });
-    const overlayEdge=makeBloomEdgeMaterial(.48);
+    const overlayEdge=cardsOnlyPerimeterMaterial;
     const backGlass=new THREE.MeshBasicMaterial({color:0x020202,transparent:true,opacity:.74,depthWrite:false,depthTest:false,side:THREE.BackSide,blending:THREE.NormalBlending});
 
     const orbitalSquareGeometry=new THREE.ShapeGeometry(roundedRectShape(1,1,.22),6);
@@ -1236,8 +1271,8 @@ import * as THREE from 'https://esm.sh/three@0.184.0';
       const activeCards=[];
       for(let i=0;i<ACTIVE_CARD_COUNT;i++){
         const card=new THREE.Mesh(baseGeometry,overlayGlass);
-        const border=new THREE.LineSegments(edgeGeometry,overlayEdge); border.position.z=.0015; card.add(border);
-        const edgeGlow=new THREE.LineSegments(edgeGeometry,bloomEdgeSupportMaterial); edgeGlow.position.z=.0032; card.add(edgeGlow);
+        const border=new THREE.LineSegments(edgeGeometry,overlayEdge); border.position.z=.0046; border.renderOrder=5002; card.add(border);
+        const edgeGlow=new THREE.LineSegments(edgeGeometry,bloomEdgeSupportMaterial); edgeGlow.position.z=.0032; edgeGlow.renderOrder=5001; card.add(edgeGlow);
         const backFace=new THREE.Mesh(baseGeometry,backGlass); backFace.position.z=-.002; card.add(backFace);
         const label=document.createElement('div'); label.className='card-number'; document.body.appendChild(label);
         card.userData={
